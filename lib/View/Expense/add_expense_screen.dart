@@ -128,7 +128,7 @@ class _AddExpenseState extends State<AddExpense> {
 
                               ///Expense Date
                               Text(
-                                'Expense Type',
+                                'Expense Date',
                                 style: TextStyleHelper.kWhite18W600Inter,
                               ),
                               const SizedBox(
