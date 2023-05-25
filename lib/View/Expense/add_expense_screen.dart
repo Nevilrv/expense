@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../constant/color_helper.dart';
 
@@ -13,6 +14,10 @@ class AddExpense extends StatefulWidget {
 }
 
 class _AddExpenseState extends State<AddExpense> {
+  DateTime expenseDate = DateTime.now();
+  DateTime reimbursementDate = DateTime.now();
+  String? dropDownValue;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -52,9 +57,14 @@ class _AddExpenseState extends State<AddExpense> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SvgPicture.asset(
-                              'assets/icons/arrow-left-rounded.svg',
-                              height: 35,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: SvgPicture.asset(
+                                'assets/icons/arrow-left-rounded.svg',
+                                height: 35,
+                              ),
                             ),
                             Text(
                               'Add Expense',
@@ -150,20 +160,45 @@ class _AddExpenseState extends State<AddExpense> {
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Flexible(
-                                      child: TextFormField(
-                                        cursorColor: Colors.white,
+                                    Text(DateFormat.yMd().format(expenseDate),
                                         style:
-                                            TextStyleHelper.kWhite14W400Inter,
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
+                                            TextStyleHelper.kWhite14W400Inter),
+                                    const Spacer(),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: expenseDate,
+                                          firstDate: DateTime(2015, 8),
+                                          lastDate: DateTime(2101),
+                                          builder: (context, child) {
+                                            return Theme(
+                                              data: ThemeData(
+                                                splashColor: Colors.white,
+                                                colorScheme: ColorScheme.light(
+                                                  primary: ColorHelper.kPrimary,
+                                                  onSurface: Colors.white,
+                                                ),
+                                                dialogBackgroundColor:
+                                                    ColorHelper.kBG,
+                                              ),
+                                              child: child!,
+                                            );
+                                          },
+                                        );
+                                        if (picked != null &&
+                                            picked != expenseDate) {
+                                          setState(() {
+                                            expenseDate = picked;
+                                          });
+                                        }
+                                      },
+                                      child: SvgPicture.asset(
+                                        'assets/icons/arrow-circle-down.svg',
+                                        height: 22,
+                                        color: Colors.white,
                                       ),
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-down.svg',
-                                      height: 22,
-                                      color: Colors.white,
                                     ),
                                   ],
                                 ),
@@ -242,6 +277,7 @@ class _AddExpenseState extends State<AddExpense> {
                                     Flexible(
                                       child: TextFormField(
                                         cursorColor: Colors.white,
+                                        keyboardType: TextInputType.number,
                                         style:
                                             TextStyleHelper.kWhite14W400Inter,
                                         decoration: const InputDecoration(
@@ -275,26 +311,59 @@ class _AddExpenseState extends State<AddExpense> {
                                     border: Border.all(color: Colors.white)),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/trade.svg',
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Flexible(
-                                      child: TextFormField(
-                                        cursorColor: Colors.white,
-                                        style:
-                                            TextStyleHelper.kWhite14W400Inter,
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
+                                    Expanded(
+                                      child: DropdownButton(
+                                        dropdownColor: ColorHelper.kBG,
+                                        borderRadius: BorderRadius.circular(15),
+                                        underline: const SizedBox(),
+                                        icon: SvgPicture.asset(
+                                          'assets/icons/arrow-circle-down.svg',
+                                          height: 22,
+                                          color: Colors.white,
                                         ),
+                                        hint: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/trade.svg',
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Text(
+                                                dropDownValue == null
+                                                    ? 'Select Currency'
+                                                    : dropDownValue!,
+                                                style: TextStyleHelper
+                                                    .kWhite14W400Inter),
+                                          ],
+                                        ),
+                                        isExpanded: true,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        items: [
+                                          'ADA',
+                                          'AED',
+                                          'BNB',
+                                          'BTC',
+                                          'ETH',
+                                          'SOL',
+                                          'XRP',
+                                        ].map(
+                                          (value) {
+                                            return DropdownMenuItem(
+                                              value: value,
+                                              child: Text(value),
+                                            );
+                                          },
+                                        ).toList(),
+                                        onChanged: (value1) {
+                                          setState(
+                                            () {
+                                              dropDownValue = value1;
+                                            },
+                                          );
+                                        },
                                       ),
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-down.svg',
-                                      height: 22,
-                                      color: Colors.white,
                                     ),
                                   ],
                                 ),
@@ -328,20 +397,47 @@ class _AddExpenseState extends State<AddExpense> {
                                     const SizedBox(
                                       width: 8,
                                     ),
-                                    Flexible(
-                                      child: TextFormField(
-                                        cursorColor: Colors.white,
+                                    Text(
+                                        DateFormat.yMd()
+                                            .format(reimbursementDate),
                                         style:
-                                            TextStyleHelper.kWhite14W400Inter,
-                                        decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                        ),
+                                            TextStyleHelper.kWhite14W400Inter),
+                                    const Spacer(),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: reimbursementDate,
+                                          firstDate: DateTime(2015, 8),
+                                          lastDate: DateTime(2101),
+                                          builder: (context, child) {
+                                            return Theme(
+                                              data: ThemeData(
+                                                splashColor: Colors.white,
+                                                colorScheme: ColorScheme.light(
+                                                  primary: ColorHelper.kPrimary,
+                                                  onSurface: Colors.white,
+                                                ),
+                                                dialogBackgroundColor:
+                                                    ColorHelper.kBG,
+                                              ),
+                                              child: child!,
+                                            );
+                                          },
+                                        );
+                                        if (picked != null &&
+                                            picked != reimbursementDate) {
+                                          setState(() {
+                                            reimbursementDate = picked;
+                                          });
+                                        }
+                                      },
+                                      child: SvgPicture.asset(
+                                        'assets/icons/arrow-circle-down.svg',
+                                        height: 22,
+                                        color: Colors.white,
                                       ),
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-down.svg',
-                                      height: 22,
-                                      color: Colors.white,
                                     ),
                                   ],
                                 ),
