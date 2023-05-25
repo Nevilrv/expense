@@ -72,4 +72,10 @@ class TextStyleHelper {
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Medium',
   );
+  static TextStyle kWhite144WBOLDInter = TextStyle(
+    fontSize: 14,
+    color: ColorHelper.kLightGrey,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Medium',
+  );
 }
