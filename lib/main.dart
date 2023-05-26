@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'View/Expense/expense_screen.dart';
+import 'View/leaves/leave_screen.dart';
+import 'View/notification/notification_screen.dart';
 
 void main() {
   runApp(const MyApp());
+
   ///
 }
 
@@ -15,10 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ExpenseScreen(),
+      home: const NotificationScreen(),
     );
   }
 }
