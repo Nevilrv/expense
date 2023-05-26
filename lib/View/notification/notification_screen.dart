@@ -78,7 +78,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NotificationScreen(),
+                        builder: (context) => const NotificationScreen(),
                       ));
                 },
                 child: Container(
@@ -199,9 +199,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
+                              onTap: () {},
                               child: SvgPicture.asset(
                                 'assets/icons/arrow-left-rounded.svg',
                                 height: 35,
