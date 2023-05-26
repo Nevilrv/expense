@@ -92,9 +92,14 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/arrow-left-rounded.svg',
-                                    height: 35,
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: SvgPicture.asset(
+                                      'assets/icons/arrow-left-rounded.svg',
+                                      height: 35,
+                                    ),
                                   ),
                                   Row(
                                     mainAxisAlignment:
