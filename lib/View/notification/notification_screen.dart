@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:blur/blur.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
+import 'package:expense/View/leaves/leave_screen.dart';
+import 'package:expense/constant/common_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -67,56 +69,8 @@ class _NotificationScreenState extends State<NotificationScreen>
       child: Scaffold(
         key: _scaffoldKey,
         drawer: Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NotificationScreen(),
-                      ));
-                },
-                child: Container(
-                  height: size.height * 0.040,
-                  width: size.width * 0.40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: ColorHelper.kPrimary,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text("Notification",
-                      style: TextStyle(color: ColorHelper.fontColor)),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.020,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ExpenseScreen(),
-                      ));
-                  _scaffoldKey.currentState!.closeDrawer();
-                },
-                child: Container(
-                  height: size.height * 0.040,
-                  width: size.width * 0.40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: ColorHelper.kPrimary,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text("Expenses",
-                      style: TextStyle(color: ColorHelper.fontColor)),
-                ),
-              ),
-            ],
-          ),
+          child: Global()
+              .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
         backgroundColor: ColorHelper.kBG,
         body: Stack(
