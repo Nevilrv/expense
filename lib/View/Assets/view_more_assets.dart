@@ -100,7 +100,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                             ),
                             Text(
                               'Assets',
-                              style: TextStyleHelper.kPrimary22W600Inter,
+                              style: TextStyleHelper.kPrimary20W600Inter,
                             ),
                             const SizedBox(width: 35),
                           ],
@@ -119,6 +119,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
                             color: const Color(0xff2F2D29).withOpacity(0.4),
+                            border: Border.all(color: ColorHelper.kDarkGrey),
                             borderRadius: BorderRadius.circular(8)),
                         child: TabBar(
                           controller: _tabController,
@@ -139,7 +140,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                             Center(
                               child: Text(
                                 'Pending',
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                   fontSize: 14,
                                   color: index == 0
@@ -153,7 +154,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                             Center(
                               child: Text(
                                 'Approved',
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                   fontSize: 14,
                                   color: index == 1
@@ -222,12 +223,60 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                       style: TextStyleHelper.kWhite144WBOLDInter,
                     ),
                     const Spacer(),
-                    SvgPicture.asset('assets/icons/Kebab Menu Horizontal.svg',
-                        height: 20),
+                    PopupMenuButton<String>(
+                      padding: const EdgeInsets.symmetric(vertical: 1),
+                      color: ColorHelper.kBGBlur,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: ColorHelper.kPrimary.withOpacity(0.3),
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(30.0),
+                        ),
+                      ),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: Center(
+                            child: Row(
+                              children: [
+                                SvgPicture.asset('assets/icons/edit1.svg'),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text('Edit',
+                                    style:
+                                        TextStyleHelper.kWhite12w500BOLDInter),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const PopupMenuDivider(height: 0),
+                        PopupMenuItem(
+                          child: Center(
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/close-circle.svg',
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text('Delete',
+                                    style:
+                                        TextStyleHelper.kWhite12w500BOLDInter),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                      child: SvgPicture.asset(
+                          'assets/icons/Kebab Menu Horizontal.svg',
+                          height: 20),
+                    ),
                   ],
                 ),
                 const SizedBox(
-                  height: 9.5,
+                  height: 10,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +292,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                   ],
                 ),
                 const SizedBox(
-                  height: 16,
+                  height: 17.5,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

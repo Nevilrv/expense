@@ -9,11 +9,18 @@ class TextStyleHelper {
     fontFamily: 'Inter-Medium',
   );
 
-  static TextStyle kPrimary22W600Inter = TextStyle(
-    fontSize: 22,
+  static TextStyle kPrimary20W600Inter = TextStyle(
+    fontSize: 20,
     color: ColorHelper.kPrimary,
     fontWeight: FontWeight.w600,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Bold',
+  );
+
+  static TextStyle kPrimary12W500Inter = TextStyle(
+    fontSize: 12,
+    color: ColorHelper.kPrimary,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Inter-Normal',
   );
 
   static TextStyle kWhite22W600Inter = const TextStyle(
@@ -41,6 +48,18 @@ class TextStyleHelper {
     fontSize: 14,
     color: Colors.white,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Inter-Medium',
+  );
+  static TextStyle kWhite15W600Inter = const TextStyle(
+    fontSize: 15,
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Medium',
+  );
+  static TextStyle kWhite16W600Inter = const TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Medium',
   );
 
@@ -125,6 +144,13 @@ class TextStyleHelper {
     fontSize: 14,
     color: ColorHelper.kLightGrey,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Medium',
+  );
+
+  static TextStyle kWhite12w500BOLDInter = TextStyle(
+    fontSize: 12,
+    color: ColorHelper.kLightGrey,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter-Medium',
   );
 }

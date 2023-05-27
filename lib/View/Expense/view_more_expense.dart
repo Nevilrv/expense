@@ -98,7 +98,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                             ),
                             Text(
                               'Expense',
-                              style: TextStyleHelper.kPrimary22W600Inter,
+                              style: TextStyleHelper.kPrimary20W600Inter,
                             ),
                             const SizedBox(width: 35),
                           ],
@@ -112,52 +112,11 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                       const SizedBox(
                         height: 28,
                       ),
-                      // Container(
-                      //   height: 35,
-                      //
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(8),
-                      //     border: Border.all(color: ColorHelper.kDarkGrey),
-                      //   ),
-                      //   child: Row(
-                      //     children: List.generate(
-                      //       2,
-                      //       (index) => Expanded(
-                      //         child: GestureDetector(
-                      //           onTap: () {
-                      //             setState(() {
-                      //               select = index;
-                      //             });
-                      //           },
-                      //           child: Container(
-                      //             height: 35,
-                      //             decoration: BoxDecoration(
-                      //               color: select == index
-                      //                   ? ColorHelper.kPrimary
-                      //                   : Colors.transparent,
-                      //               border: Border.all(
-                      //                   color: select == index
-                      //                       ? Colors.white
-                      //                       : Colors.transparent),
-                      //               borderRadius: BorderRadius.circular(8),
-                      //             ),
-                      //             child: Center(
-                      //               child: Text(
-                      //                   index == 0 ? 'Pending' : 'Approved',
-                      //                   style: select == index
-                      //                       ? TextStyleHelper.kBG14W400Inter
-                      //                       : TextStyleHelper.white14W400Inter),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       Container(
                         height: size.height * 0.040,
                         margin: const EdgeInsets.symmetric(horizontal: 15),
                         decoration: BoxDecoration(
+                            border: Border.all(color: ColorHelper.kDarkGrey),
                             color: const Color(0xff2F2D29).withOpacity(0.4),
                             borderRadius: BorderRadius.circular(8)),
                         child: TabBar(
@@ -179,7 +138,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                             Center(
                               child: Text(
                                 'Pending',
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                   fontSize: 14,
                                   color: index == 0
@@ -193,7 +152,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                             Center(
                               child: Text(
                                 'Approved',
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                   fontSize: 14,
                                   color: index == 1
@@ -210,7 +169,6 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                       const SizedBox(
                         height: 16,
                       ),
-
                       SizedBox(
                         height: size.height * 0.68,
                         // color: Colors.red,

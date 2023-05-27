@@ -50,7 +50,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                   ),
                   Text(
                     'Leaves',
-                    style: TextStyleHelper.kPrimary22W600Inter
+                    style: TextStyleHelper.kPrimary20W600Inter
                         .copyWith(color: Colors.white),
                   ),
                 ],

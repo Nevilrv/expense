@@ -1,5 +1,6 @@
 import 'package:blur/blur.dart';
 import 'package:expense/constant/text_style_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -69,7 +70,7 @@ class _AddExpenseState extends State<AddExpense> {
                               ),
                               Text(
                                 'Add Expense',
-                                style: TextStyleHelper.kPrimary22W600Inter,
+                                style: TextStyleHelper.kPrimary20W600Inter,
                               ),
                               const SizedBox(width: 35),
                             ],

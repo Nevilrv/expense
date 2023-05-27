@@ -1,12 +1,10 @@
 import 'dart:ui';
-
 import 'package:blur/blur.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
 import '../../constant/color_helper.dart';
@@ -73,7 +71,7 @@ class _AddAssetsState extends State<AddAssets> {
                             ),
                             Text(
                               'Request Asset',
-                              style: TextStyleHelper.kPrimary22W600Inter,
+                              style: TextStyleHelper.kPrimary20W600Inter,
                             ),
                             const SizedBox(width: 35),
                           ],

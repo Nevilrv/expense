@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:blur/blur.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 
 import '../../constant/color_helper.dart';
 import '../../constant/text_style_helper.dart';
@@ -207,7 +205,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                             ),
                             Text(
                               'Latest Updates',
-                              style: TextStyleHelper.kPrimary22W600Inter,
+                              style: TextStyleHelper.kPrimary20W600Inter,
                             ),
                             const SizedBox(width: 35),
                           ],
@@ -248,8 +246,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 labelColor: Colors.white,
                                 unselectedLabelColor: Colors.black,
                                 tabs: [
-                                  // first tab [you can add an icon using the icon property]
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SvgPicture.asset(
                                         'assets/icons/notification.svg',
@@ -266,7 +264,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       Text(
                                         'Notifications',
                                         style: TextStyleHelper
-                                            .kPrimary22W600Inter
+                                            .kPrimary20W600Inter
                                             .copyWith(
                                           fontSize: 14,
                                           color: index == 0
@@ -290,13 +288,11 @@ class _NotificationScreenState extends State<NotificationScreen>
                                                 0xffF7F6F5,
                                               ),
                                       ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
+                                      const Spacer(),
                                       Text(
                                         'Announcements',
                                         style: TextStyleHelper
-                                            .kPrimary22W600Inter
+                                            .kPrimary20W600Inter
                                             .copyWith(
                                           fontSize: 14,
                                           color: index == 1
@@ -363,7 +359,7 @@ class _NotificationScreenState extends State<NotificationScreen>
               ),
               Text(
                 'Recent',
-                style: TextStyleHelper.kPrimary22W600Inter
+                style: TextStyleHelper.kPrimary20W600Inter
                     .copyWith(color: Colors.white, fontSize: 15),
               ),
               const Spacer(),
@@ -413,7 +409,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   recentList[index]['name'],
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(
                                           color: Colors.white, fontSize: 15),
                                 ),
@@ -444,7 +440,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                               Text(
                                 recentList[index]['time'],
                                 overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                         color: Colors.white, fontSize: 15),
                               ),
@@ -461,7 +457,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   'Reject',
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(fontSize: 15),
                                 ),
                               ),
@@ -478,7 +474,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   'Approve',
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(
                                           fontSize: 15,
                                           color: ColorHelper.fontColor),
@@ -512,7 +508,7 @@ class _NotificationScreenState extends State<NotificationScreen>
               ),
               Text(
                 'Previous',
-                style: TextStyleHelper.kPrimary22W600Inter
+                style: TextStyleHelper.kPrimary20W600Inter
                     .copyWith(color: Colors.white, fontSize: 15),
               ),
               const Spacer(),
@@ -562,7 +558,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   previousList[index]['name'],
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(
                                           color: Colors.white, fontSize: 15),
                                 ),
@@ -593,7 +589,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                               Text(
                                 previousList[index]['time'],
                                 overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kPrimary20W600Inter
                                     .copyWith(
                                         color: Colors.white, fontSize: 15),
                               ),
@@ -610,7 +606,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   'Reject',
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(fontSize: 15),
                                 ),
                               ),
@@ -627,7 +623,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   'Approve',
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary22W600Inter
+                                  style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(
                                           fontSize: 15,
                                           color: ColorHelper.fontColor),
@@ -664,7 +660,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             ),
             Text(
               'Recent',
-              style: TextStyleHelper.kPrimary22W600Inter
+              style: TextStyleHelper.kPrimary20W600Inter
                   .copyWith(color: Colors.white, fontSize: 15),
             ),
             const Spacer(),
@@ -697,7 +693,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                     'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
                     overflow: TextOverflow.clip,
                     textAlign: TextAlign.start,
-                    style: TextStyleHelper.kPrimary22W600Inter.copyWith(
+                    style: TextStyleHelper.kPrimary20W600Inter.copyWith(
                       color: Colors.white,
                       fontSize: 15,
                       overflow: TextOverflow.clip,
@@ -712,14 +708,14 @@ class _NotificationScreenState extends State<NotificationScreen>
                     Text(
                       '12-02-2023',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary22W600Inter
+                      style: TextStyleHelper.kPrimary20W600Inter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                     const Spacer(),
                     Text(
                       '8:56 pm',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary22W600Inter
+                      style: TextStyleHelper.kPrimary20W600Inter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                   ],
@@ -746,7 +742,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             ),
             Text(
               'Previous',
-              style: TextStyleHelper.kPrimary22W600Inter
+              style: TextStyleHelper.kPrimary20W600Inter
                   .copyWith(color: Colors.white, fontSize: 15),
             ),
             const Spacer(),
@@ -779,7 +775,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                     'Eid mubarak to all meet max family',
                     overflow: TextOverflow.clip,
                     textAlign: TextAlign.start,
-                    style: TextStyleHelper.kPrimary22W600Inter.copyWith(
+                    style: TextStyleHelper.kPrimary20W600Inter.copyWith(
                       color: Colors.white,
                       fontSize: 15,
                       overflow: TextOverflow.clip,
@@ -794,14 +790,14 @@ class _NotificationScreenState extends State<NotificationScreen>
                     Text(
                       '10-8-2022',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary22W600Inter
+                      style: TextStyleHelper.kPrimary20W600Inter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                     const Spacer(),
                     Text(
                       '12:00 am',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary22W600Inter
+                      style: TextStyleHelper.kPrimary20W600Inter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                   ],
