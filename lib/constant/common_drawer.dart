@@ -6,6 +6,7 @@ import '../View/notification/notification_screen.dart';
 import 'color_helper.dart';
 
 class Global {
+
   commonDrawer(
       {required BuildContext context,
       required Size size,

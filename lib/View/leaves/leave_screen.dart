@@ -32,6 +32,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
       "name": "Medical\nLeaves",
     }
   ];
+
   List<Map<String, dynamic>> leveRequestList = [
     {
       "day": '4 Jan 2023 - 4 Feb 2023',
@@ -64,6 +65,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
       "color": Colors.red,
     }
   ];
+
   List<Map<String, dynamic>> bottomBarList = [
     {
       "icon": "assets/icons/home.svg",
