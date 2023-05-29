@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'View/Expense/expense_screen.dart';
 import 'View/leaves/leave_screen.dart';
-import 'View/notification/notification_screen.dart';
 
 void main() {
   runApp(const MyApp());

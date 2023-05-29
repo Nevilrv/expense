@@ -15,6 +15,12 @@ class TextStyleHelper {
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Bold',
   );
+  static TextStyle kPrimary22W600Inter = TextStyle(
+    fontSize: 22,
+    color: ColorHelper.kPrimary,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Bold',
+  );
 
   static TextStyle kPrimary12W500Inter = TextStyle(
     fontSize: 12,

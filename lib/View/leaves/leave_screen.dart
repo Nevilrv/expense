@@ -136,7 +136,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SingleChildScrollView(
-                physics: const NeverScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Stack(
                   children: [
                     Column(
