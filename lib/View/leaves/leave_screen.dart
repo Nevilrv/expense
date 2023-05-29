@@ -4,9 +4,11 @@ import 'package:blur/blur.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../constant/color_helper.dart';
-import '../../constant/common_drawer.dart';
+import '../../constant/common_widget.dart';
+import 'request_time_off_screen.dart';
 
 class LeaveScreen extends StatefulWidget {
   const LeaveScreen({Key? key}) : super(key: key);
@@ -52,18 +54,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
       "icon": "assets/icons/close-circle.svg",
       "color": Colors.red,
     },
-    {
-      "day": "4 Jan 2023 - 4 Feb 2023",
-      "name": "Sick Leave",
-      "icon": "assets/icons/close-circle.svg",
-      "color": Colors.red,
-    },
-    {
-      "day": "4 Jan 2023 - 4 Feb 2023",
-      "name": "Sick Leave",
-      "icon": "assets/icons/close-circle.svg",
-      "color": Colors.red,
-    }
   ];
 
   List<Map<String, dynamic>> bottomBarList = [
@@ -159,10 +149,13 @@ class _LeaveScreenState extends State<LeaveScreen> {
                             SizedBox(
                               width: size.width * 0.35,
                             ),
-                            Text(
-                              'Leaves',
-                              style: TextStyleHelper.kPrimary22W600Inter
-                                  .copyWith(color: Colors.white),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Leaves',
+                                style: TextStyleHelper.kPrimary22W600Inter
+                                    .copyWith(color: Colors.white),
+                              ),
                             ),
                           ],
                         ),
@@ -229,7 +222,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                   EdgeInsets.only(right: size.width * 0.012),
                               child: Container(
                                 height: size.height * 0.040,
-                                width: size.width * 0.11,
+                                width: size.width * 0.09,
                                 decoration: const BoxDecoration(
                                     color: Color(0xffFFC091),
                                     shape: BoxShape.circle,
@@ -268,118 +261,121 @@ class _LeaveScreenState extends State<LeaveScreen> {
                             colorOpacity: 0.25,
                             overlay: Padding(
                               padding: const EdgeInsets.all(20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Pending Leave Request',
-                                        style: TextStyleHelper
-                                            .kPrimary22W600Inter
-                                            .copyWith(color: Colors.white),
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-up.svg',
-                                        height: 28,
-                                        color: ColorHelper.kPrimary,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.020,
-                                  ),
-                                  Container(
-                                    height: size.height * 0.17,
-                                    width: size.width,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.white.withOpacity(0.1),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Pending Leave Request',
+                                          style: TextStyleHelper
+                                              .kPrimary22W600Inter
+                                              .copyWith(color: Colors.white),
+                                        ),
+                                        SvgPicture.asset(
+                                          'assets/icons/arrow-circle-up.svg',
+                                          height: 28,
+                                          color: ColorHelper.kPrimary,
+                                        )
+                                      ],
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "Sick Leave",
-                                            style: TextStyleHelper
-                                                .kPrimary22W600Inter
-                                                .copyWith(fontSize: 16),
-                                          ),
-                                          SizedBox(
-                                            height: size.height * 0.005,
-                                          ),
-                                          Text(
-                                            "4 Jan 2023 - 4 Feb 2023",
-                                            style: TextStyleHelper
-                                                .kPrimary22W600Inter
-                                                .copyWith(
-                                                    fontSize: 14,
-                                                    color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            height: size.height * 0.010,
-                                          ),
-                                          const Divider(
-                                            height: 0,
-                                            thickness: 0,
-                                            color: Color(0xffF7F6F5),
-                                          ),
-                                          SizedBox(
-                                            height: size.height * 0.010,
-                                          ),
-                                          Text(
-                                            "Reason".toUpperCase(),
-                                            style: TextStyleHelper
-                                                .kPrimary22W600Inter
-                                                .copyWith(
-                                                    fontSize: 14,
-                                                    color: Colors.white),
-                                          ),
-                                          SizedBox(
-                                            height: size.height * 0.010,
-                                          ),
-                                          Text(
-                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyleHelper
-                                                .kPrimary22W600Inter
-                                                .copyWith(
-                                                    fontSize: 10,
-                                                    color:
-                                                        const Color(0xffF7F6F5),
-                                                    fontWeight:
-                                                        FontWeight.w200),
-                                          ),
-                                        ],
+                                    SizedBox(
+                                      height: size.height * 0.020,
+                                    ),
+                                    Container(
+                                      height: size.height * 0.17,
+                                      width: size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Colors.white.withOpacity(0.1),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "Sick Leave",
+                                              style: TextStyleHelper
+                                                  .kPrimary22W600Inter
+                                                  .copyWith(fontSize: 16),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.005,
+                                            ),
+                                            Text(
+                                              "4 Jan 2023 - 4 Feb 2023",
+                                              style: TextStyleHelper
+                                                  .kPrimary22W600Inter
+                                                  .copyWith(
+                                                      fontSize: 14,
+                                                      color: Colors.white),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.010,
+                                            ),
+                                            const Divider(
+                                              height: 0,
+                                              thickness: 0,
+                                              color: Color(0xffF7F6F5),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.010,
+                                            ),
+                                            Text(
+                                              "Reason".toUpperCase(),
+                                              style: TextStyleHelper
+                                                  .kPrimary22W600Inter
+                                                  .copyWith(
+                                                      fontSize: 14,
+                                                      color: Colors.white),
+                                            ),
+                                            SizedBox(
+                                              height: size.height * 0.010,
+                                            ),
+                                            Text(
+                                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyleHelper
+                                                  .kPrimary22W600Inter
+                                                  .copyWith(
+                                                      fontSize: 10,
+                                                      color: const Color(
+                                                          0xffF7F6F5),
+                                                      fontWeight:
+                                                          FontWeight.w200),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.020,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "View more",
-                                        style: TextStyleHelper
-                                            .kPrimary22W600Inter
-                                            .copyWith(fontSize: 14),
-                                      ),
-                                      SizedBox(
-                                        width: size.width * 0.020,
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-right.svg',
-                                        height: 17,
-                                        color: ColorHelper.kPrimary,
-                                      )
-                                    ],
-                                  ),
-                                ],
+                                    SizedBox(
+                                      height: size.height * 0.020,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "View more",
+                                          style: TextStyleHelper
+                                              .kPrimary22W600Inter
+                                              .copyWith(fontSize: 14),
+                                        ),
+                                        SizedBox(
+                                          width: size.width * 0.020,
+                                        ),
+                                        SvgPicture.asset(
+                                          'assets/icons/arrow-circle-right.svg',
+                                          height: 17,
+                                          color: ColorHelper.kPrimary,
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             borderRadius: BorderRadius.circular(30),
@@ -391,7 +387,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                           height: size.height * 0.020,
                         ),
                         Container(
-                          height: size.height * 0.50,
+                          height: size.height * 0.45,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             border: Border.all(color: ColorHelper.fontColor),
@@ -425,7 +421,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                       height: size.height * 0.020,
                                     ),
                                     ListView.builder(
-                                      physics: const BouncingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: leveRequestList.length,
                                       itemBuilder:
@@ -433,7 +428,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                         return Column(
                                           children: [
                                             Container(
-                                              // height: size.height * 0.120,
                                               width: size.width,
                                               decoration: BoxDecoration(
                                                   color: Colors.white
@@ -514,7 +508,27 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                       },
                                     ),
                                     SizedBox(
-                                      height: size.height * 0.10,
+                                      height: size.height * 0.020,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "View more",
+                                          style: TextStyleHelper
+                                              .kPrimary22W600Inter
+                                              .copyWith(fontSize: 14),
+                                        ),
+                                        SizedBox(
+                                          width: size.width * 0.020,
+                                        ),
+                                        SvgPicture.asset(
+                                          'assets/icons/arrow-circle-right.svg',
+                                          height: 17,
+                                          color: ColorHelper.kPrimary,
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -527,75 +541,19 @@ class _LeaveScreenState extends State<LeaveScreen> {
                         ),
                       ],
                     ),
-
-                    ///
                     Positioned(
-                      bottom: size.height * 0.12,
-                      child: Container(
-                        height: size.height * 0.08,
-                        width: size.width,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: bottomBarList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      bottomIndex = index;
-                                    });
-
-                                    log('bottomIndex---------->>>>>> ${bottomIndex}');
-                                  },
-                                  child: Container(
-                                    height: size.height * 0.06,
-                                    width: bottomIndex == index
-                                        ? size.width * 0.35
-                                        : size.width * 0.20,
-                                    alignment: Alignment.center,
-                                    decoration: bottomIndex == index
-                                        ? BoxDecoration(
-                                            color: ColorHelper.kPrimary
-                                                .withOpacity(0.8),
-                                            borderRadius:
-                                                BorderRadius.circular(30))
-                                        : const BoxDecoration(
-                                            color: Color(0xff6C6B6A),
-                                            shape: BoxShape.circle,
-                                          ),
-                                    child: bottomIndex == index
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              SvgPicture.asset(
-                                                bottomBarList[index]['icon'],
-                                                height: 32,
-                                                color: Colors.white,
-                                              ),
-                                            ],
-                                          )
-                                        : Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              SvgPicture.asset(
-                                                bottomBarList[index]['icon'],
-                                                height: 32,
-                                                color: Colors.white,
-                                              ),
-                                            ],
-                                          ),
-                                  ),
-                                ),
-                              ],
-                            );
+                        top: size.height * 0.8,
+                        left: size.width * 0.75,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const RequestTimeOffScreen());
                           },
-                        ),
-                      ),
-                    ),
+                          child: Image.asset(
+                            'assets/icons/floating_button.png',
+                            height: 69,
+                            width: 69,
+                          ),
+                        )),
                   ],
                 ),
               ),

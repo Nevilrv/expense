@@ -2,11 +2,11 @@ import 'dart:developer';
 import 'package:blur/blur.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:expense/View/leaves/leave_screen.dart';
-import 'package:expense/constant/common_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constant/color_helper.dart';
+import '../../constant/common_widget.dart';
 import '../../constant/text_style_helper.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -142,149 +142,153 @@ class _NotificationScreenState extends State<NotificationScreen>
                 child: Blur(
                   blur: 10,
                   colorOpacity: 0.25,
-                  overlay: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: SvgPicture.asset(
-                                'assets/icons/arrow-left-rounded.svg',
-                                height: 35,
+                  overlay: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: SvgPicture.asset(
+                                  'assets/icons/arrow-left-rounded.svg',
+                                  height: 35,
+                                ),
                               ),
-                            ),
-                            Text(
-                              'Latest Updates',
-                              style: TextStyleHelper.kPrimary20W600Inter,
-                            ),
-                            const SizedBox(width: 35),
-                          ],
+                              Text(
+                                'Latest Updates',
+                                style: TextStyleHelper.kPrimary20W600Inter,
+                              ),
+                              const SizedBox(width: 35),
+                            ],
+                          ),
                         ),
-                      ),
-                      Divider(
-                        height: 0,
-                        thickness: 2,
-                        color: ColorHelper.kPrimary,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: size.height * 0.020,
-                            ),
-                            Container(
-                              height: size.height * 0.040,
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xff2F2D29).withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: TabBar(
-                                controller: _tabController,
-                                physics: const NeverScrollableScrollPhysics(),
-                                onTap: (value) {
-                                  setState(() {
-                                    index = value;
-                                  });
-                                  log('value---------->>>>>> ${value}');
-                                },
-                                // give the indicator a decoration (color and border radius)
-                                indicator: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: const Color(0xffFFC091),
-                                    border: Border.all(color: Colors.white)),
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/icons/notification.svg',
-                                        height: 20,
-                                        color: index == 0
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'Notifications',
-                                        style: TextStyleHelper
-                                            .kPrimary20W600Inter
-                                            .copyWith(
-                                          fontSize: 14,
+                        Divider(
+                          height: 0,
+                          thickness: 2,
+                          color: ColorHelper.kPrimary,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: size.height * 0.020,
+                              ),
+                              Container(
+                                height: size.height * 0.040,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xff2F2D29)
+                                        .withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: TabBar(
+                                  controller: _tabController,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  onTap: (value) {
+                                    setState(() {
+                                      index = value;
+                                    });
+                                    log('value---------->>>>>> ${value}');
+                                  },
+                                  // give the indicator a decoration (color and border radius)
+                                  indicator: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: const Color(0xffFFC091),
+                                      border: Border.all(color: Colors.white)),
+                                  labelColor: Colors.white,
+                                  unselectedLabelColor: Colors.black,
+                                  tabs: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/notification.svg',
+                                          height: 20,
                                           color: index == 0
                                               ? ColorHelper.fontColor
                                               : const Color(
                                                   0xffF7F6F5,
                                                 ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  // second tab [you can add an icon using the icon property]
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/icons/notification.svg',
-                                        height: 20,
-                                        color: index == 1
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                      const Spacer(),
-                                      Text(
-                                        'Announcements',
-                                        style: TextStyleHelper
-                                            .kPrimary20W600Inter
-                                            .copyWith(
-                                          fontSize: 14,
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          'Notifications',
+                                          style: TextStyleHelper
+                                              .kPrimary20W600Inter
+                                              .copyWith(
+                                            fontSize: 14,
+                                            color: index == 0
+                                                ? ColorHelper.fontColor
+                                                : const Color(
+                                                    0xffF7F6F5,
+                                                  ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // second tab [you can add an icon using the icon property]
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/notification.svg',
+                                          height: 20,
                                           color: index == 1
                                               ? ColorHelper.fontColor
                                               : const Color(
                                                   0xffF7F6F5,
                                                 ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        const Spacer(),
+                                        Text(
+                                          'Announcements',
+                                          style: TextStyleHelper
+                                              .kPrimary20W600Inter
+                                              .copyWith(
+                                            fontSize: 14,
+                                            color: index == 1
+                                                ? ColorHelper.fontColor
+                                                : const Color(
+                                                    0xffF7F6F5,
+                                                  ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.020,
-                            ),
-                            const Divider(
-                              height: 0,
-                              thickness: 1,
-                              color: Color(0xffF7F6F5),
-                            ),
-                            Container(
-                              height: size.height * 0.68,
-                              // color: Colors.red,
-                              child: TabBarView(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  controller: _tabController,
-                                  children: [
-                                    // first tab bar view widget
-                                    notificationMethod(size),
-                                    announcementMethod(size),
-                                  ]),
-                            ),
-                          ],
+                              SizedBox(
+                                height: size.height * 0.020,
+                              ),
+                              const Divider(
+                                height: 0,
+                                thickness: 1,
+                                color: Color(0xffF7F6F5),
+                              ),
+                              Container(
+                                height: size.height * 0.68,
+                                // color: Colors.red,
+                                child: TabBarView(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    controller: _tabController,
+                                    children: [
+                                      // first tab bar view widget
+                                      notificationMethod(size),
+                                      announcementMethod(size),
+                                    ]),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   borderRadius: BorderRadius.circular(30),
                   blurColor: ColorHelper.kBGBlur,
