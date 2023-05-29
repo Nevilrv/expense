@@ -527,6 +527,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
                         ),
                       ],
                     ),
+
+                    ///
                     Positioned(
                       bottom: size.height * 0.12,
                       child: Container(
