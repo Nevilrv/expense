@@ -25,6 +25,8 @@ class ExpenseScreen extends StatefulWidget {
 class _ExpenseScreenState extends State<ExpenseScreen> {
   // List tabs = ['Expense', 'Assets', 'Documents', 'Work', 'Personal'];
 
+  ScrollController scrollController = ScrollController();
+
   List<Map<String, dynamic>> tabs = [
     {
       'title': 'Expense',
@@ -286,14 +288,25 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                       Expanded(
                                         child: SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
+                                          controller: scrollController,
                                           physics:
                                               const BouncingScrollPhysics(),
                                           child: Row(
                                             children: [
-                                              SvgPicture.asset(
-                                                'assets/icons/arrow-left.svg',
-                                                height: 25,
-                                                width: 25,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  scrollController.animateTo(
+                                                      duration: Duration(
+                                                          milliseconds: 200),
+                                                      curve: Curves.bounceIn,
+                                                      scrollController.position
+                                                          .maxScrollExtent);
+                                                },
+                                                child: SvgPicture.asset(
+                                                  'assets/icons/arrow-left.svg',
+                                                  height: 25,
+                                                  width: 25,
+                                                ),
                                               ),
                                               SizedBox(
                                                   width: size.width * 0.091),
@@ -337,10 +350,20 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                               ),
                                               SizedBox(
                                                   width: size.width * 0.091),
-                                              SvgPicture.asset(
-                                                'assets/icons/arrow-right.svg',
-                                                height: 25,
-                                                width: 25,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  scrollController.animateTo(
+                                                      duration: const Duration(
+                                                          milliseconds: 200),
+                                                      curve: Curves.bounceIn,
+                                                      scrollController.position
+                                                          .minScrollExtent);
+                                                },
+                                                child: SvgPicture.asset(
+                                                  'assets/icons/arrow-right.svg',
+                                                  height: 25,
+                                                  width: 25,
+                                                ),
                                               ),
                                             ],
                                           ),
