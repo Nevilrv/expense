@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../View/ErrorScreen/error_state_1.dart';
 import '../View/Expense/expense_screen.dart';
 import '../View/leaves/leave_screen.dart';
 import '../View/leaves/request_time_off_screen.dart';
@@ -111,6 +112,30 @@ class Global {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text("Letter Screen",
+                style: TextStyle(color: ColorHelper.fontColor)),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.020,
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ErrorRequestScreen1(),
+                ));
+            key.currentState!.closeDrawer();
+          },
+          child: Container(
+            height: size.height * 0.040,
+            width: size.width * 0.40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: ColorHelper.kPrimary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text("Error Screen",
                 style: TextStyle(color: ColorHelper.fontColor)),
           ),
         ),
