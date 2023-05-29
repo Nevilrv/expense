@@ -308,9 +308,10 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                             style: TextStyleHelper.kLightGrey16W600Inter,
                           ),
                           const Spacer(),
-                          SvgPicture.asset(
-                              'assets/icons/Kebab Menu Horizontal.svg',
-                              height: 20),
+                          Text(
+                            expense[index]['price'],
+                            style: TextStyleHelper.kLightGrey16W600Inter,
+                          ),
                         ],
                       ),
                       const SizedBox(

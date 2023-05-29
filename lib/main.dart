@@ -1,5 +1,7 @@
+import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'View/leaves/leave_screen.dart';
 
 void main() {
@@ -18,8 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue, dividerColor: ColorHelper.kPrimary),
       home: const LeaveScreen(),
     );
   }

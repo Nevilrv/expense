@@ -38,6 +38,8 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
     'LCD Screen',
   ];
 
+  bool visible = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -228,14 +230,17 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                       color: ColorHelper.kBGBlur,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
-                          color: ColorHelper.kPrimary.withOpacity(0.3),
-                        ),
+                            color: ColorHelper.kPrimary.withOpacity(0.3),
+                            width: 1.5),
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(30.0),
+                          Radius.circular(16.0),
                         ),
                       ),
                       itemBuilder: (context) => [
                         PopupMenuItem(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          height: 10,
                           child: Center(
                             child: Row(
                               children: [
@@ -250,20 +255,29 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                             ),
                           ),
                         ),
-                        const PopupMenuDivider(height: 0),
+                        const PopupMenuDivider(
+                          height: 2,
+                        ),
                         PopupMenuItem(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          height: 10,
                           child: Center(
-                            child: Row(
+                            child: Column(
                               children: [
-                                SvgPicture.asset(
-                                  'assets/icons/close-circle.svg',
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/icons/close-circle1.svg',
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text('Delete',
+                                        style: TextStyleHelper
+                                            .kWhite12w500BOLDInter),
+                                  ],
                                 ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text('Delete',
-                                    style:
-                                        TextStyleHelper.kWhite12w500BOLDInter),
                               ],
                             ),
                           ),
