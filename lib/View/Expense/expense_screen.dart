@@ -1,9 +1,6 @@
 import 'dart:ui';
-
 import 'package:dotted_border/dotted_border.dart';
-import 'package:expense/View/Assets/add_assets_screen.dart';
 import 'package:expense/View/Assets/view_more_assets.dart';
-import 'package:expense/View/Documents/add_document_screen.dart';
 import 'package:expense/View/Expense/view_more_expense.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
@@ -12,9 +9,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../Controller/expense_controller.dart';
-import 'add_expense_screen.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -24,39 +19,7 @@ class ExpenseScreen extends StatefulWidget {
 }
 
 class _ExpenseScreenState extends State<ExpenseScreen> {
-  DateTime dateOfBirth = DateTime.now();
-
   ScrollController scrollController = ScrollController();
-
-  List<Map<String, dynamic>> tabs = [
-    {
-      'title': 'Expense',
-      'view': 'Add Expense',
-      'screen': const AddExpense(),
-    },
-    {
-      'title': 'Assets',
-      'view': 'Request Assets',
-      'screen': const AddAssets(),
-    },
-    {
-      'title': 'Documents',
-      'view': 'Add Documents',
-      'screen': const AddDocumentScreen(),
-    },
-    {
-      'title': 'Work',
-      'view': 'Add Work',
-      'screen': const SizedBox(),
-    },
-    {
-      'title': 'Personal',
-      'view': 'Add Personal',
-      'screen': const SizedBox(),
-    },
-  ];
-
-  int select = 0;
 
   ExpenseScreenController expenseScreenController =
       Get.put(ExpenseScreenController());
@@ -313,7 +276,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                               SizedBox(
                                                   width: size.width * 0.091),
                                               ...List.generate(
-                                                tabs.length,
+                                                controller.tabs.length,
                                                 (index) => GestureDetector(
                                                   onTap: () {
                                                     controller
@@ -337,7 +300,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                     ),
                                                     child: Center(
                                                       child: Text(
-                                                        tabs[index]['title'],
+                                                        controller.tabs[index]
+                                                            ['title'],
                                                         style: controller
                                                                     .select ==
                                                                 index
@@ -380,100 +344,70 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                   /// first add container
 
                                   GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                tabs[controller.select]
-                                                    ['screen'],
-                                          ),
-                                        );
-                                      },
-                                      child: controller.select == 0 ||
-                                              controller.select == 1 ||
-                                              controller.select == 2
-                                          ? DottedBorder(
-                                              color: ColorHelper.kPrimary,
-                                              strokeWidth: 1,
-                                              dashPattern: const [10, 5],
-                                              borderType: BorderType.RRect,
-                                              radius: const Radius.circular(16),
-                                              child: Container(
-                                                width: size.width,
-                                                height: size.height * 0.12,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white
-                                                      .withOpacity(0.14),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    10,
-                                                  ),
-                                                ),
-                                                child: Center(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                          'assets/icons/add-circle.svg'),
-                                                      const SizedBox(
-                                                        height: 8,
-                                                      ),
-                                                      Text(
-                                                        tabs[controller.select]
-                                                            ['view'],
-                                                        style: TextStyleHelper
-                                                            .kLightGrey16W600Inter,
-                                                      )
-                                                    ],
-                                                  ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              controller.tabs[controller.select]
+                                                  ['screen'],
+                                        ),
+                                      );
+                                    },
+                                    child: controller.select == 0 ||
+                                            controller.select == 1 ||
+                                            controller.select == 2
+                                        ? DottedBorder(
+                                            color: ColorHelper.kPrimary,
+                                            strokeWidth: 1,
+                                            dashPattern: const [10, 5],
+                                            borderType: BorderType.RRect,
+                                            radius: const Radius.circular(16),
+                                            child: Container(
+                                              width: size.width,
+                                              height: size.height * 0.12,
+                                              decoration: BoxDecoration(
+                                                color: Colors.white
+                                                    .withOpacity(0.14),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  10,
                                                 ),
                                               ),
-                                            )
-                                          : controller.select == 3
-                                              ? Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(17),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: ColorHelper
-                                                              .kBGBlur
-                                                              .withOpacity(0.3),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(24),
-                                                        ),
-                                                        child: Column(
-                                                          children: [
-                                                            Center(
-                                                              child: Text(
-                                                                'Job details',
-                                                                style: TextStyleHelper
-                                                                    .white16W600Inter,
-                                                              ),
-                                                            ),
-                                                            Row(
-                                                              children: [],
-                                                            )
-                                                          ],
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )
-                                              : Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
-                                                  child: personalView(size),
-                                                )),
+                                              child: Center(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                        'assets/icons/add-circle.svg'),
+                                                    const SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Text(
+                                                      controller.tabs[controller
+                                                          .select]['view'],
+                                                      style: TextStyleHelper
+                                                          .kLightGrey16W600Inter,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : controller.select == 3
+                                            ? Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 16),
+                                                child: workView(size),
+                                              )
+                                            : Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 16),
+                                                child: personalView(
+                                                    size, controller),
+                                              ),
+                                  ),
 
                                   const SizedBox(
                                     height: 16,
@@ -1578,7 +1512,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     );
   }
 
-  Column personalView(Size size) {
+  Column personalView(Size size, controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1683,35 +1617,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               const SizedBox(
                 width: 8,
               ),
-              Text(DateFormat.yMd().format(dateOfBirth),
+              Text(DateFormat.yMd().format(controller.dateOfBirth),
                   style: TextStyleHelper.kWhite14W400Inter),
               const Spacer(),
               GestureDetector(
                 onTap: () async {
-                  final DateTime? picked = await showDatePicker(
-                    context: context,
-                    initialDate: dateOfBirth,
-                    firstDate: DateTime(2015, 8),
-                    lastDate: DateTime(2101),
-                    builder: (context, child) {
-                      return Theme(
-                        data: ThemeData(
-                          splashColor: Colors.white,
-                          colorScheme: ColorScheme.light(
-                            primary: ColorHelper.kPrimary,
-                            onSurface: Colors.white,
-                          ),
-                          dialogBackgroundColor: ColorHelper.kBG,
-                        ),
-                        child: child!,
-                      );
-                    },
-                  );
-                  if (picked != null && picked != dateOfBirth) {
-                    setState(() {
-                      dateOfBirth = picked;
-                    });
-                  }
+                  controller.pickDOB(context);
                 },
                 child: SvgPicture.asset(
                   'assets/icons/arrow-circle-down.svg',
@@ -1801,6 +1712,157 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         ),
         const SizedBox(
           height: 16,
+        ),
+      ],
+    );
+  }
+
+  Column workView(Size size) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(17),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.14),
+            border: Border.all(color: ColorHelper.kDarkGrey),
+            borderRadius: BorderRadius.circular(
+              16,
+            ),
+          ),
+          child: Column(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Center(
+                    child: Text(
+                      'Job details',
+                      style: TextStyleHelper.white16W600Inter,
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    child: SvgPicture.asset('assets/icons/edit.svg'),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/office-bag.svg'),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Job title',
+                    style: TextStyleHelper.kWhite16W600Inter,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Ui/Ux Designer',
+                    style: TextStyleHelper.kWhite16W400Inter,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/buildings.svg'),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Branch',
+                    style: TextStyleHelper.kWhite16W600Inter,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Gulshan branch',
+                    style: TextStyleHelper.kWhite16W400Inter,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/people12.svg'),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Department',
+                    style: TextStyleHelper.kWhite16W600Inter,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Creatives',
+                    style: TextStyleHelper.kWhite16W400Inter,
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Container(
+          padding: const EdgeInsets.all(17),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.14),
+            border: Border.all(color: ColorHelper.kDarkGrey),
+            borderRadius: BorderRadius.circular(
+              16,
+            ),
+          ),
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  'Employee details',
+                  style: TextStyleHelper.white16W600Inter,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/calendar.svg'),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Hiring Date',
+                    style: TextStyleHelper.kWhite16W600Inter,
+                  ),
+                  const Spacer(),
+                  Text(
+                    '12 Dec 2020',
+                    style: TextStyleHelper.kWhite16W400Inter,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/watch.svg'),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Status',
+                    style: TextStyleHelper.kWhite16W600Inter,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Full-Time',
+                    style: TextStyleHelper.kWhite16W400Inter,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );

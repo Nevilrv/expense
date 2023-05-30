@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:blur/blur.dart';
 import 'package:expense/View/letters_screen/request_letter_screens.dart';
 import 'package:expense/constant/color_helper.dart';
@@ -15,7 +17,7 @@ class LetterRequestsScreen extends StatefulWidget {
 }
 
 class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<String> titles = [
     'NOC Release Letter',
@@ -35,16 +37,6 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
         backgroundColor: ColorHelper.kBG,
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            Get.to(() => const RequestLetterScreens());
-          },
-          child: Image.asset(
-            'assets/icons/floating_button.png',
-            height: 69,
-            width: 69,
-          ),
-        ),
         body: Stack(
           children: [
             Positioned(
@@ -110,19 +102,24 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Letter Request',
                         style: TextStyle(
-                            color: ColorHelper.kPrimary,
+                            color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 22),
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: size.width * 0.08),
-                        child: const Icon(
-                          Icons.cancel_outlined,
-                          color: Color(0xFFF7F6F5),
-                          size: 24,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => const RequestLetterScreens());
+                          },
+                          child: Image.asset(
+                            'assets/icons/floating_button.png',
+                            height: 32,
+                            width: 32,
+                          ),
                         ),
                       ),
                     ],
@@ -212,7 +209,7 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
                                         color: ColorHelper.kPrimary,
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500,
-                                        fontFamily: 'Inter-Bold',
+                                        fontFamily: 'Inter-Medium',
                                       ),
                                     ),
                                     SvgPicture.asset(
@@ -231,130 +228,398 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
                           child: Container(),
                         ),
                       ),
-                      Container(
-                        height: size.height * 0.46,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.033),
-                        child: Blur(
-                          blur: 10,
-                          colorOpacity: 0.25,
-                          overlay: Padding(
-                            padding: EdgeInsets.all(size.height * 0.0285),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Request History',
-                                      style: TextStyleHelper.kWhite22W600Inter,
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-up.svg',
-                                      color: ColorHelper.kPrimary,
-                                      height: 21.5,
-                                      width: 21.5,
-                                    )
-                                  ],
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Stack(clipBehavior: Clip.none, children: [
+                            Positioned.fill(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 12),
+                                  decoration: BoxDecoration(
+                                      color:
+                                          ColorHelper.kBGBlur.withOpacity(0.3),
+                                      borderRadius: BorderRadius.circular(24)),
                                 ),
-                                SizedBox(
-                                  height: size.height * 0.009,
-                                ),
-                                ...List.generate(
-                                  3,
-                                  (index) => Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(16),
-                                      width: size.width,
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xFFFFFFFF)
-                                              .withOpacity(0.14),
-                                          borderRadius:
-                                              BorderRadius.circular(16)),
-                                      child: Row(
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.033),
+                              child: Padding(
+                                padding: EdgeInsets.all(size.height * 0.0285),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                titles[index],
-                                                style: TextStyleHelper
-                                                    .kPrimary16W600Inter,
-                                              ),
-                                              SizedBox(
-                                                width: size.width * 0.6,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Submit Date',
-                                                      style: TextStyleHelper
-                                                          .kWhite14W400Inter,
-                                                    ),
-                                                    Text(
-                                                      '20/12/2023',
-                                                      style: TextStyleHelper
-                                                          .kWhite14W400Inter,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
+                                          Text(
+                                            'Request History',
+                                            style: TextStyleHelper
+                                                .kWhite22W600Inter,
                                           ),
                                           SvgPicture.asset(
-                                            index == 2
-                                                ? 'assets/icons/close-circles.svg'
-                                                : 'assets/icons/tick-circle_green.svg',
-                                            height: 28,
-                                            width: 28,
-                                            color: index == 2
-                                                ? const Color(0xFfA8200D)
-                                                : const Color(0xFf9FE870),
-                                          ),
+                                            'assets/icons/arrow-circle-up.svg',
+                                            color: ColorHelper.kPrimary,
+                                            height: 21.5,
+                                            width: 21.5,
+                                          )
                                         ],
                                       ),
-                                    ),
+                                      SizedBox(
+                                        height: size.height * 0.009,
+                                      ),
+                                      ...List.generate(
+                                        3,
+                                        (index) => Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16),
+                                            width: size.width,
+                                            decoration: BoxDecoration(
+                                                color: const Color(0xFFFFFFFF)
+                                                    .withOpacity(0.14),
+                                                borderRadius:
+                                                    BorderRadius.circular(16)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Stack(
+                                                    clipBehavior: Clip.none,
+                                                    children: [
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            titles[index],
+                                                            style: TextStyleHelper
+                                                                .kPrimary16W600Inter,
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 5,
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.66,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  'Request Date',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                                Text(
+                                                                  '20/12/2023',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.66,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  'Issue Date',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                                Text(
+                                                                  '02/01/2023',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.66,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  'Approval Date',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                                Text(
+                                                                  '03/01/2023',
+                                                                  style: TextStyleHelper
+                                                                      .kWhite14W400Inter,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: size
+                                                                            .width *
+                                                                        0.21),
+                                                            child: Text(
+                                                              'Download Attachment',
+                                                              style: TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  color: ColorHelper
+                                                                      .kPrimary,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      Positioned(
+                                                        right:
+                                                            -size.width * 0.08,
+                                                        top: -5,
+                                                        child: SvgPicture.asset(
+                                                          index == 2
+                                                              ? 'assets/icons/close-circles.svg'
+                                                              : 'assets/icons/tick-circle_green.svg',
+                                                          height: 28,
+                                                          width: 28,
+                                                          color: index == 2
+                                                              ? const Color(
+                                                                  0xFfA8200D)
+                                                              : const Color(
+                                                                  0xFf9FE870),
+                                                        ),
+                                                      )
+                                                    ]),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.0159,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'View more  ',
+                                            style: TextStyle(
+                                              color: ColorHelper.kPrimary,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'Inter-Medium',
+                                            ),
+                                          ),
+                                          SvgPicture.asset(
+                                            'assets/icons/arrow-circle-right.svg',
+                                            color: ColorHelper.kPrimary,
+                                            height: 14,
+                                            width: 14,
+                                          )
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: size.height * 0.0159,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'View more  ',
-                                      style: TextStyle(
-                                        color: ColorHelper.kPrimary,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Inter-Bold',
-                                      ),
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-right.svg',
-                                      color: ColorHelper.kPrimary,
-                                      height: 14,
-                                      width: 14,
-                                    )
-                                  ],
-                                )
-                              ],
+                              ),
                             ),
-                          ),
-                          borderRadius: BorderRadius.circular(32),
-                          blurColor: ColorHelper.kBGBlur,
-                          child: Container(),
+                          ]),
                         ),
                       ),
+
+                      // Container(
+                      //   height: size.height * 0.46,
+                      //   margin: EdgeInsets.symmetric(
+                      //       horizontal: size.width * 0.033),
+                      //   child: Blur(
+                      //     blur: 10,
+                      //     colorOpacity: 0.25,
+                      //     overlay: Padding(
+                      //       padding: EdgeInsets.all(size.height * 0.0285),
+                      //       child: SingleChildScrollView(
+                      //         child: Column(
+                      //           children: [
+                      //             Row(
+                      //               mainAxisAlignment:
+                      //                   MainAxisAlignment.spaceBetween,
+                      //               children: [
+                      //                 Text(
+                      //                   'Request History',
+                      //                   style:
+                      //                       TextStyleHelper.kWhite22W600Inter,
+                      //                 ),
+                      //                 SvgPicture.asset(
+                      //                   'assets/icons/arrow-circle-up.svg',
+                      //                   color: ColorHelper.kPrimary,
+                      //                   height: 21.5,
+                      //                   width: 21.5,
+                      //                 )
+                      //               ],
+                      //             ),
+                      //             SizedBox(
+                      //               height: size.height * 0.009,
+                      //             ),
+                      //             ...List.generate(
+                      //               3,
+                      //               (index) => Padding(
+                      //                 padding: const EdgeInsets.symmetric(
+                      //                     vertical: 8),
+                      //                 child: Container(
+                      //                   padding: const EdgeInsets.all(16),
+                      //                   width: size.width,
+                      //                   decoration: BoxDecoration(
+                      //                       color: const Color(0xFFFFFFFF)
+                      //                           .withOpacity(0.14),
+                      //                       borderRadius:
+                      //                           BorderRadius.circular(16)),
+                      //                   child: Row(
+                      //                     mainAxisAlignment:
+                      //                         MainAxisAlignment.spaceBetween,
+                      //                     children: [
+                      //                       Column(
+                      //                         crossAxisAlignment:
+                      //                             CrossAxisAlignment.start,
+                      //                         children: [
+                      //                           Text(
+                      //                             titles[index],
+                      //                             style: TextStyleHelper
+                      //                                 .kPrimary16W600Inter,
+                      //                           ),
+                      //                           SizedBox(
+                      //                             width: size.width * 0.6,
+                      //                             child: Row(
+                      //                               mainAxisAlignment:
+                      //                                   MainAxisAlignment
+                      //                                       .spaceBetween,
+                      //                               children: [
+                      //                                 Text(
+                      //                                   'Submit Date',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                                 Text(
+                      //                                   '20/12/2023',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                               ],
+                      //                             ),
+                      //                           ),
+                      //                           SizedBox(
+                      //                             width: size.width * 0.6,
+                      //                             child: Row(
+                      //                               mainAxisAlignment:
+                      //                                   MainAxisAlignment
+                      //                                       .spaceBetween,
+                      //                               children: [
+                      //                                 Text(
+                      //                                   'Submit Date',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                                 Text(
+                      //                                   '20/12/2023',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                               ],
+                      //                             ),
+                      //                           ),
+                      //                           SizedBox(
+                      //                             width: size.width * 0.6,
+                      //                             child: Row(
+                      //                               mainAxisAlignment:
+                      //                                   MainAxisAlignment
+                      //                                       .spaceBetween,
+                      //                               children: [
+                      //                                 Text(
+                      //                                   'Submit Date',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                                 Text(
+                      //                                   '20/12/2023',
+                      //                                   style: TextStyleHelper
+                      //                                       .kWhite14W400Inter,
+                      //                                 ),
+                      //                               ],
+                      //                             ),
+                      //                           ),
+                      //                         ],
+                      //                       ),
+                      //                       SvgPicture.asset(
+                      //                         index == 2
+                      //                             ? 'assets/icons/close-circles.svg'
+                      //                             : 'assets/icons/tick-circle_green.svg',
+                      //                         height: 28,
+                      //                         width: 28,
+                      //                         color: index == 2
+                      //                             ? const Color(0xFfA8200D)
+                      //                             : const Color(0xFf9FE870),
+                      //                       ),
+                      //                     ],
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             SizedBox(
+                      //               height: size.height * 0.0159,
+                      //             ),
+                      //             Row(
+                      //               mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: [
+                      //                 Text(
+                      //                   'View more  ',
+                      //                   style: TextStyle(
+                      //                     color: ColorHelper.kPrimary,
+                      //                     fontSize: 12,
+                      //                     fontWeight: FontWeight.w500,
+                      //                     fontFamily: 'Inter-Bold',
+                      //                   ),
+                      //                 ),
+                      //                 SvgPicture.asset(
+                      //                   'assets/icons/arrow-circle-right.svg',
+                      //                   color: ColorHelper.kPrimary,
+                      //                   height: 14,
+                      //                   width: 14,
+                      //                 )
+                      //               ],
+                      //             )
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     borderRadius: BorderRadius.circular(32),
+                      //     blurColor: ColorHelper.kBGBlur,
+                      //     child: Container(),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ],

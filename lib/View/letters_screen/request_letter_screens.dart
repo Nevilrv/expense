@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -34,13 +35,30 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
   List scroll = [0];
   DateTime? selectDate1;
   DateTime today = DateTime.now();
+  bool open = false;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
+      // Keyboard is visible.
+      print('Keyboard is visible');
+
+      setState(() {
+        open = true;
+      });
+    } else {
+      // Keyboard is not visible.
+      setState(() {
+        open = false;
+      });
+      print('Keyboard is not visible');
+    }
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        resizeToAvoidBottomInset: true,
         backgroundColor: ColorHelper.fontColor,
         body: Stack(
           children: [
@@ -90,7 +108,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                   overlay: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(14),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -150,34 +168,37 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 ),
               ),
             ),
-            Positioned(
-                bottom: size.height * 0.030,
-                left: size.width / 2.5,
-                child: Row(
-                  children: List.generate(
-                    3,
-                    (index) => Row(
-                      children: [
-                        scroll.contains(index)
-                            ? Image.asset(
-                                "assets/icons/circle_pageview.png",
-                                height: 21,
-                                width: 21,
-                              )
-                            : Container(
-                                height: 16,
-                                width: 16,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white)),
-                              ),
-                        SizedBox(
-                          width: size.width * 0.015,
-                        ),
-                      ],
+            Visibility(
+              visible: !open,
+              child: Positioned(
+                  bottom: size.height * 0.030,
+                  left: size.width / 2.5,
+                  child: Row(
+                    children: List.generate(
+                      3,
+                      (index) => Row(
+                        children: [
+                          scroll.contains(index)
+                              ? Image.asset(
+                                  "assets/icons/circle_pageview.png",
+                                  height: 21,
+                                  width: 21,
+                                )
+                              : Container(
+                                  height: 16,
+                                  width: 16,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white)),
+                                ),
+                          SizedBox(
+                            width: size.width * 0.015,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )),
+                  )),
+            ),
           ],
         ),
       ),
@@ -187,9 +208,14 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
   firstPage(Size size) {
     return Column(
       children: [
-        Text(
-          'What type of Letter do you want to request?',
-          style: TextStyleHelper.kWhite18W600Inter,
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.04,
+          ),
+          child: Text(
+            'What type of Letter do you want to request?',
+            style: TextStyleHelper.kWhite18W600Inter,
+          ),
         ),
         SizedBox(
           height: size.height * 0.020,
@@ -272,7 +298,9 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 height: 17,
                 width: 17,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 0.7)),
+                  border: Border.all(color: Colors.white, width: 0.7),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: const Icon(Icons.arrow_back_ios_new_rounded,
                     size: 10, color: Colors.white),
               ),
@@ -339,7 +367,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -370,7 +398,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -401,7 +429,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -439,7 +467,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 6.5),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -470,7 +498,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -501,7 +529,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
