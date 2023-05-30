@@ -216,89 +216,84 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
 
   firstPage(Size size) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            'What type of leave do you want to take?',
-            style: TextStyleHelper.kWhite18W600Inter,
-          ),
-          SizedBox(
-            height: size.height * 0.020,
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: leaveList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.025,
-                    vertical: size.height * 0.008),
-                child: Container(
-                  height: size.height * 0.1,
-                  width: size.width * 1,
-                  decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            leaveList[index]["title"],
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: size.height * 0.022,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            leaveList[index]["days"],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: size.height * 0.02,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.025, vertical: size.height * 0.008),
+        child: Column(
+          children: [
+            Text(
+              'What type of leave do you want to take?',
+              style: TextStyleHelper.kWhite18W600Inter,
+            ),
+            SizedBox(
+              height: size.height * 0.020,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: leaveList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: size.height * 0.008),
+                  child: Container(
+                    height: size.height * 0.1,
+                    width: size.width * 1,
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: size.width * 0.05,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              leaveList[index]["title"],
+                              style: TextStyleHelper.kWhite16W600Inter,
                             ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      leaveList[index]["status"].toString() !=
-                              "panding".toString()
-                          ? Container(
-                              height: size.height * 0.040,
-                              width: size.width * 0.28,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  color: const Color(0xffEDC843),
-                                  borderRadius: BorderRadius.circular(32)),
-                              child: Text(
-                                'Unpaid',
-                                style: TextStyleHelper.kWhite14W600Inter,
-                              ),
-                            )
-                          : const SizedBox(),
-                      SizedBox(
-                        width: size.width * 0.01,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/arrow-circle-right.svg',
-                        height: 25,
-                        color: ColorHelper.kPrimary,
-                      ),
-                      SizedBox(
-                        width: size.width * 0.03,
-                      ),
-                    ],
+                            Text(leaveList[index]["days"],
+                                style: TextStyleHelper.kWhite12w500BOLDInter),
+                          ],
+                        ),
+                        const Spacer(),
+                        leaveList[index]["status"].toString() !=
+                                "panding".toString()
+                            ? Container(
+                                height: size.height * 0.040,
+                                width: size.width * 0.28,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: const Color(0xffEDC843)
+                                        .withOpacity(0.50),
+                                    borderRadius: BorderRadius.circular(32)),
+                                child: Text(
+                                  'Unpaid',
+                                  style: TextStyleHelper.kWhite14W600Inter,
+                                ),
+                              )
+                            : const SizedBox(),
+                        SizedBox(
+                          width: size.width * 0.03,
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/arrow-circle-right.svg',
+                          height: 25,
+                          color: ColorHelper.kPrimary,
+                        ),
+                        SizedBox(
+                          width: size.width * 0.03,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -306,10 +301,6 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   secondPage(Size size) {
     return Column(
       children: [
-        Text(
-          'What type of leave do you want to take?',
-          style: TextStyleHelper.kWhite18W600Inter,
-        ),
         const SizedBox(
           height: 20,
         ),
@@ -459,7 +450,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
             ),
             Text(
               'Message to the Employer',
-              style: TextStyleHelper.kWhite16W400Inter,
+              style: TextStyleHelper.kWhite16W600Inter,
             ),
             SizedBox(
               height: size.height * 0.020,

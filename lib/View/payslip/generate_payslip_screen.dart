@@ -31,7 +31,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
             Get.back();
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.025),
             child: Container(
               height: size.height * 0.035,
               width: size.width * 0.20,
@@ -113,12 +113,12 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                           children: [
                             Text(
                               "Aed 20,500",
-                              style: TextStyleHelper.kPrimary22W600Inter
+                              style: TextStyleHelper.kPrimary14W400Inter
                                   .copyWith(fontSize: 16),
                             ),
                             Text(
                               "Net Pay",
-                              style: TextStyleHelper.kPrimary22W600Inter
+                              style: TextStyleHelper.kWhite12w500BOLDInter
                                   .copyWith(fontSize: 16, color: Colors.white),
                             ),
                           ],
@@ -144,7 +144,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                             children: [
                               Text(
                                 "AED 20,000",
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kWhite16W600Inter
                                     .copyWith(
                                         fontSize: 16, color: Colors.white),
                               ),
@@ -166,7 +166,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                               ),
                               Text(
                                 "Gross Pay",
-                                style: TextStyleHelper.kPrimary22W600Inter
+                                style: TextStyleHelper.kWhite12w500BOLDInter
                                     .copyWith(
                                         fontSize: 14, color: Colors.white),
                               ),
@@ -198,7 +198,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 children: [
                                   Text(
                                     "AED 900",
-                                    style: TextStyleHelper.kPrimary22W600Inter
+                                    style: TextStyleHelper.kWhite16W600Inter
                                         .copyWith(
                                             fontSize: 12, color: Colors.white),
                                   ),
@@ -222,7 +222,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                   ),
                                   Text(
                                     "Additions",
-                                    style: TextStyleHelper.kPrimary22W600Inter
+                                    style: TextStyleHelper.kWhite12w500BOLDInter
                                         .copyWith(
                                             fontSize: 14, color: Colors.white),
                                   ),
@@ -247,7 +247,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 children: [
                                   Text(
                                     "AED 400",
-                                    style: TextStyleHelper.kPrimary22W600Inter
+                                    style: TextStyleHelper.kWhite16W600Inter
                                         .copyWith(
                                             fontSize: 12, color: Colors.white),
                                   ),
@@ -270,7 +270,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                   ),
                                   Text(
                                     "Deductions",
-                                    style: TextStyleHelper.kPrimary22W600Inter
+                                    style: TextStyleHelper.kWhite12w500BOLDInter
                                         .copyWith(
                                             fontSize: 12, color: Colors.white),
                                   ),
@@ -332,9 +332,10 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 ),
                                 child: Text(
                                   'Generate Payslip',
-                                  style: TextStyleHelper.kWhite16W400Inter
+                                  style: TextStyleHelper.kWhite12w500BOLDInter
                                       .copyWith(
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 18,
                                           color: const Color(0xff331600)),
                                 ),
                               ),

@@ -1,9 +1,11 @@
 import 'dart:ui';
+
 import 'package:expense/Controller/payroll_screen_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
 import '../../constant/color_helper.dart';
 
 class PayrollComponentScreen extends StatefulWidget {
@@ -136,7 +138,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                     'Payroll Components',
                                     style: TextStyleHelper.kPrimary22W600Inter,
                                   ),
-                                  const SizedBox(width: 30),
+                                  const SizedBox(width: 25),
                                 ],
                               ),
                             ),
@@ -178,6 +180,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                       style: TextStyleHelper.kPrimary20W600Inter
                                           .copyWith(
                                         fontSize: 14,
+                                        fontWeight: FontWeight.w600,
                                         color: controller.index == 0
                                             ? ColorHelper.fontColor
                                             : const Color(
@@ -189,7 +192,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                   Center(
                                     child: Text(
                                       'Deductions',
-                                      style: TextStyleHelper.kPrimary20W600Inter
+                                      style: TextStyleHelper.kWhite14W400Inter
                                           .copyWith(
                                         fontSize: 14,
                                         color: controller.index == 1

@@ -84,6 +84,55 @@ class _LeaveScreenState extends State<LeaveScreen> {
       child: Scaffold(
         backgroundColor: ColorHelper.kBG,
         key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(50),
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 10,
+              top: size.height * 0.025,
+            ),
+            child: Row(
+              children: [
+                InkWell(
+                  onTap: () {
+                    _scaffoldKey.currentState!.openDrawer();
+                  },
+                  child: Icon(
+                    Icons.menu,
+                    color: ColorHelper.kPrimary,
+                    size: 24,
+                  ),
+                ),
+                SizedBox(
+                  width: size.width * 0.33,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Leaves',
+                    style: TextStyleHelper.kPrimary22W600Inter
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+                SizedBox(
+                  width: size.width * 0.21,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const RequestTimeOffScreen());
+                  },
+                  child: Container(
+                    child: Image.asset(
+                      'assets/icons/floating_button.png',
+                      height: 69,
+                      width: 69,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
         drawer: Drawer(
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
@@ -136,34 +185,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
                         ),
                         Row(
                           children: [
-                            InkWell(
-                              onTap: () {
-                                _scaffoldKey.currentState!.openDrawer();
-                              },
-                              child: Icon(
-                                Icons.menu,
-                                color: ColorHelper.kPrimary,
-                                size: 24,
-                              ),
-                            ),
-                            SizedBox(
-                              width: size.width * 0.33,
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Leaves',
-                                style: TextStyleHelper.kPrimary22W600Inter
-                                    .copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.025,
-                        ),
-                        Row(
-                          children: [
                             Row(
                               children:
                                   List.generate(leavesList.length, (index) {
@@ -200,10 +221,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                               textAlign: TextAlign.start,
                                               overflow: TextOverflow.clip,
                                               style: TextStyleHelper
-                                                  .kPrimary22W600Inter
-                                                  .copyWith(
-                                                      fontSize: 15,
-                                                      color: Colors.white),
+                                                  .kWhite10W700Inter,
                                             ),
                                           ],
                                         ),
@@ -308,10 +326,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                             Text(
                                               "4 Jan 2023 - 4 Feb 2023",
                                               style: TextStyleHelper
-                                                  .kPrimary22W600Inter
-                                                  .copyWith(
-                                                      fontSize: 14,
-                                                      color: Colors.white),
+                                                  .kWhite12w500BOLDInter,
                                             ),
                                             SizedBox(
                                               height: size.height * 0.010,
@@ -327,10 +342,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                             Text(
                                               "Reason".toUpperCase(),
                                               style: TextStyleHelper
-                                                  .kPrimary22W600Inter
-                                                  .copyWith(
-                                                      fontSize: 14,
-                                                      color: Colors.white),
+                                                  .kWhite10W700Inter,
                                             ),
                                             SizedBox(
                                               height: size.height * 0.010,
@@ -339,13 +351,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                                               textAlign: TextAlign.center,
                                               style: TextStyleHelper
-                                                  .kPrimary22W600Inter
-                                                  .copyWith(
-                                                      fontSize: 10,
-                                                      color: const Color(
-                                                          0xffF7F6F5),
-                                                      fontWeight:
-                                                          FontWeight.w200),
+                                                  .kWhite10W400Inter,
                                             ),
                                           ],
                                         ),
@@ -361,8 +367,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                         Text(
                                           "View more",
                                           style: TextStyleHelper
-                                              .kPrimary22W600Inter
-                                              .copyWith(fontSize: 14),
+                                              .kPrimary12W500Inter,
                                         ),
                                         SizedBox(
                                           width: size.width * 0.020,
@@ -462,26 +467,23 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                                                     TextOverflow
                                                                         .clip,
                                                                 style: TextStyleHelper
-                                                                    .kPrimary22W600Inter
-                                                                    .copyWith(
-                                                                        fontSize:
-                                                                            15),
+                                                                    .kPrimary16W600Inter,
                                                               ),
                                                             ),
-                                                            Text(
-                                                              leveRequestList[
-                                                                  index]['day'],
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .clip,
-                                                              style: TextStyleHelper
-                                                                  .kPrimary22W600Inter
-                                                                  .copyWith(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          15),
+                                                            SizedBox(
+                                                              height:
+                                                                  size.height *
+                                                                      0.010,
                                                             ),
+                                                            Text(
+                                                                leveRequestList[
+                                                                        index]
+                                                                    ['day'],
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                style: TextStyleHelper
+                                                                    .kWhite12W700Inter),
                                                           ],
                                                         ),
                                                         const Spacer(),
@@ -517,8 +519,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                         Text(
                                           "View more",
                                           style: TextStyleHelper
-                                              .kPrimary22W600Inter
-                                              .copyWith(fontSize: 14),
+                                              .kPrimary12W500Inter,
                                         ),
                                         SizedBox(
                                           width: size.width * 0.020,
@@ -563,19 +564,6 @@ class _LeaveScreenState extends State<LeaveScreen> {
               ),
             ),
           ],
-        ),
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            Get.to(() => const RequestTimeOffScreen());
-          },
-          child: Container(
-            margin: EdgeInsets.only(bottom: size.height * 0.1),
-            child: Image.asset(
-              'assets/icons/floating_button.png',
-              height: 69,
-              width: 69,
-            ),
-          ),
         ),
       ),
     );
