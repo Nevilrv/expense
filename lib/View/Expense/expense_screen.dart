@@ -7,12 +7,13 @@ import 'package:expense/View/Documents/add_document_screen.dart';
 import 'package:expense/View/Expense/view_more_expense.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
-import 'package:expense/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
+import '../../Controller/expense_controller.dart';
 import 'add_expense_screen.dart';
 
 class ExpenseScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class ExpenseScreen extends StatefulWidget {
 }
 
 class _ExpenseScreenState extends State<ExpenseScreen> {
-  // List tabs = ['Expense', 'Assets', 'Documents', 'Work', 'Personal'];
+  DateTime dateOfBirth = DateTime.now();
 
   ScrollController scrollController = ScrollController();
 
@@ -276,6 +277,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                               padding: const EdgeInsets.all(12),
                               margin: const EdgeInsets.all(12),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   /// tab row
@@ -296,7 +298,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                               GestureDetector(
                                                 onTap: () {
                                                   scrollController.animateTo(
-                                                      duration: Duration(
+                                                      duration: const Duration(
                                                           milliseconds: 200),
                                                       curve: Curves.bounceIn,
                                                       scrollController.position
@@ -378,76 +380,100 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                   /// first add container
 
                                   GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              tabs[controller.select]['screen'],
-                                        ),
-                                      );
-                                    },
-                                    child: controller.select == 0 ||
-                                            controller.select == 1 ||
-                                            controller.select == 2
-                                        ? DottedBorder(
-                                            color: ColorHelper.kPrimary,
-                                            strokeWidth: 1,
-                                            dashPattern: const [10, 5],
-                                            borderType: BorderType.RRect,
-                                            radius: const Radius.circular(16),
-                                            child: Container(
-                                              width: size.width,
-                                              height: size.height * 0.12,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white
-                                                    .withOpacity(0.14),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  10,
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                tabs[controller.select]
+                                                    ['screen'],
+                                          ),
+                                        );
+                                      },
+                                      child: controller.select == 0 ||
+                                              controller.select == 1 ||
+                                              controller.select == 2
+                                          ? DottedBorder(
+                                              color: ColorHelper.kPrimary,
+                                              strokeWidth: 1,
+                                              dashPattern: const [10, 5],
+                                              borderType: BorderType.RRect,
+                                              radius: const Radius.circular(16),
+                                              child: Container(
+                                                width: size.width,
+                                                height: size.height * 0.12,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white
+                                                      .withOpacity(0.14),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    10,
+                                                  ),
+                                                ),
+                                                child: Center(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                          'assets/icons/add-circle.svg'),
+                                                      const SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                      Text(
+                                                        tabs[controller.select]
+                                                            ['view'],
+                                                        style: TextStyleHelper
+                                                            .kLightGrey16W600Inter,
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                              child: Center(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                        'assets/icons/add-circle.svg'),
-                                                    const SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Text(
-                                                      tabs[controller.select]
-                                                          ['view'],
-                                                      style: TextStyleHelper
-                                                          .kLightGrey16W600Inter,
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : controller.select == 3
-                                            ? Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 15),
-                                                child: Text(
-                                                  'WORK VIEW',
-                                                  style: TextStyleHelper
-                                                      .kWhite18W600Inter,
-                                                ),
-                                              )
-                                            : Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 15),
-                                                child: Text(
-                                                  'PERSONAL VIEW',
-                                                  style: TextStyleHelper
-                                                      .kWhite18W600Inter,
-                                                ),
-                                              ),
-                                  ),
+                                            )
+                                          : controller.select == 3
+                                              ? Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 16),
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(17),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: ColorHelper
+                                                              .kBGBlur
+                                                              .withOpacity(0.3),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(24),
+                                                        ),
+                                                        child: Column(
+                                                          children: [
+                                                            Center(
+                                                              child: Text(
+                                                                'Job details',
+                                                                style: TextStyleHelper
+                                                                    .white16W600Inter,
+                                                              ),
+                                                            ),
+                                                            Row(
+                                                              children: [],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 16),
+                                                  child: personalView(size),
+                                                )),
 
                                   const SizedBox(
                                     height: 16,
@@ -536,17 +562,13 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                                 vertical: 1),
                                                         color:
                                                             ColorHelper.kBGBlur,
+                                                        shadowColor: ColorHelper
+                                                            .kPrimary,
+                                                        elevation: 4,
                                                         shape:
-                                                            RoundedRectangleBorder(
-                                                          side: BorderSide(
-                                                              color: ColorHelper
-                                                                  .kPrimary
-                                                                  .withOpacity(
-                                                                      0.3),
-                                                              width: 1.5),
+                                                            const RoundedRectangleBorder(
                                                           borderRadius:
-                                                              const BorderRadius
-                                                                  .all(
+                                                              BorderRadius.all(
                                                             Radius.circular(
                                                                 16.0),
                                                           ),
@@ -556,11 +578,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                           PopupMenuItem(
                                                             padding:
                                                                 const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        20,
-                                                                    vertical:
-                                                                        10),
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 10,
+                                                                    bottom: 10),
                                                             height: 10,
                                                             child: Center(
                                                               child: Row(
@@ -584,11 +605,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                           PopupMenuItem(
                                                             padding:
                                                                 const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10,
-                                                                    horizontal:
-                                                                        20),
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 10,
+                                                                    bottom: 10),
                                                             height: 10,
                                                             child: Center(
                                                               child: Column(
@@ -1227,6 +1247,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     );
   }
 
+  /// ------------- ///
+
   ClipRRect viewExpenseHistory(Size size) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
@@ -1553,6 +1575,234 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Column personalView(Size size) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// first name
+
+        Text(
+          'First Name',
+          style: TextStyleHelper.kWhite16W600Inter,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icons/user.svg'),
+              const SizedBox(
+                width: 8,
+              ),
+              Flexible(
+                child: TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyleHelper.kWhite14W400Inter,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+
+        /// Last Name
+
+        Text(
+          'Last Name',
+          style: TextStyleHelper.kWhite16W600Inter,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icons/user.svg'),
+              const SizedBox(
+                width: 8,
+              ),
+              Flexible(
+                child: TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyleHelper.kWhite14W400Inter,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+
+        /// date of birth
+
+        Text(
+          'Date of Birth',
+          style: TextStyleHelper.kWhite16W600Inter,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                'assets/icons/calendar.svg',
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(DateFormat.yMd().format(dateOfBirth),
+                  style: TextStyleHelper.kWhite14W400Inter),
+              const Spacer(),
+              GestureDetector(
+                onTap: () async {
+                  final DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: dateOfBirth,
+                    firstDate: DateTime(2015, 8),
+                    lastDate: DateTime(2101),
+                    builder: (context, child) {
+                      return Theme(
+                        data: ThemeData(
+                          splashColor: Colors.white,
+                          colorScheme: ColorScheme.light(
+                            primary: ColorHelper.kPrimary,
+                            onSurface: Colors.white,
+                          ),
+                          dialogBackgroundColor: ColorHelper.kBG,
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (picked != null && picked != dateOfBirth) {
+                    setState(() {
+                      dateOfBirth = picked;
+                    });
+                  }
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/arrow-circle-down.svg',
+                  height: 22,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        const SizedBox(
+          height: 16,
+        ),
+
+        /// Mobile
+
+        Text(
+          'Mobile',
+          style: TextStyleHelper.kWhite16W600Inter,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icons/call.svg'),
+              const SizedBox(
+                width: 8,
+              ),
+              Flexible(
+                child: TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyleHelper.kWhite14W400Inter,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+
+        /// Email
+
+        Text(
+          'Email',
+          style: TextStyleHelper.kWhite16W600Inter,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.white)),
+          child: Row(
+            children: [
+              SvgPicture.asset('assets/icons/sms.svg'),
+              const SizedBox(
+                width: 8,
+              ),
+              Flexible(
+                child: TextFormField(
+                  cursorColor: Colors.white,
+                  style: TextStyleHelper.kWhite14W400Inter,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+      ],
     );
   }
 }

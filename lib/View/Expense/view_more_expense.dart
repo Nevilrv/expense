@@ -1,7 +1,9 @@
 import 'package:blur/blur.dart';
+import 'package:expense/Controller/view_more_expense_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../constant/text_style_helper.dart';
 
@@ -28,170 +30,174 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
     _tabController.dispose();
   }
 
-  int index = 0;
-
   List<Map<String, dynamic>> expense = [
     {'name': 'Medical', 'price': 'AED 60'},
     {'name': 'Fuel', 'price': 'AED 110'},
     {'name': 'Mobile Data', 'price': 'AED 42'},
   ];
 
+  ViewMoreExpenseController viewMoreExpenseController =
+      Get.put(ViewMoreExpenseController());
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorHelper.kBG,
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Positioned(
-                top: -size.height * 0.12,
-                left: -size.width * 0.26,
-                child: Image.asset(
-                  'assets/icons/People.png',
-                  height: 250,
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.3,
-                left: size.width * 0.8,
-                child: Image.asset(
-                  'assets/icons/Sales.png',
-                  height: 250,
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.75,
-                right: size.width * 0.85,
-                child: Image.asset(
-                  'assets/icons/Finance.png',
-                  height: size.height * 0.3,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: size.height * 1.12,
-                margin: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.025,
-                    vertical: size.width * 0.08),
-                child: Blur(
-                  blur: 10,
-                  colorOpacity: 0.25,
-                  overlay: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: SvgPicture.asset(
-                                'assets/icons/arrow-left-rounded.svg',
-                                height: 35,
-                              ),
-                            ),
-                            Text(
-                              'Expense',
-                              style: TextStyleHelper.kPrimary20W600Inter,
-                            ),
-                            const SizedBox(width: 35),
-                          ],
-                        ),
-                      ),
-                      Divider(
-                        height: 0,
-                        thickness: 2,
-                        color: ColorHelper.kPrimary,
-                      ),
-                      const SizedBox(
-                        height: 28,
-                      ),
-                      Container(
-                        height: size.height * 0.040,
-                        margin: const EdgeInsets.symmetric(horizontal: 15),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: ColorHelper.kDarkGrey),
-                            color: const Color(0xff2F2D29).withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: TabBar(
-                          controller: _tabController,
-                          physics: const NeverScrollableScrollPhysics(),
-                          onTap: (value) {
-                            setState(() {
-                              index = value;
-                            });
-                          },
-                          // give the indicator a decoration (color and border radius)
-                          indicator: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color(0xffFFC091),
-                              border: Border.all(color: Colors.white)),
-                          labelColor: Colors.white,
-                          unselectedLabelColor: Colors.black,
-                          tabs: [
-                            Center(
-                              child: Text(
-                                'Pending',
-                                style: TextStyleHelper.kPrimary20W600Inter
-                                    .copyWith(
-                                  fontSize: 14,
-                                  color: index == 0
-                                      ? ColorHelper.fontColor
-                                      : const Color(
-                                          0xffF7F6F5,
-                                        ),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Text(
-                                'Approved',
-                                style: TextStyleHelper.kPrimary20W600Inter
-                                    .copyWith(
-                                  fontSize: 14,
-                                  color: index == 1
-                                      ? ColorHelper.fontColor
-                                      : const Color(
-                                          0xffF7F6F5,
-                                        ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.68,
-                        // color: Colors.red,
-                        child: TabBarView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: _tabController,
-                            children: [
-                              // first tab bar view widget
-                              pendingExpenseMethod(size),
-                              approvedExpenseMethod(size),
-                            ]),
-                      ),
-                    ],
+    return GetBuilder<ViewMoreExpenseController>(
+      builder: (controller) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: ColorHelper.kBG,
+            body: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: -size.height * 0.12,
+                    left: -size.width * 0.26,
+                    child: Image.asset(
+                      'assets/icons/People.png',
+                      height: 250,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(30),
-                  blurColor: ColorHelper.kBGBlur,
-                  child: Container(),
-                ),
+                  Positioned(
+                    top: size.height * 0.3,
+                    left: size.width * 0.8,
+                    child: Image.asset(
+                      'assets/icons/Sales.png',
+                      height: 250,
+                    ),
+                  ),
+                  Positioned(
+                    top: size.height * 0.75,
+                    right: size.width * 0.85,
+                    child: Image.asset(
+                      'assets/icons/Finance.png',
+                      height: size.height * 0.3,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: size.height * 1.12,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.025,
+                        vertical: size.width * 0.08),
+                    child: Blur(
+                      blur: 10,
+                      colorOpacity: 0.25,
+                      overlay: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/arrow-left-rounded.svg',
+                                    height: 35,
+                                  ),
+                                ),
+                                Text(
+                                  'Expense',
+                                  style: TextStyleHelper.kPrimary20W600Inter,
+                                ),
+                                const SizedBox(width: 35),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            height: 0,
+                            thickness: 2,
+                            color: ColorHelper.kPrimary,
+                          ),
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          Container(
+                            height: size.height * 0.040,
+                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: ColorHelper.kDarkGrey),
+                                color: const Color(0xff2F2D29).withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: TabBar(
+                              controller: _tabController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              onTap: (value) {
+                                controller.updateValue(value);
+                              },
+                              // give the indicator a decoration (color and border radius)
+                              indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: const Color(0xffFFC091),
+                                  border: Border.all(color: Colors.white)),
+                              labelColor: Colors.white,
+                              unselectedLabelColor: Colors.black,
+                              tabs: [
+                                Center(
+                                  child: Text(
+                                    'Pending',
+                                    style: TextStyleHelper.kPrimary20W600Inter
+                                        .copyWith(
+                                      fontSize: 14,
+                                      color: controller.index == 0
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                                Center(
+                                  child: Text(
+                                    'Approved',
+                                    style: TextStyleHelper.kPrimary20W600Inter
+                                        .copyWith(
+                                      fontSize: 14,
+                                      color: controller.index == 1
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.68,
+                            // color: Colors.red,
+                            child: TabBarView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: _tabController,
+                                children: [
+                                  // first tab bar view widget
+                                  pendingExpenseMethod(size),
+                                  approvedExpenseMethod(size),
+                                ]),
+                          ),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                      blurColor: ColorHelper.kBGBlur,
+                      child: Container(),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

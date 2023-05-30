@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 
-import '../Common/CommonDialog.dart';
+import '../Common/common_button.dart';
 
 class AddPassportPhotoScreen extends StatefulWidget {
   const AddPassportPhotoScreen({
@@ -291,34 +291,7 @@ class _AddPassportPhotoScreenState extends State<AddPassportPhotoScreen> {
                                 const Spacer(),
                                 Align(
                                   alignment: Alignment.center,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      AddDocumentDialog().generalDialog();
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      width: size.width / 1.5,
-                                      decoration: BoxDecoration(
-                                        color: ColorHelper.kPrimary,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.white
-                                                  .withOpacity(0.25),
-                                              spreadRadius: 0,
-                                              blurRadius: 10,
-                                              offset: const Offset(0.0, 4.0))
-                                        ],
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        'Save',
-                                        style: TextStyleHelper.kBG18W600Inter,
-                                      )),
-                                    ),
-                                  ),
+                                  child: CommonButton().saveButton(context),
                                 ),
                                 const SizedBox(
                                   height: 20,

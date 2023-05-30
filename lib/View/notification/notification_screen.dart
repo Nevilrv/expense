@@ -1,7 +1,6 @@
 import 'dart:developer';
+import 'dart:ui';
 import 'package:blur/blur.dart';
-import 'package:expense/View/Expense/expense_screen.dart';
-import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -191,7 +190,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                     setState(() {
                                       index = value;
                                     });
-                                    log('value---------->>>>>> ${value}');
+                                    log('value---------->>>>>> $value');
                                   },
                                   // give the indicator a decoration (color and border radius)
                                   indicator: BoxDecoration(
@@ -271,7 +270,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 thickness: 1,
                                 color: Color(0xffF7F6F5),
                               ),
-                              Container(
+                              SizedBox(
                                 height: size.height * 0.68,
                                 // color: Colors.red,
                                 child: TabBarView(

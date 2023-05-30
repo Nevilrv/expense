@@ -1,11 +1,9 @@
 import 'package:blur/blur.dart';
 import 'package:expense/constant/color_helper.dart';
+import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../constant/text_style_helper.dart';
 
 class AddDocumentScreen extends StatefulWidget {
   const AddDocumentScreen({Key? key}) : super(key: key);
@@ -29,7 +27,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen> {
             Get.back();
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
               height: size.height * 0.035,
               width: size.width * 0.20,

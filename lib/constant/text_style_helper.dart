@@ -80,6 +80,12 @@ class TextStyleHelper {
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Medium',
   );
+  static TextStyle kWhite16W700Inter = const TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Medium',
+  );
   static TextStyle white14W600Inter = const TextStyle(
     fontSize: 14,
     color: Colors.white,

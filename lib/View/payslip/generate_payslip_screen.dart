@@ -1,13 +1,11 @@
 import 'package:blur/blur.dart';
+import 'package:expense/View/payslip/payroll_components_screen.dart';
 import 'package:expense/constant/color_helper.dart';
-import 'package:expense/payslip/payroll_components_screen.dart';
+import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-
-import '../constant/text_style_helper.dart';
 
 class GeneratePaySlipScreen extends StatefulWidget {
   const GeneratePaySlipScreen({Key? key}) : super(key: key);
@@ -33,7 +31,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
             Get.back();
           },
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
               height: size.height * 0.035,
               width: size.width * 0.20,
@@ -103,7 +101,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                 blur: 10,
                 colorOpacity: 0.25,
                 overlay: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: [
                       CircularPercentIndicator(
@@ -125,8 +123,8 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                             ),
                           ],
                         ),
-                        backgroundColor: Color(0xff8BFFA3),
-                        progressColor: Color(0xffFF6460),
+                        backgroundColor: const Color(0xff8BFFA3),
+                        progressColor: const Color(0xffFF6460),
                       ),
                       SizedBox(
                         height: size.height * 0.020,
@@ -215,7 +213,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                     width: 50,
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                        color: Color(0xffA0E5AE),
+                                        color: const Color(0xffA0E5AE),
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                   ),
@@ -263,7 +261,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                     height: 3,
                                     width: 50,
                                     decoration: BoxDecoration(
-                                        color: Color(0xffFFBFBD),
+                                        color: const Color(0xffFFBFBD),
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                   ),
@@ -293,7 +291,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.to(() => PayrollComponentScreen());
+                              Get.to(() => const PayrollComponentScreen());
                             },
                             child: Text(
                               "View Payroll Components",
@@ -317,7 +315,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                         height: size.height * 0.020,
                       ),
                       isCheck == true
-                          ? SizedBox()
+                          ? const SizedBox()
                           : InkWell(
                               onTap: () {
                                 setState(() {
@@ -337,7 +335,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                   style: TextStyleHelper.kWhite16W400Inter
                                       .copyWith(
                                           fontWeight: FontWeight.w600,
-                                          color: Color(0xff331600)),
+                                          color: const Color(0xff331600)),
                                 ),
                               ),
                             ),
@@ -392,7 +390,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 ],
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                     ],
                   ),
                 ),

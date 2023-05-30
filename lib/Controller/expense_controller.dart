@@ -11,27 +11,6 @@ class ExpenseScreenController extends GetxController {
     update();
   }
 
-/*  XFile? imageFile;
-  getFromGallery() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile != null) {
-      imageFile = XFile(pickedFile.path);
-    }
-    update();
-  }
-
-  Future getFromCamera() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.camera,
-    );
-    if (pickedFile != null) {
-      imageFile = XFile(pickedFile.path);
-    }
-    update();
-  }*/
-
   File? imageFile;
   Future getImageFromGallery() async {
     XFile? pickedFile = await ImagePicker().pickImage(

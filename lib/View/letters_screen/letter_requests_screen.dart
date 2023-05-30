@@ -60,50 +60,6 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
                       ),
                       fit: BoxFit.fill),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.043,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _scaffoldKey.currentState!.openDrawer();
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(left: size.width * 0.08),
-                        child: const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Color(0xff260A2F),
-                            size: 24,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              left: size.width * 0.39,
-              top: size.height * 0.043,
-              child: Text(
-                'Letter Request',
-                style: TextStyle(
-                    color: ColorHelper.kPrimary,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22),
-              ),
-            ),
-            Positioned(
-              left: size.width * 0.91,
-              top: size.height * 0.043,
-              child: Icon(
-                Icons.cancel_outlined,
-                color: Color(0xFFF7F6F5),
-                size: 24,
               ),
             ),
             Positioned(
@@ -127,239 +83,279 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
               ),
             ),
             SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: size.height * 0.11,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: size.height * 0.28,
-                          margin: EdgeInsets.all(size.width * 0.033),
-                          child: Blur(
-                            blur: 10,
-                            colorOpacity: 0.25,
-                            overlay: Padding(
-                              padding: EdgeInsets.all(25),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Pending Request',
-                                        style:
-                                            TextStyleHelper.kWhite22W600Inter,
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-up.svg',
-                                        color: ColorHelper.kPrimary,
-                                        height: 21.5,
-                                        width: 21.5,
-                                      )
-                                    ],
+                  SizedBox(
+                    height: size.height * 0.077,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          _scaffoldKey.currentState!.openDrawer();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * 0.08,
+                          ),
+                          child: const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Icon(
+                              Icons.menu,
+                              color: Color(0xff260A2F),
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Letter Request',
+                        style: TextStyle(
+                            color: ColorHelper.kPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: size.width * 0.08),
+                        child: const Icon(
+                          Icons.cancel_outlined,
+                          color: Color(0xFFF7F6F5),
+                          size: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height * 0.03,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        height: size.height * 0.248,
+                        margin: EdgeInsets.all(size.width * 0.033),
+                        child: Blur(
+                          blur: 10,
+                          colorOpacity: 0.25,
+                          overlay: Padding(
+                            padding: const EdgeInsets.all(25),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Pending Request',
+                                      style: TextStyleHelper.kWhite22W600Inter,
+                                    ),
+                                    SvgPicture.asset(
+                                      'assets/icons/arrow-circle-up.svg',
+                                      color: ColorHelper.kPrimary,
+                                      height: 21.5,
+                                      width: 21.5,
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.026),
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.all(size.height * 0.018),
+                                    width: size.width,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xFFFFFFFF)
+                                            .withOpacity(0.14),
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'NOC Letter',
+                                          style: TextStyleHelper
+                                              .kPrimary16W600Inter,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: size.width * 0.34,
+                                              child: Text(
+                                                'Submit Date',
+                                                style: TextStyleHelper
+                                                    .kWhite14W400Inter,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: size.width * 0.34,
+                                              child: Text(
+                                                '20/12/2023',
+                                                style: TextStyleHelper
+                                                    .kWhite14W400Inter,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 23),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'View more  ',
+                                      style: TextStyle(
+                                        color: ColorHelper.kPrimary,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: 'Inter-Bold',
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      'assets/icons/arrow-circle-right.svg',
+                                      color: ColorHelper.kPrimary,
+                                      height: 14,
+                                      width: 14,
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(32),
+                          blurColor: ColorHelper.kBGBlur,
+                          child: Container(),
+                        ),
+                      ),
+                      Container(
+                        height: size.height * 0.46,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.033),
+                        child: Blur(
+                          blur: 10,
+                          colorOpacity: 0.25,
+                          overlay: Padding(
+                            padding: EdgeInsets.all(size.height * 0.0285),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Request History',
+                                      style: TextStyleHelper.kWhite22W600Inter,
+                                    ),
+                                    SvgPicture.asset(
+                                      'assets/icons/arrow-circle-up.svg',
+                                      color: ColorHelper.kPrimary,
+                                      height: 21.5,
+                                      width: 21.5,
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.009,
+                                ),
+                                ...List.generate(
+                                  3,
+                                  (index) => Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Container(
-                                      padding: EdgeInsets.all(16),
+                                      padding: const EdgeInsets.all(16),
                                       width: size.width,
                                       decoration: BoxDecoration(
-                                          color: Color(0xFFFFFFFF)
+                                          color: const Color(0xFFFFFFFF)
                                               .withOpacity(0.14),
                                           borderRadius:
                                               BorderRadius.circular(16)),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            'NOC Letter',
-                                            style: TextStyleHelper
-                                                .kPrimary16W600Inter,
-                                          ),
-                                          Row(
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              SizedBox(
-                                                width: size.width * 0.34,
-                                                child: Text(
-                                                  'Submit Date',
-                                                  style: TextStyleHelper
-                                                      .kWhite14W400Inter,
-                                                ),
+                                              Text(
+                                                titles[index],
+                                                style: TextStyleHelper
+                                                    .kPrimary16W600Inter,
                                               ),
                                               SizedBox(
-                                                width: size.width * 0.34,
-                                                child: Text(
-                                                  '20/12/2023',
-                                                  style: TextStyleHelper
-                                                      .kWhite14W400Inter,
+                                                width: size.width * 0.6,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Submit Date',
+                                                      style: TextStyleHelper
+                                                          .kWhite14W400Inter,
+                                                    ),
+                                                    Text(
+                                                      '20/12/2023',
+                                                      style: TextStyleHelper
+                                                          .kWhite14W400Inter,
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
+                                          ),
+                                          SvgPicture.asset(
+                                            index == 2
+                                                ? 'assets/icons/close-circles.svg'
+                                                : 'assets/icons/tick-circle_green.svg',
+                                            height: 28,
+                                            width: 28,
+                                            color: index == 2
+                                                ? const Color(0xFfA8200D)
+                                                : const Color(0xFf9FE870),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'View more  ',
-                                        style: TextStyle(
-                                          color: ColorHelper.kPrimary,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Inter-Bold',
-                                        ),
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-right.svg',
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.0159,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'View more  ',
+                                      style: TextStyle(
                                         color: ColorHelper.kPrimary,
-                                        height: 14,
-                                        width: 14,
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            borderRadius: BorderRadius.circular(32),
-                            blurColor: ColorHelper.kBGBlur,
-                            child: Container(),
-                          ),
-                        ),
-                        Container(
-                          height: size.height * 0.56,
-                          margin: EdgeInsets.all(size.width * 0.033),
-                          child: Blur(
-                            blur: 10,
-                            colorOpacity: 0.25,
-                            overlay: Padding(
-                              padding: EdgeInsets.all(25),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Request History',
-                                        style:
-                                            TextStyleHelper.kWhite22W600Inter,
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-up.svg',
-                                        color: ColorHelper.kPrimary,
-                                        height: 21.5,
-                                        width: 21.5,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  ...List.generate(
-                                    3,
-                                    (index) => Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 8),
-                                      child: Container(
-                                        padding: EdgeInsets.all(16),
-                                        width: size.width,
-                                        decoration: BoxDecoration(
-                                            color: Color(0xFFFFFFFF)
-                                                .withOpacity(0.14),
-                                            borderRadius:
-                                                BorderRadius.circular(16)),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  titles[index],
-                                                  style: TextStyleHelper
-                                                      .kPrimary16W600Inter,
-                                                ),
-                                                SizedBox(
-                                                  width: size.width * 0.6,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Submit Date',
-                                                        style: TextStyleHelper
-                                                            .kWhite14W400Inter,
-                                                      ),
-                                                      Text(
-                                                        '20/12/2023',
-                                                        style: TextStyleHelper
-                                                            .kWhite14W400Inter,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SvgPicture.asset(
-                                              index == 2
-                                                  ? 'assets/icons/close-circles.svg'
-                                                  : 'assets/icons/tick-circle_green.svg',
-                                              height: 28,
-                                              width: 28,
-                                              color: index == 2
-                                                  ? Color(0xFfA8200D)
-                                                  : Color(0xFf9FE870),
-                                            ),
-                                          ],
-                                        ),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: 'Inter-Bold',
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 14,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'View more  ',
-                                        style: TextStyle(
-                                          color: ColorHelper.kPrimary,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Inter-Bold',
-                                        ),
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-right.svg',
-                                        color: ColorHelper.kPrimary,
-                                        height: 14,
-                                        width: 14,
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
+                                    SvgPicture.asset(
+                                      'assets/icons/arrow-circle-right.svg',
+                                      color: ColorHelper.kPrimary,
+                                      height: 14,
+                                      width: 14,
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
-                            borderRadius: BorderRadius.circular(32),
-                            blurColor: ColorHelper.kBGBlur,
-                            child: Container(),
                           ),
+                          borderRadius: BorderRadius.circular(32),
+                          blurColor: ColorHelper.kBGBlur,
+                          child: Container(),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

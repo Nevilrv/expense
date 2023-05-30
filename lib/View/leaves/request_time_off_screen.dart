@@ -5,6 +5,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../constant/text_style_helper.dart';
 
@@ -33,6 +34,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   int selectPage = 0;
   List scroll = [0];
   bool isAvilable = false;
+  DateTime? selectDate1;
 
   @override
   Widget build(BuildContext context) {
@@ -149,17 +151,17 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                         child: PageView(
                           controller: _controller,
                           onPageChanged: (index) {
-                            log('index---------->>>>>> ${index}');
+                            log('index---------->>>>>> $index');
                             selectPage = index;
                             if (scroll.contains(selectPage)) {
-                              print('CONTAIN');
+                              log('CONTAIN');
                             } else {
                               scroll.add(selectPage);
                             }
                             if (scroll.last > selectPage) {
                               scroll.remove(scroll.last);
 
-                              print('REMOVE DATA $scroll');
+                              log('REMOVE DATA $scroll');
                             }
                             setState(() {});
                           },
@@ -225,7 +227,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           ),
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: leaveList.length,
             itemBuilder: (context, index) {
               return Padding(
@@ -263,7 +265,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                           ),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       leaveList[index]["status"].toString() !=
                               "panding".toString()
                           ? Container(
@@ -271,14 +273,14 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                               width: size.width * 0.28,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  color: Color(0xffEDC843),
+                                  color: const Color(0xffEDC843),
                                   borderRadius: BorderRadius.circular(32)),
                               child: Text(
                                 'Unpaid',
                                 style: TextStyleHelper.kWhite14W600Inter,
                               ),
                             )
-                          : SizedBox(),
+                          : const SizedBox(),
                       SizedBox(
                         width: size.width * 0.01,
                       ),
@@ -308,13 +310,113 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           'What type of leave do you want to take?',
           style: TextStyleHelper.kWhite18W600Inter,
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: size.height * 0.4,
+          width: size.width * 0.9,
+          decoration: BoxDecoration(
+            // color: Colors.white.withOpacity(0.15),
+            color: Colors.white.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: TableCalendar(
+              focusedDay: selectDate1 ?? DateTime.now(),
+              firstDay: DateTime(2000),
+              lastDay: DateTime.now(),
+              calendarFormat: CalendarFormat.month,
+              currentDay: DateTime.now(),
+              daysOfWeekVisible: true,
+              weekNumbersVisible: false,
+              shouldFillViewport: true,
+              headerStyle: HeaderStyle(
+                formatButtonShowsNext: false,
+                formatButtonVisible: false,
+                titleCentered: true,
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Colors.white.withOpacity(0.5), width: 0.4))),
+                titleTextStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white),
+                leftChevronIcon: Container(
+                  height: 17,
+                  width: 17,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 0.7)),
+                  child: const Icon(Icons.arrow_back_ios_new_rounded,
+                      size: 10, color: Colors.white),
+                ),
+                rightChevronIcon: Container(
+                  height: 17,
+                  width: 17,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 0.7)),
+                  child: const Icon(Icons.arrow_forward_ios_outlined,
+                      size: 10, color: Colors.white),
+                ),
+                headerPadding: const EdgeInsets.only(bottom: 5, top: 5),
+              ),
+              calendarStyle: CalendarStyle(
+                cellMargin:
+                    const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
+                isTodayHighlighted: true,
+                outsideDaysVisible: true,
+                todayTextStyle: const TextStyle(color: Colors.white),
+                todayDecoration: BoxDecoration(
+                    color: const Color(0xffB2FF81).withOpacity(0.26),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(4),
+                    ),
+                    border: Border.all(color: const Color(0xffFFBFBD))),
+                weekendTextStyle: const TextStyle(color: Colors.white),
+                defaultTextStyle: const TextStyle(color: Colors.white),
+                disabledTextStyle: const TextStyle(color: Colors.grey),
+                canMarkersOverflow: false,
+                selectedTextStyle: const TextStyle(color: Colors.white),
+                selectedDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(4),
+                  ),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+              ),
+              daysOfWeekStyle: const DaysOfWeekStyle(
+                weekdayStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                weekendStyle: TextStyle(color: Colors.white),
+              ),
+              daysOfWeekHeight: 35,
+              onPageChanged: (focusedDay) {
+                selectDate1 = focusedDay;
+                setState(() {});
+              },
+              onDaySelected: (selectedDay, selectDate) {
+                log('DAY $selectedDay');
+                log('DATE $selectDate');
+                log('DATE $selectDate1');
+
+                setState(() {
+                  selectDate1 = selectDate;
+                });
+              }),
+        ),
       ],
     );
   }
 
   thirdPage(Size size) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -365,7 +467,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
             Container(
               height: size.height * 0.15,
               width: size.width,
-              padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(20)),
@@ -373,10 +475,10 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 autofocus: false,
                 maxLines: 5,
                 style: TextStyle(color: ColorHelper.textColor),
-                scrollPadding: EdgeInsets.symmetric(horizontal: 10),
+                scrollPadding: const EdgeInsets.symmetric(horizontal: 10),
                 controller: messageController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 10, right: 10),
+                  contentPadding: const EdgeInsets.only(left: 10, right: 10),
                   hintText: "Enter the reason for leave (optional)",
                   hintStyle: TextStyle(
                       color: ColorHelper.textColor,
@@ -396,7 +498,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               height: size.height * 0.040,
             ),
             isAvilable == true
-                ? SizedBox()
+                ? const SizedBox()
                 : InkWell(
                     onTap: () {
                       setState(() {
@@ -422,7 +524,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                               color: ColorHelper.kPrimary,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           SvgPicture.asset(
@@ -501,7 +603,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                                 color: ColorHelper.kPrimary,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 2,
                             ),
                             SvgPicture.asset(
@@ -534,15 +636,15 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                                 style: TextStyleHelper.kWhite16W400Inter
                                     .copyWith(
                                         fontWeight: FontWeight.w600,
-                                        color: Color(0xff331600)),
+                                        color: const Color(0xff331600)),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 2,
                               ),
                               SvgPicture.asset(
                                 'assets/icons/arrow-right.svg',
                                 height: 25,
-                                color: Color(0xff331600),
+                                color: const Color(0xff331600),
                               ),
                             ],
                           ),
@@ -550,7 +652,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       ),
                     ],
                   )
-                : SizedBox(),
+                : const SizedBox(),
           ],
         ),
       ),

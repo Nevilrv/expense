@@ -1,18 +1,17 @@
 import 'dart:ui';
 
+import 'package:expense/View/TeamScreen/team_screen.dart';
+import 'package:expense/View/payslip/payroll_components_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../View/ErrorScreen/error_state_1.dart';
 import '../View/Expense/expense_screen.dart';
-import '../View/leaves/leave_screen.dart';
-import '../View/leaves/request_time_off_screen.dart';
+
 import '../View/letters_screen/letter_requests_screen.dart';
 import '../View/notification/notification_screen.dart';
-import '../payslip/payroll_components_screen.dart';
+
 import 'color_helper.dart';
 
 class Global {
@@ -44,6 +43,29 @@ class Global {
                 style: TextStyle(color: ColorHelper.fontColor)),
           ),
         ),
+        // SizedBox(
+        //   height: size.height * 0.020,
+        // ),
+        // InkWell(
+        //   onTap: () {
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => const PayrollComponentScreen(),
+        //         ));
+        //   },
+        //   child: Container(
+        //     height: size.height * 0.040,
+        //     width: size.width * 0.40,
+        //     alignment: Alignment.center,
+        //     decoration: BoxDecoration(
+        //       color: ColorHelper.kPrimary,
+        //       borderRadius: BorderRadius.circular(8),
+        //     ),
+        //     child: Text("Payroll Components",
+        //         style: TextStyle(color: ColorHelper.fontColor)),
+        //   ),
+        // ),
         SizedBox(
           height: size.height * 0.020,
         ),
@@ -52,30 +74,7 @@ class Global {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PayrollComponentScreen(),
-                ));
-          },
-          child: Container(
-            height: size.height * 0.040,
-            width: size.width * 0.40,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: ColorHelper.kPrimary,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text("Payroll Components",
-                style: TextStyle(color: ColorHelper.fontColor)),
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.020,
-        ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ExpenseScreen(),
+                  builder: (context) => const ExpenseScreen(),
                 ));
             key.currentState!.closeDrawer();
           },
@@ -137,6 +136,29 @@ class Global {
             ),
             child: Text("Error Screen",
                 style: TextStyle(color: ColorHelper.fontColor)),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.020,
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const TeamScreen(),
+                ));
+            key.currentState!.closeDrawer();
+          },
+          child: Container(
+            height: size.height * 0.040,
+            width: size.width * 0.40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: ColorHelper.kPrimary,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text("Team", style: TextStyle(color: ColorHelper.fontColor)),
           ),
         ),
       ],

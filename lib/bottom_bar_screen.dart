@@ -1,13 +1,15 @@
 import 'dart:developer';
 
 import 'package:expense/View/leaves/leave_screen.dart';
-import 'package:expense/payslip/payslip_screen.dart';
+import 'package:expense/View/payslip/payslip_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
-import 'View/leaves/request_time_off_screen.dart';
 import 'clipboard_screen.dart';
 import 'constant/color_helper.dart';
+import 'constant/common_widget.dart';
 import 'constant/text_style_helper.dart';
 import 'home_screen.dart';
 
@@ -40,20 +42,29 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     }
   ];
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print(Get.height);
 
     return Scaffold(
+      backgroundColor: ColorHelper.kBG,
+      key: _scaffoldKey,
+      drawer: Drawer(
+        child: Global()
+            .commonDrawer(context: context, size: size, key: _scaffoldKey),
+      ),
       body: Stack(
         children: [
           bottomIndex == 0
-              ? HomeScreen()
+              ? const HomeScreen()
               : bottomIndex == 1
-                  ? LeaveScreen()
+                  ? const LeaveScreen()
                   : bottomIndex == 2
-                      ? PaySlipScreen()
-                      : ClipBoardScreen(),
+                      ? const PaySlipScreen()
+                      : const ClipBoardScreen(),
           Positioned(
             bottom: 0,
             child: Container(
@@ -75,8 +86,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           Positioned(
             bottom: size.height * 0.015,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: SizedBox(
                 height: size.height * 0.08,
                 width: size.width,
                 child: ListView.builder(

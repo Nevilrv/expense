@@ -147,7 +147,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: size.width * 0.35,
+                              width: size.width * 0.33,
                             ),
                             Align(
                               alignment: Alignment.center,
@@ -539,26 +539,43 @@ class _LeaveScreenState extends State<LeaveScreen> {
                             child: Container(),
                           ),
                         ),
+                        const SizedBox(
+                          height: 100,
+                        ),
                       ],
                     ),
-                    Positioned(
-                        top: size.height * 0.8,
-                        left: size.width * 0.75,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => const RequestTimeOffScreen());
-                          },
-                          child: Image.asset(
-                            'assets/icons/floating_button.png',
-                            height: 69,
-                            width: 69,
-                          ),
-                        )),
+                    // Positioned(
+                    //   top: size.height * 0.8,
+                    //   left: size.width * 0.75,
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       Get.to(() => const RequestTimeOffScreen());
+                    //     },
+                    //     child: Image.asset(
+                    //       'assets/icons/floating_button.png',
+                    //       height: 69,
+                    //       width: 69,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
           ],
+        ),
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            Get.to(() => const RequestTimeOffScreen());
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: size.height * 0.1),
+            child: Image.asset(
+              'assets/icons/floating_button.png',
+              height: 69,
+              width: 69,
+            ),
+          ),
         ),
       ),
     );

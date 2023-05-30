@@ -4,11 +4,11 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:expense/View/Documents/Mandatory/add_passport_screen.dart';
 import 'package:expense/View/Documents/Non-Mandatory/add_custom_document_screen.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
-import 'package:expense/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../Controller/expense_controller.dart';
 import '../../constant/color_helper.dart';
 import '../../constant/text_style_helper.dart';
 import 'Mandatory/add_Insurance_screen.dart';

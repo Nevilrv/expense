@@ -2,13 +2,14 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:blur/blur.dart';
-import 'package:expense/View/Expense/expense_screen.dart';
-import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:table_calendar/table_calendar.dart';
 
+import '../../constant/color_helper.dart';
 import '../../constant/text_style_helper.dart';
+import '../Expense/expense_screen.dart';
 
 class RequestLetterScreens extends StatefulWidget {
   const RequestLetterScreens({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class RequestLetterScreens extends StatefulWidget {
 }
 
 class _RequestLetterScreensState extends State<RequestLetterScreens> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final PageController _controller = PageController();
 
   List<String> requests = [
@@ -31,6 +32,8 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
 
   int selectPage = 0;
   List scroll = [0];
+  DateTime? selectDate1;
+  DateTime today = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +95,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
+                              onTap: () {},
                               child: SvgPicture.asset(
                                 'assets/icons/arrow-left-rounded.svg',
                                 height: 35,
@@ -120,17 +121,17 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                         child: PageView(
                           controller: _controller,
                           onPageChanged: (index) {
-                            log('index---------->>>>>> ${index}');
+                            log('index---------->>>>>> $index');
                             selectPage = index;
                             if (scroll.contains(selectPage)) {
-                              print('CONTAIN');
+                              log('CONTAIN');
                             } else {
                               scroll.add(selectPage);
                             }
                             if (scroll.last > selectPage) {
                               scroll.remove(scroll.last);
 
-                              print('REMOVE DATA $scroll');
+                              log('REMOVE DATA $scroll');
                             }
                             setState(() {});
                           },
@@ -195,7 +196,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
         ),
         ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: requests.length,
           itemBuilder: (context, index) {
             return Padding(
@@ -234,8 +235,94 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
           'Select a date of issue for the letter',
           style: TextStyleHelper.kWhite18W600Inter,
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: size.height * 0.4,
+          width: size.width * 0.9,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: TableCalendar(
+            focusedDay: today,
+            firstDay: DateTime(2000),
+            lastDay: DateTime.now(),
+            calendarFormat: CalendarFormat.month,
+            currentDay: DateTime.now(),
+            daysOfWeekVisible: true,
+            weekNumbersVisible: false,
+            shouldFillViewport: true,
+            onDaySelected: _onDaySelected,
+            selectedDayPredicate: (day) => isSameDay(day, today),
+            headerStyle: HeaderStyle(
+              formatButtonShowsNext: false,
+              formatButtonVisible: false,
+              titleCentered: true,
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.white.withOpacity(0.5), width: 0.4))),
+              titleTextStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white),
+              leftChevronIcon: Container(
+                height: 17,
+                width: 17,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 0.7)),
+                child: const Icon(Icons.arrow_back_ios_new_rounded,
+                    size: 10, color: Colors.white),
+              ),
+              rightChevronIcon: Container(
+                height: 17,
+                width: 17,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 0.7),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Icon(Icons.arrow_forward_ios_outlined,
+                    size: 10, color: Colors.white),
+              ),
+              headerPadding: const EdgeInsets.only(bottom: 5, top: 5),
+            ),
+            calendarStyle: CalendarStyle(
+              cellMargin:
+                  const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
+              isTodayHighlighted: false,
+              outsideDaysVisible: true,
+              weekendTextStyle: const TextStyle(color: Colors.white),
+              defaultTextStyle: const TextStyle(color: Colors.white),
+              disabledTextStyle: const TextStyle(color: Colors.grey),
+              canMarkersOverflow: false,
+              selectedTextStyle: const TextStyle(color: Colors.white),
+              selectedDecoration: BoxDecoration(
+                color: const Color(0xffB2FF81).withOpacity(0.26),
+                //  borderRadius: BorderRadius.circular(4),
+                border: Border.all(
+                  color: const Color(0xffFFBFBD),
+                ),
+              ),
+            ),
+            daysOfWeekStyle: const DaysOfWeekStyle(
+              weekdayStyle: TextStyle(
+                color: Colors.white,
+              ),
+              weekendStyle: TextStyle(color: Colors.white),
+            ),
+            daysOfWeekHeight: 35,
+          ),
+        ),
       ],
     );
+  }
+
+  void _onDaySelected(DateTime day, DateTime focusedDay) {
+    setState(() {
+      today = day;
+    });
   }
 
   thirdPage(Size size) {
@@ -248,7 +335,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               'Enter your name and address',
               style: TextStyleHelper.kWhite18W600Inter,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -562,7 +649,8 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.back();
+                      Get.to(() => const ExpenseScreen(),
+                          transition: Transition.rightToLeft);
                     },
                     child: Container(
                       width: 151,
