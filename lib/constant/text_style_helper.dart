@@ -28,6 +28,18 @@ class TextStyleHelper {
     fontWeight: FontWeight.w500,
     fontFamily: 'Inter-Normal',
   );
+  static TextStyle kPrimary14W400Inter = TextStyle(
+    fontSize: 14,
+    color: ColorHelper.kPrimary,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter-Normal',
+  );
+  static TextStyle kPrimary10W700Inter = TextStyle(
+    fontSize: 10,
+    color: ColorHelper.kPrimary,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Normal',
+  );
 
   static TextStyle kWhite22W600Inter = const TextStyle(
     fontSize: 22,
@@ -54,6 +66,12 @@ class TextStyleHelper {
     fontSize: 14,
     color: Colors.white,
     fontWeight: FontWeight.w400,
+    fontFamily: 'Inter-Medium',
+  );
+  static TextStyle kWhite12W700Inter = const TextStyle(
+    fontSize: 12,
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
     fontFamily: 'Inter-Medium',
   );
   static TextStyle kWhite14W600Inter = const TextStyle(
@@ -104,6 +122,12 @@ class TextStyleHelper {
     fontSize: 10,
     color: Colors.white,
     fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Medium',
+  );
+  static TextStyle kWhite10W400Inter = const TextStyle(
+    fontSize: 10,
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
     fontFamily: 'Inter-Medium',
   );
 

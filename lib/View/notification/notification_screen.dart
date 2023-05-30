@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:ui';
+
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -316,7 +316,7 @@ class _NotificationScreenState extends State<NotificationScreen>
               ),
               Text(
                 'Recent',
-                style: TextStyleHelper.kPrimary20W600Inter
+                style: TextStyleHelper.kWhite14W600Inter
                     .copyWith(color: Colors.white, fontSize: 15),
               ),
               const Spacer(),
@@ -366,7 +366,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   recentList[index]['name'],
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
+                                  style: TextStyleHelper.kWhite14W600Inter
                                       .copyWith(
                                           color: Colors.white, fontSize: 15),
                                 ),
@@ -397,7 +397,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                               Text(
                                 recentList[index]['time'],
                                 overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kPrimary20W600Inter
+                                style: TextStyleHelper.kWhite12w500BOLDInter
                                     .copyWith(
                                         color: Colors.white, fontSize: 15),
                               ),
@@ -414,8 +414,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   'Reject',
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
-                                      .copyWith(fontSize: 15),
+                                  style: TextStyleHelper.kPrimary10W700Inter,
                                 ),
                               ),
                               SizedBox(
@@ -433,7 +432,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   overflow: TextOverflow.clip,
                                   style: TextStyleHelper.kPrimary20W600Inter
                                       .copyWith(
-                                          fontSize: 15,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w700,
                                           color: ColorHelper.fontColor),
                                 ),
                               ),
@@ -515,7 +515,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 child: Text(
                                   previousList[index]['name'],
                                   overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
+                                  style: TextStyleHelper.kWhite14W600Inter
                                       .copyWith(
                                           color: Colors.white, fontSize: 15),
                                 ),
@@ -546,44 +546,36 @@ class _NotificationScreenState extends State<NotificationScreen>
                               Text(
                                 previousList[index]['time'],
                                 overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kPrimary20W600Inter
+                                style: TextStyleHelper.kWhite12w500BOLDInter
                                     .copyWith(
                                         color: Colors.white, fontSize: 15),
                               ),
                               const Spacer(),
                               Container(
                                 height: size.height * 0.037,
-                                width: size.width * 0.20,
+                                width: size.width * 0.35,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                       color: const Color(0xffFFC091),
                                     ),
                                     borderRadius: BorderRadius.circular(20)),
-                                child: Text(
-                                  'Reject',
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
-                                      .copyWith(fontSize: 15),
-                                ),
-                              ),
-                              SizedBox(
-                                width: size.width * 0.02,
-                              ),
-                              Container(
-                                height: size.height * 0.037,
-                                width: size.width * 0.20,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffFFC091),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Text(
-                                  'Approve',
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
-                                      .copyWith(
-                                          fontSize: 15,
-                                          color: ColorHelper.fontColor),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      'Upload now',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyleHelper.kPrimary10W700Inter
+                                          .copyWith(fontSize: 15),
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/icons/document-upload.svg",
+                                      height: 16,
+                                      color: ColorHelper.kPrimary,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -615,11 +607,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             SizedBox(
               width: size.width * 0.38,
             ),
-            Text(
-              'Recent',
-              style: TextStyleHelper.kPrimary20W600Inter
-                  .copyWith(color: Colors.white, fontSize: 15),
-            ),
+            Text('Recent', style: TextStyleHelper.kWhite14W600Inter),
             const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
@@ -647,15 +635,10 @@ class _NotificationScreenState extends State<NotificationScreen>
                 SizedBox(
                   width: size.width * 0.80,
                   child: Text(
-                    'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
-                    overflow: TextOverflow.clip,
-                    textAlign: TextAlign.start,
-                    style: TextStyleHelper.kPrimary20W600Inter.copyWith(
-                      color: Colors.white,
-                      fontSize: 15,
+                      'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
                       overflow: TextOverflow.clip,
-                    ),
-                  ),
+                      textAlign: TextAlign.start,
+                      style: TextStyleHelper.kWhite12w500BOLDInter),
                 ),
                 SizedBox(
                   height: size.height * 0.020,
@@ -665,14 +648,14 @@ class _NotificationScreenState extends State<NotificationScreen>
                     Text(
                       '12-02-2023',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary20W600Inter
+                      style: TextStyleHelper.kWhite12w500BOLDInter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                     const Spacer(),
                     Text(
                       '8:56 pm',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary20W600Inter
+                      style: TextStyleHelper.kWhite12w500BOLDInter
                           .copyWith(fontSize: 15, color: Colors.white),
                     ),
                   ],
@@ -697,11 +680,7 @@ class _NotificationScreenState extends State<NotificationScreen>
             SizedBox(
               width: size.width * 0.38,
             ),
-            Text(
-              'Previous',
-              style: TextStyleHelper.kPrimary20W600Inter
-                  .copyWith(color: Colors.white, fontSize: 15),
-            ),
+            Text('Previous', style: TextStyleHelper.kWhite14W600Inter),
             const Spacer(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
@@ -732,11 +711,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                     'Eid mubarak to all meet max family',
                     overflow: TextOverflow.clip,
                     textAlign: TextAlign.start,
-                    style: TextStyleHelper.kPrimary20W600Inter.copyWith(
-                      color: Colors.white,
-                      fontSize: 15,
-                      overflow: TextOverflow.clip,
-                    ),
+                    style: TextStyleHelper.kWhite12w500BOLDInter,
                   ),
                 ),
                 SizedBox(
@@ -744,19 +719,13 @@ class _NotificationScreenState extends State<NotificationScreen>
                 ),
                 Row(
                   children: [
-                    Text(
-                      '10-8-2022',
-                      overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary20W600Inter
-                          .copyWith(fontSize: 15, color: Colors.white),
-                    ),
+                    Text('10-8-2022',
+                        overflow: TextOverflow.clip,
+                        style: TextStyleHelper.kWhite12w500BOLDInter),
                     const Spacer(),
-                    Text(
-                      '12:00 am',
-                      overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kPrimary20W600Inter
-                          .copyWith(fontSize: 15, color: Colors.white),
-                    ),
+                    Text('12:00 am',
+                        overflow: TextOverflow.clip,
+                        style: TextStyleHelper.kWhite12w500BOLDInter),
                   ],
                 ),
               ],
