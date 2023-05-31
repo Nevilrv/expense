@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:expense/Controller/payroll_screen_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -95,7 +96,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 45.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     child: Stack(clipBehavior: Clip.none, children: [
                       Positioned.fill(
                         child: BackdropFilter(
@@ -105,7 +106,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                             margin: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: BoxDecoration(
                                 color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(24)),
+                                borderRadius: BorderRadius.circular(24.r)),
                           ),
                         ),
                       ),
@@ -158,7 +159,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                 color: const Color(0xff2F2D29).withOpacity(0.4),
                                 border:
                                     Border.all(color: ColorHelper.kDarkGrey),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r),
                               ),
                               child: TabBar(
                                 isScrollable: false,
@@ -168,7 +169,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                   controller.updateValue(value);
                                 },
                                 indicator: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.r),
                                     color: const Color(0xffFFC091),
                                     border: Border.all(color: Colors.white)),
                                 labelColor: Colors.white,
@@ -225,7 +226,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                             color:
                                                 Colors.white.withOpacity(0.14),
                                             borderRadius:
-                                                BorderRadius.circular(16),
+                                                BorderRadius.circular(16.r),
                                           ),
                                           child: Row(
                                             children: [
@@ -267,7 +268,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                             color:
                                                 Colors.white.withOpacity(0.14),
                                             borderRadius:
-                                                BorderRadius.circular(16),
+                                                BorderRadius.circular(16.r),
                                           ),
                                           child: Row(
                                             children: [

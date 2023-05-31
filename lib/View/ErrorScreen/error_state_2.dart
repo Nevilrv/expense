@@ -1,6 +1,7 @@
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ErrorRequestScreen2 extends StatefulWidget {
@@ -116,7 +117,7 @@ class _ErrorRequestScreen2State extends State<ErrorRequestScreen2> {
                             blurRadius: 10,
                             offset: const Offset(0.0, 4.0))
                       ],
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Center(
                         child: Text(

@@ -5,6 +5,7 @@ import 'package:expense/View/Documents/Mandatory/add_passport_screen.dart';
 import 'package:expense/View/Documents/Non-Mandatory/add_custom_document_screen.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -122,7 +123,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 45.0),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   child: Stack(clipBehavior: Clip.none, children: [
                     Positioned.fill(
                       child: BackdropFilter(
@@ -132,7 +133,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                           margin: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
                               color: ColorHelper.kBGBlur.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(24)),
+                              borderRadius: BorderRadius.circular(24.r)),
                         ),
                       ),
                     ),
@@ -193,7 +194,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                             decoration: BoxDecoration(
                               color: const Color(0xff2F2D29).withOpacity(0.4),
                               border: Border.all(color: ColorHelper.kDarkGrey),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.r),
                             ),
                             child: TabBar(
                               controller: _tabController,
@@ -204,7 +205,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                 });
                               },
                               indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                   color: const Color(0xffFFC091),
                                   border: Border.all(color: Colors.white)),
                               labelColor: Colors.white,
@@ -273,7 +274,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                             color:
                                                 Colors.white.withOpacity(0.14),
                                             borderRadius:
-                                                BorderRadius.circular(16),
+                                                BorderRadius.circular(16.r),
                                           ),
                                           child: Row(
                                             children: [
@@ -313,7 +314,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                             color:
                                                 Colors.white.withOpacity(0.14),
                                             borderRadius:
-                                                BorderRadius.circular(16),
+                                                BorderRadius.circular(16.r),
                                           ),
                                           child: Row(
                                             children: [
@@ -357,7 +358,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                                 color: Colors.white
                                                     .withOpacity(0.14),
                                                 borderRadius:
-                                                    BorderRadius.circular(16),
+                                                    BorderRadius.circular(16.r),
                                               ),
                                               child: Row(
                                                 children: [
@@ -402,7 +403,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
           insetPadding: const EdgeInsets.symmetric(horizontal: 16),
           contentPadding: const EdgeInsets.all(16),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
           content: SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -442,7 +443,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                       height: 40,
                       decoration: BoxDecoration(
                         color: ColorHelper.kPrimary,
-                        borderRadius: BorderRadius.circular(56),
+                        borderRadius: BorderRadius.circular(56.r),
                       ),
                       child: Center(
                         child: Text('Go back home',

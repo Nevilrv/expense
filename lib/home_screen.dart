@@ -1,5 +1,6 @@
 import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'constant/color_helper.dart';
 import 'constant/text_style_helper.dart';
@@ -63,14 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Center(
               child: Text(
                 "Home Screen",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
-                  fontSize: 25,
+                  fontSize: 25.sp,
                 ),
               ),
             ),
