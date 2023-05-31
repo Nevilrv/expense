@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/View/letters_screen/request_letter_screens.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,7 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
     'Passport Letter',
     'Salary Transfer Letter'
   ];
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,12 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),

@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../constant/text_style_helper.dart';
@@ -35,6 +37,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   List scroll = [0];
   bool isAvilable = false;
   DateTime? selectDate1;
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,12 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),

@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../constant/common_widget.dart';
 
@@ -61,6 +65,7 @@ class _TeamScreenState extends State<TeamScreen> {
     },
   ];
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +74,12 @@ class _TeamScreenState extends State<TeamScreen> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: ColorHelper.kBG,
+      onDrawerChanged: (val) {
+        drawerGetController.setDrawer(val);
+        log("isDrawer---${drawerGetController.isDrawer}");
+      },
       drawer: Drawer(
+        backgroundColor: ColorHelper.kBG.withOpacity(0.9),
         child: Global()
             .commonDrawer(context: context, size: size, key: _scaffoldKey),
       ),

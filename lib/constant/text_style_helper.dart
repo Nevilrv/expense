@@ -1,5 +1,6 @@
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextStyleHelper {
   static TextStyle kPrimary30W600Inter = TextStyle(
@@ -15,6 +16,13 @@ class TextStyleHelper {
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Bold',
   );
+  static TextStyle kPrimary14W600Inter = TextStyle(
+    fontSize: 14.sp,
+    color: Color(0xffF7F6F5),
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Bold',
+  );
+
   static TextStyle kPrimary22W600Inter = TextStyle(
     fontSize: 22,
     color: ColorHelper.kPrimary,
@@ -32,7 +40,7 @@ class TextStyleHelper {
     fontSize: 14,
     color: ColorHelper.kPrimary,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Normal',
+    fontFamily: 'Inter-Regular',
   );
   static TextStyle kPrimary10W700Inter = TextStyle(
     fontSize: 10,
@@ -45,14 +53,32 @@ class TextStyleHelper {
     fontSize: 22,
     color: Colors.white,
     fontWeight: FontWeight.w600,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Bold',
+  );
+  static TextStyle kWhite22W700Inter = const TextStyle(
+    fontSize: 22,
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Bold',
+  );
+  static TextStyle kfontColor18W600Inter = TextStyle(
+    fontSize: 18,
+    color: ColorHelper.fontColor,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Bold',
+  );
+  static TextStyle kfontColor22W700Inter = TextStyle(
+    fontSize: 22,
+    color: ColorHelper.fontColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Bold',
   );
 
   static TextStyle kWhite16W400Inter = const TextStyle(
     fontSize: 16,
     color: Colors.white,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
   );
 
   static TextStyle kWhite18W600Inter = const TextStyle(
@@ -66,12 +92,18 @@ class TextStyleHelper {
     fontSize: 14,
     color: Colors.white,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
   );
   static TextStyle kWhite12W700Inter = const TextStyle(
     fontSize: 12,
     color: Colors.white,
     fontWeight: FontWeight.w700,
+    fontFamily: 'Inter-Medium',
+  );
+  static TextStyle kgrey12W500Inter = TextStyle(
+    fontSize: 12,
+    color: Color(0xff868685),
+    fontWeight: FontWeight.w500,
     fontFamily: 'Inter-Medium',
   );
   static TextStyle kWhite14W600Inter = const TextStyle(
@@ -92,11 +124,11 @@ class TextStyleHelper {
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Medium',
   );
-  static TextStyle kWhite16W600Inter = const TextStyle(
-    fontSize: 16,
+  static TextStyle kWhite16W600Inter = TextStyle(
+    fontSize: 16.sp,
     color: Colors.white,
     fontWeight: FontWeight.w600,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Bold',
   );
   static TextStyle kWhite16W700Inter = const TextStyle(
     fontSize: 16,
@@ -122,13 +154,13 @@ class TextStyleHelper {
     fontSize: 10,
     color: Colors.white,
     fontWeight: FontWeight.w700,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Bold',
   );
   static TextStyle kWhite10W400Inter = const TextStyle(
     fontSize: 10,
     color: Colors.white,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
   );
 
   static TextStyle kBG14WBOLDInter = TextStyle(
@@ -141,6 +173,12 @@ class TextStyleHelper {
   static TextStyle kBG18W600Inter = TextStyle(
     fontSize: 18,
     color: ColorHelper.kBG,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Bold',
+  );
+  static TextStyle kfontColor16W600Inter = TextStyle(
+    fontSize: 16,
+    color: ColorHelper.fontColor,
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Bold',
   );
@@ -170,14 +208,14 @@ class TextStyleHelper {
     fontSize: 14,
     color: ColorHelper.kBG,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
   );
 
   static TextStyle white14W400Inter = const TextStyle(
     fontSize: 14,
     color: Colors.white,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
   );
 
   static TextStyle kLightGrey16W600Inter = TextStyle(

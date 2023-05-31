@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constant/color_helper.dart';
 import 'constant/common_widget.dart';
@@ -13,6 +17,7 @@ class ClipBoardScreen extends StatefulWidget {
 
 class _ClipBoardScreenState extends State<ClipBoardScreen> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,10 @@ class _ClipBoardScreenState extends State<ClipBoardScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: ColorHelper.kBG,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: Padding(
@@ -58,6 +67,7 @@ class _ClipBoardScreenState extends State<ClipBoardScreen> {
           ),
         ),
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
