@@ -167,7 +167,9 @@ class _NotificationScreenState extends State<NotificationScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.back();
+                                },
                                 child: SvgPicture.asset(
                                   'assets/icons/arrow-left-rounded.svg',
                                   height: 35,
@@ -239,7 +241,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14.sp,
+                                            fontSize: 13.sp,
                                             fontFamily: 'Inter-Medium',
                                             color: index == 0
                                                 ? ColorHelper.fontColor
@@ -268,7 +270,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14.sp,
+                                            fontSize: 13.sp,
                                             fontFamily: 'Inter-Medium',
                                             color: index == 1
                                                 ? ColorHelper.fontColor

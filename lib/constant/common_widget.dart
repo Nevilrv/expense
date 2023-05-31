@@ -117,8 +117,7 @@ class Global {
             thickness: size.height * 0.001,
             color: Color(0xff868685),
           ),
-          Container(
-            height: size.height * 0.685,
+          Expanded(
             child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: drawerGetController.controller,
@@ -287,7 +286,7 @@ class Global {
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Work expenses Requests", icon: Iconsax.receipt_text),
+        RowData(title: "Work expenses", icon: Iconsax.receipt_text),
         Spacer(),
         Divider(
           thickness: size.height * 0.001,

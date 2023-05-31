@@ -1,7 +1,5 @@
 import 'dart:developer';
 import 'dart:ui';
-
-import 'package:blur/blur.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +34,15 @@ class _LeaveScreenState extends State<LeaveScreen> {
     {
       "day": "42",
       "name": "Medical\nLeaves",
-    }
+    },
+    {
+      "day": '62',
+      "name": "Travel\nLeaves",
+    },
+    {
+      "day": "90",
+      "name": "Long\nLeaves",
+    },
   ];
 
   List<Map<String, dynamic>> leveRequestList = [
@@ -81,6 +87,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
 
   int bottomIndex = 0;
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
+
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -196,82 +204,99 @@ class _LeaveScreenState extends State<LeaveScreen> {
                           ),
                           Row(
                             children: [
-                              Row(
-                                children:
-                                    List.generate(leavesList.length, (index) {
-                                  log('leavesList.length---------->>>>>> ${leavesList.length}');
-                                  return Row(
-                                    children: [
-                                      Container(
-                                        height: size.height * 0.110,
-                                        width: size.width * 0.25,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.r),
-                                          color: const Color(0xff2F2D29)
-                                              .withOpacity(0.25),
-                                          border: Border.all(
-                                            color: ColorHelper.fontColor,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                leavesList[index]['day'],
-                                                style: TextStyleHelper
-                                                    .kPrimary22W600Inter,
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  controller: scrollController,
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Row(
+                                    children: List.generate(leavesList.length,
+                                        (index) {
+                                      return Row(
+                                        children: [
+                                          Container(
+                                            height: size.height * 0.110,
+                                            width: size.width * 0.25,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.r),
+                                              color: const Color(0xff2F2D29)
+                                                  .withOpacity(0.25),
+                                              border: Border.all(
+                                                color: ColorHelper.fontColor,
                                               ),
-                                              Text(
-                                                leavesList[index]['name'],
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyleHelper
-                                                    .kWhite10W700Inter,
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    leavesList[index]['day'],
+                                                    style: TextStyleHelper
+                                                        .kPrimary22W600Inter,
+                                                  ),
+                                                  Text(
+                                                    leavesList[index]['name'],
+                                                    textAlign: TextAlign.center,
+                                                    overflow: TextOverflow.clip,
+                                                    style: TextStyleHelper
+                                                        .kWhite10W700Inter,
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  );
-                                }),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                        ],
+                                      );
+                                    }),
+                                  ),
+                                ),
                               ),
-                              const Spacer(),
                               Padding(
                                 padding:
                                     EdgeInsets.only(right: size.width * 0.012),
-                                child: Container(
-                                  height: size.height * 0.040,
-                                  width: size.width * 0.09,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xffFFC091),
-                                      shape: BoxShape.circle,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Color.fromRGBO(
-                                                255, 122, 0, 0.35),
-                                            blurRadius: 8,
-                                            spreadRadius: 4),
-                                      ]),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/icons/arrow-circle-right.svg',
-                                        height: 25,
-                                        color: ColorHelper.fontColor,
-                                      ),
-                                    ],
+                                child: GestureDetector(
+                                  onTap: () {
+                                    scrollController.animateTo(
+                                        duration:
+                                            const Duration(milliseconds: 200),
+                                        curve: Curves.bounceIn,
+                                        scrollController
+                                            .position.maxScrollExtent);
+                                  },
+                                  child: Container(
+                                    height: size.height * 0.040,
+                                    width: size.width * 0.09,
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xffFFC091),
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Color.fromRGBO(
+                                                  255, 122, 0, 0.35),
+                                              blurRadius: 8,
+                                              spreadRadius: 4),
+                                        ]),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/arrow-circle-right.svg',
+                                          height: 25,
+                                          color: ColorHelper.fontColor,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

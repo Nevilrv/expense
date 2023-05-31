@@ -6,6 +6,7 @@ import 'package:expense/View/payslip/payslip_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import 'View/letters_screen/letter_requests_screen.dart';
 import 'constant/color_helper.dart';
@@ -70,7 +71,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       ? const LeaveScreen()
                       : bottomIndex == 2
                           ? const PaySlipScreen()
-                          : const ClipBoardScreen(),
+                          : const LetterRequestsScreen(),
             ],
           ),
           GetBuilder<DrawerGetController>(
@@ -80,7 +81,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 child: Visibility(
                   visible: drawerGetController.isDrawer == false ? true : false,
                   child: Container(
-                    height: size.height * 0.087,
+                    height: size.height * 0.1997,
                     width: size.width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -107,80 +108,84 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                   child: SizedBox(
                     height: size.height * 0.08,
                     width: size.width,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: bottomBarList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  bottomIndex = index;
-                                });
+                    child: Center(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: bottomBarList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    bottomIndex = index;
+                                  });
 
-                                log('bottomIndex---------->>>>>> ${bottomIndex}');
-                              },
-                              child: Container(
-                                height: size.height * 0.06,
-                                width: bottomIndex == index
-                                    ? size.width * 0.40
-                                    : size.width * 0.20,
-                                alignment: Alignment.center,
-                                decoration: bottomIndex == index
-                                    ? BoxDecoration(
-                                        color: ColorHelper.kPrimary
-                                            .withOpacity(0.5),
-                                        borderRadius: BorderRadius.circular(30),
-                                        border: Border.all(
-                                            color: ColorHelper.kPrimary,
-                                            width: 1.5))
-                                    : const BoxDecoration(
-                                        color: Color(0xff6C6B6A),
-                                        shape: BoxShape.circle,
-                                      ),
-                                child: bottomIndex == index
-                                    ? Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.040),
-                                        child: Row(
+                                  log('bottomIndex---------->>>>>> $bottomIndex');
+                                },
+                                child: Container(
+                                  height: size.height * 0.06,
+                                  width: bottomIndex == index
+                                      ? size.width * 0.381
+                                      : size.width * 0.165,
+                                  alignment: Alignment.center,
+                                  decoration: bottomIndex == index
+                                      ? BoxDecoration(
+                                          color: ColorHelper.kPrimary
+                                              .withOpacity(0.5),
+                                          borderRadius:
+                                              BorderRadius.circular(30.r),
+                                          border: Border.all(
+                                              color: ColorHelper.kPrimary,
+                                              width: 1.5))
+                                      : const BoxDecoration(
+                                          color: Color(0xff6C6B6A),
+                                          shape: BoxShape.circle,
+                                        ),
+                                  child: bottomIndex == index
+                                      ? Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.040),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SvgPicture.asset(
+                                                bottomBarList[index]['icon'],
+                                                height: 32,
+                                                color: ColorHelper.kPrimary,
+                                              ),
+                                              Text(
+                                                bottomBarList[index]['name'],
+                                                style: TextStyleHelper
+                                                    .kPrimary12W500Inter
+                                                    .copyWith(fontSize: 17.sp),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           children: [
                                             SvgPicture.asset(
                                               bottomBarList[index]['icon'],
                                               height: 32,
-                                              color: ColorHelper.kPrimary,
-                                            ),
-                                            Text(
-                                              bottomBarList[index]['name'],
-                                              style: TextStyleHelper
-                                                  .kPrimary12W500Inter
-                                                  .copyWith(fontSize: 18),
+                                              color: Colors.white,
                                             ),
                                           ],
                                         ),
-                                      )
-                                    : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SvgPicture.asset(
-                                            bottomBarList[index]['icon'],
-                                            height: 32,
-                                            color: Colors.white,
-                                          ),
-                                        ],
-                                      ),
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),

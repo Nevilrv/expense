@@ -23,6 +23,13 @@ class TextStyleHelper {
     fontFamily: 'Inter-Bold',
   );
 
+  static TextStyle kPrimary18W600Inter = TextStyle(
+    fontSize: 17.sp,
+    color: ColorHelper.fontColor,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Inter-Bold',
+  );
+
   static TextStyle kPrimary22W600Inter = TextStyle(
     fontSize: 21.sp,
     color: ColorHelper.kPrimary,
