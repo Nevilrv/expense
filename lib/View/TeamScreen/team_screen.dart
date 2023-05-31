@@ -150,10 +150,14 @@ class _TeamScreenState extends State<TeamScreen> {
                               style: TextStyleHelper.kWhite16W700Inter,
                             ),
                             const SizedBox(
-                              height: 12,
+                              height: 5,
                             ),
                             Text(
-                              'Ui/Ux Designer',
+                              index == 5
+                                  ? 'Chief Executive officer in Most Famous Department'
+                                  : 'Ui/Ux Designer ',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                               style: TextStyleHelper.kPrimary12W500Inter,
                             ),
                           ],

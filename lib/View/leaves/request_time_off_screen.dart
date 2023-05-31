@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:blur/blur.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../constant/text_style_helper.dart';
@@ -17,8 +19,11 @@ class RequestTimeOffScreen extends StatefulWidget {
 }
 
 class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final PageController _controller = PageController();
+
+  PlatformFile? file1;
+  String fileName = '';
 
   List<Map<String, dynamic>> leaveList = [
     {"title": "Vacation", "days": "23 days remaining", "status": "panding"},
@@ -35,10 +40,24 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   List scroll = [0];
   bool isAvilable = false;
   DateTime? selectDate1;
+  bool open = false;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
+      log('Keyboard is visible');
+
+      setState(() {
+        open = true;
+      });
+    } else {
+      setState(() {
+        open = false;
+      });
+      log('Keyboard is not visible');
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -62,30 +81,6 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                         "assets/icons/circle.png",
                       ),
                       fit: BoxFit.fill),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.030,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        _scaffoldKey.currentState!.openDrawer();
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(left: size.width * 0.08),
-                        child: const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Icon(
-                            Icons.menu,
-                            color: Color(0xff260A2F),
-                            size: 24,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ),
@@ -120,12 +115,22 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                   overlay: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                if (selectPage == 0) {
+                                  Get.back();
+                                }
+                                if (selectPage == 1) {
+                                  _controller.jumpToPage(0);
+                                }
+                                if (selectPage == 2) {
+                                  _controller.jumpToPage(1);
+                                }
+                              },
                               child: SvgPicture.asset(
                                 'assets/icons/arrow-left-rounded.svg',
                                 height: 35,
@@ -180,34 +185,37 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 ),
               ),
             ),
-            Positioned(
-                bottom: size.height * 0.030,
-                left: size.width / 2.5,
-                child: Row(
-                  children: List.generate(
-                    3,
-                    (index) => Row(
-                      children: [
-                        scroll.contains(index)
-                            ? Image.asset(
-                                "assets/icons/circle_pageview.png",
-                                height: 21,
-                                width: 21,
-                              )
-                            : Container(
-                                height: 16,
-                                width: 16,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white)),
-                              ),
-                        SizedBox(
-                          width: size.width * 0.015,
-                        ),
-                      ],
+            Visibility(
+              visible: !open,
+              child: Positioned(
+                  bottom: size.height * 0.030,
+                  left: size.width / 2.35,
+                  child: Row(
+                    children: List.generate(
+                      3,
+                      (index) => Row(
+                        children: [
+                          scroll.contains(index)
+                              ? Image.asset(
+                                  "assets/icons/People12.png",
+                                  height: 16,
+                                  width: 16,
+                                )
+                              : Container(
+                                  height: 16,
+                                  width: 16,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white)),
+                                ),
+                          SizedBox(
+                            width: size.width * 0.015,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )),
+                  )),
+            ),
           ],
         ),
       ),
@@ -235,58 +243,64 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: size.height * 0.008),
-                  child: Container(
-                    height: size.height * 0.1,
-                    width: size.width * 1,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: size.width * 0.05,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              leaveList[index]["title"],
-                              style: TextStyleHelper.kWhite16W600Inter,
-                            ),
-                            Text(leaveList[index]["days"],
-                                style: TextStyleHelper.kWhite12w500BOLDInter),
-                          ],
-                        ),
-                        const Spacer(),
-                        leaveList[index]["status"].toString() !=
-                                "panding".toString()
-                            ? Container(
-                                height: size.height * 0.040,
-                                width: size.width * 0.28,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffEDC843)
-                                        .withOpacity(0.50),
-                                    borderRadius: BorderRadius.circular(32)),
-                                child: Text(
-                                  'Unpaid',
-                                  style: TextStyleHelper.kWhite14W600Inter,
-                                ),
-                              )
-                            : const SizedBox(),
-                        SizedBox(
-                          width: size.width * 0.03,
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/arrow-circle-right.svg',
-                          height: 25,
-                          color: ColorHelper.kPrimary,
-                        ),
-                        SizedBox(
-                          width: size.width * 0.03,
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _controller.jumpToPage(1);
+                      });
+                    },
+                    child: Container(
+                      height: size.height * 0.1,
+                      width: size.width * 1,
+                      decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: size.width * 0.05,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                leaveList[index]["title"],
+                                style: TextStyleHelper.kWhite16W600Inter,
+                              ),
+                              Text(leaveList[index]["days"],
+                                  style: TextStyleHelper.kWhite12w500BOLDInter),
+                            ],
+                          ),
+                          const Spacer(),
+                          leaveList[index]["status"].toString() !=
+                                  "panding".toString()
+                              ? Container(
+                                  height: size.height * 0.040,
+                                  width: size.width * 0.28,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: ColorHelper.kPrimary,
+                                      borderRadius: BorderRadius.circular(32)),
+                                  child: Text(
+                                    'Unpaid',
+                                    style: TextStyleHelper.kWhite14W600Inter,
+                                  ),
+                                )
+                              : const SizedBox(),
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                          SvgPicture.asset(
+                            'assets/icons/arrow-circle-right.svg',
+                            height: 25,
+                            color: ColorHelper.kPrimary,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -401,6 +415,44 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 });
               }),
         ),
+        const Spacer(),
+        InkWell(
+          onTap: () {
+            setState(() {
+              _controller.jumpToPage(2);
+            });
+          },
+          child: Container(
+            height: size.height * 0.057,
+            width: size.width * 0.34,
+            decoration: BoxDecoration(
+              color: ColorHelper.kPrimary,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Continue',
+                  style: TextStyleHelper.kWhite16W400Inter.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff331600)),
+                ),
+                const SizedBox(
+                  width: 2,
+                ),
+                SvgPicture.asset(
+                  'assets/icons/arrow-right.svg',
+                  height: 25,
+                  color: const Color(0xff331600),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.0684,
+        )
       ],
     );
   }
@@ -465,14 +517,14 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               child: TextFormField(
                 autofocus: false,
                 maxLines: 5,
-                style: TextStyle(color: ColorHelper.textColor),
+                style: TextStyle(color: ColorHelper.kLightGrey),
                 scrollPadding: const EdgeInsets.symmetric(horizontal: 10),
                 controller: messageController,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 10, right: 10),
                   hintText: "Enter the reason for leave (optional)",
                   hintStyle: TextStyle(
-                      color: ColorHelper.textColor,
+                      color: ColorHelper.kLightGrey,
                       fontSize: 15,
                       fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
@@ -488,13 +540,24 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
             SizedBox(
               height: size.height * 0.040,
             ),
-            isAvilable == true
+            fileName.isNotEmpty
                 ? const SizedBox()
                 : InkWell(
-                    onTap: () {
-                      setState(() {
-                        isAvilable = true;
-                      });
+                    onTap: () async {
+                      final result = await FilePicker.platform.pickFiles(
+                        onFileLoading: (p0) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      );
+                      if (result == null) {
+                        return;
+                      }
+                      final file = result.files.first;
+
+                      fileName = file.name;
+                      setState(() {});
                     },
                     child: Container(
                       height: size.height * 0.057,
@@ -526,7 +589,12 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       ),
                     ),
                   ),
-            isAvilable == true
+            fileName.isNotEmpty
+                ? const SizedBox()
+                : SizedBox(
+                    height: size.height * 0.020,
+                  ),
+            fileName.isNotEmpty
                 ? Column(
                     children: [
                       Container(
@@ -566,7 +634,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                               height: size.height * 0.01,
                             ),
                             Text(
-                              'Uploaded_doc.pdf',
+                              fileName,
                               style: TextStyleHelper.kWhite14W400Inter,
                             ),
                           ],
@@ -575,75 +643,92 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       SizedBox(
                         height: size.height * 0.040,
                       ),
-                      Container(
-                        height: size.height * 0.057,
-                        width: size.width * 0.50,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: ColorHelper.kPrimary,
-                          ),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Upload Attachment',
-                              style: TextStyleHelper.kWhite16W400Inter.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: ColorHelper.kPrimary,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 2,
-                            ),
-                            SvgPicture.asset(
-                              'assets/icons/export.svg',
-                              height: 25,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Global()
-                              .commonPopUp(title: 'Leave Request Submitted');
+                      GestureDetector(
+                        onTap: () async {
+                          final result = await FilePicker.platform.pickFiles(
+                            onFileLoading: (p0) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          );
+                          if (result == null) {
+                            return;
+                          }
+                          final file = result.files.first;
+
+                          fileName = file.name;
+                          setState(() {});
                         },
                         child: Container(
                           height: size.height * 0.057,
                           width: size.width * 0.50,
                           decoration: BoxDecoration(
-                            color: ColorHelper.kPrimary,
+                            border: Border.all(
+                              color: ColorHelper.kPrimary,
+                            ),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Submit Request',
-                                style: TextStyleHelper.kWhite16W400Inter
-                                    .copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color(0xff331600)),
+                                'Upload Attachment',
+                                style:
+                                    TextStyleHelper.kWhite16W400Inter.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: ColorHelper.kPrimary,
+                                ),
                               ),
                               const SizedBox(
                                 width: 2,
                               ),
                               SvgPicture.asset(
-                                'assets/icons/arrow-right.svg',
+                                'assets/icons/export.svg',
                                 height: 25,
-                                color: const Color(0xff331600),
                               ),
                             ],
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: size.height * 0.020,
+                      ),
                     ],
                   )
                 : const SizedBox(),
+            InkWell(
+              onTap: () {
+                Global().commonPopUp(title: 'Leave Request Submitted');
+              },
+              child: Container(
+                height: size.height * 0.057,
+                width: size.width * 0.50,
+                decoration: BoxDecoration(
+                  color: ColorHelper.kPrimary,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Submit Request',
+                      style: TextStyleHelper.kWhite16W400Inter.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xff331600)),
+                    ),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    SvgPicture.asset(
+                      'assets/icons/arrow-right.svg',
+                      height: 25,
+                      color: const Color(0xff331600),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

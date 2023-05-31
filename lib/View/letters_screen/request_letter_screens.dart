@@ -1,16 +1,12 @@
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../../constant/color_helper.dart';
 import '../../constant/text_style_helper.dart';
-import '../Expense/expense_screen.dart';
 
 class RequestLetterScreens extends StatefulWidget {
   const RequestLetterScreens({Key? key}) : super(key: key);
@@ -42,18 +38,16 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
     final size = MediaQuery.of(context).size;
 
     if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
-      // Keyboard is visible.
-      print('Keyboard is visible');
+      log('Keyboard is visible');
 
       setState(() {
         open = true;
       });
     } else {
-      // Keyboard is not visible.
       setState(() {
         open = false;
       });
-      print('Keyboard is not visible');
+      log('Keyboard is not visible');
     }
     return SafeArea(
       child: Scaffold(
@@ -113,7 +107,17 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                if (selectPage == 0) {
+                                  Get.back();
+                                }
+                                if (selectPage == 1) {
+                                  _controller.jumpToPage(0);
+                                }
+                                if (selectPage == 2) {
+                                  _controller.jumpToPage(1);
+                                }
+                              },
                               child: SvgPicture.asset(
                                 'assets/icons/arrow-left-rounded.svg',
                                 height: 35,
@@ -172,7 +176,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               visible: !open,
               child: Positioned(
                   bottom: size.height * 0.030,
-                  left: size.width / 2.5,
+                  left: size.width / 2.35,
                   child: Row(
                     children: List.generate(
                       3,
@@ -180,9 +184,9 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                         children: [
                           scroll.contains(index)
                               ? Image.asset(
-                                  "assets/icons/circle_pageview.png",
-                                  height: 21,
-                                  width: 21,
+                                  "assets/icons/People12.png",
+                                  height: 16,
+                                  width: 16,
                                 )
                               : Container(
                                   height: 16,
@@ -229,22 +233,29 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.036,
                   vertical: size.height * 0.011),
-              child: Container(
-                height: size.height * 0.078,
-                width: size.width * 1,
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.14),
-                    borderRadius: BorderRadius.circular(16)),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: size.width * 0.044,
-                    ),
-                    Text(
-                      requests[index],
-                      style: TextStyleHelper.kPrimary16W600Inter,
-                    ),
-                  ],
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _controller.jumpToPage(1);
+                  });
+                },
+                child: Container(
+                  height: size.height * 0.078,
+                  width: size.width * 1,
+                  decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.14),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: size.width * 0.044,
+                      ),
+                      Text(
+                        requests[index],
+                        style: TextStyleHelper.kPrimary16W600Inter,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -343,6 +354,44 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
             daysOfWeekHeight: 35,
           ),
         ),
+        const Spacer(),
+        InkWell(
+          onTap: () {
+            setState(() {
+              _controller.jumpToPage(2);
+            });
+          },
+          child: Container(
+            height: size.height * 0.057,
+            width: size.width * 0.34,
+            decoration: BoxDecoration(
+              color: ColorHelper.kPrimary,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Continue',
+                  style: TextStyleHelper.kWhite16W400Inter.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff331600)),
+                ),
+                const SizedBox(
+                  width: 2,
+                ),
+                SvgPicture.asset(
+                  'assets/icons/arrow-right.svg',
+                  height: 25,
+                  color: const Color(0xff331600),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: size.height * 0.0684,
+        )
       ],
     );
   }
@@ -357,6 +406,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 23),
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Text(
@@ -625,7 +675,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 50,
             ),
           ],
         ),
@@ -677,8 +727,8 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const ExpenseScreen(),
-                          transition: Transition.rightToLeft);
+                      Get.back();
+                      Get.back();
                     },
                     child: Container(
                       width: 151,

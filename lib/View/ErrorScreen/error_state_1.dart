@@ -15,7 +15,7 @@ class ErrorRequestScreen1 extends StatefulWidget {
 }
 
 class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,24 @@ class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
                 height: size.height * 0.34,
               ),
             ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                height: size.height * 0.1997,
+                width: size.width,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black,
+                        Colors.black.withOpacity(0.5),
+                        Colors.black.withOpacity(0.1),
+                        Colors.black.withOpacity(0),
+                      ]),
+                ),
+              ),
+            ),
             Column(
               children: [
                 Padding(
@@ -74,7 +92,7 @@ class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 12.0),
                             child: GestureDetector(
                               onTap: () {
                                 Get.back();
@@ -91,8 +109,7 @@ class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
                           ),
                           Text(
                             'Request a Letter',
-                            style: TextStyleHelper.kWhite22W600Inter
-                                .copyWith(color: Color(0xFFF7F6F5)),
+                            style: TextStyleHelper.kWhite22W600Inter,
                           ),
                         ],
                       ),

@@ -99,10 +99,14 @@ class _AddInsuranceScreenState extends State<AddInsuranceScreen> {
                                   ],
                                 ),
                               ),
-                              Divider(
-                                height: 0,
-                                thickness: 2,
-                                color: ColorHelper.kPrimary,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 1),
+                                child: Divider(
+                                  height: 0,
+                                  thickness: 2,
+                                  color: ColorHelper.kPrimary,
+                                ),
                               ),
                               const SizedBox(height: 20),
                               Padding(

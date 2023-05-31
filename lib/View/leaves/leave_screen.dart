@@ -18,7 +18,7 @@ class LeaveScreen extends StatefulWidget {
 }
 
 class _LeaveScreenState extends State<LeaveScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Map<String, dynamic>> leavesList = [
     {
@@ -85,11 +85,12 @@ class _LeaveScreenState extends State<LeaveScreen> {
         backgroundColor: ColorHelper.kBG,
         key: _scaffoldKey,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
+          preferredSize: Size.fromHeight(size.height * 0.0784),
           child: Padding(
             padding: EdgeInsets.only(
               left: 10,
               top: size.height * 0.025,
+              bottom: size.height * 0.015,
             ),
             child: Row(
               children: [
@@ -218,7 +219,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                             ),
                                             Text(
                                               leavesList[index]['name'],
-                                              textAlign: TextAlign.start,
+                                              textAlign: TextAlign.center,
                                               overflow: TextOverflow.clip,
                                               style: TextStyleHelper
                                                   .kWhite10W700Inter,
@@ -428,6 +429,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                     ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: leveRequestList.length,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return Column(

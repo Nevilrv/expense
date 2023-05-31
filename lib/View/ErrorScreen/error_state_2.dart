@@ -59,6 +59,24 @@ class _ErrorRequestScreen2State extends State<ErrorRequestScreen2> {
                 height: size.height * 0.34,
               ),
             ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                height: size.height * 0.1997,
+                width: size.width,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black,
+                        Colors.black.withOpacity(0.5),
+                        Colors.black.withOpacity(0.1),
+                        Colors.black.withOpacity(0),
+                      ]),
+                ),
+              ),
+            ),
             Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

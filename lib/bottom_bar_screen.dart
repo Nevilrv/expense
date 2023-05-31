@@ -1,12 +1,10 @@
 import 'dart:developer';
-
 import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
-import 'clipboard_screen.dart';
+import 'View/letters_screen/letter_requests_screen.dart';
 import 'constant/color_helper.dart';
 import 'constant/common_widget.dart';
 import 'constant/text_style_helper.dart';
@@ -37,7 +35,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     },
     {
       "icon": "assets/icons/clipboard-text.svg",
-      "name": "Clipboard",
+      "name": "Letters",
     }
   ];
 
@@ -46,7 +44,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print(Get.height);
 
     return Scaffold(
       backgroundColor: ColorHelper.kBG,
@@ -63,20 +60,20 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                   ? const LeaveScreen()
                   : bottomIndex == 2
                       ? const PaySlipScreen()
-                      : const ClipBoardScreen(),
+                      : const LetterRequestsScreen(),
           Positioned(
             bottom: 0,
             child: Container(
-              height: size.height * 0.087,
+              height: size.height * 0.1997,
               width: size.width,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(0.6),
-                      Colors.black.withOpacity(0.4),
-                      Colors.black.withOpacity(0.2),
+                      Colors.black,
+                      Colors.black.withOpacity(0.5),
+                      Colors.black.withOpacity(0.1),
                       Colors.black.withOpacity(0),
                     ]),
               ),
@@ -87,77 +84,82 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
             child: SizedBox(
               height: size.height * 0.08,
               width: size.width,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: bottomBarList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            bottomIndex = index;
-                          });
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: bottomBarList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              bottomIndex = index;
+                            });
 
-                          log('bottomIndex---------->>>>>> ${bottomIndex}');
-                        },
-                        child: Container(
-                          height: size.height * 0.06,
-                          width: bottomIndex == index
-                              ? size.width * 0.40
-                              : size.width * 0.20,
-                          alignment: Alignment.center,
-                          decoration: bottomIndex == index
-                              ? BoxDecoration(
-                                  color: ColorHelper.kPrimary.withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(30),
-                                  border: Border.all(
-                                      color: ColorHelper.kPrimary, width: 1.5))
-                              : const BoxDecoration(
-                                  color: Color(0xff6C6B6A),
-                                  shape: BoxShape.circle,
-                                ),
-                          child: bottomIndex == index
-                              ? Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: size.width * 0.040),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                            log('bottomIndex---------->>>>>> $bottomIndex');
+                          },
+                          child: Container(
+                            height: size.height * 0.06,
+                            width: bottomIndex == index
+                                ? size.width * 0.40
+                                : size.width * 0.165,
+                            alignment: Alignment.center,
+                            decoration: bottomIndex == index
+                                ? BoxDecoration(
+                                    color:
+                                        ColorHelper.kPrimary.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(30),
+                                    border: Border.all(
+                                        color: ColorHelper.kPrimary,
+                                        width: 1.5))
+                                : const BoxDecoration(
+                                    color: Color(0xff6C6B6A),
+                                    shape: BoxShape.circle,
+                                  ),
+                            child: bottomIndex == index
+                                ? Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.040),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          bottomBarList[index]['icon'],
+                                          height: 32,
+                                          color: ColorHelper.kPrimary,
+                                        ),
+                                        Text(
+                                          bottomBarList[index]['name'],
+                                          style: TextStyleHelper
+                                              .kPrimary12W500Inter
+                                              .copyWith(fontSize: 18),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SvgPicture.asset(
                                         bottomBarList[index]['icon'],
                                         height: 32,
-                                        color: ColorHelper.kPrimary,
-                                      ),
-                                      Text(
-                                        bottomBarList[index]['name'],
-                                        style: TextStyleHelper
-                                            .kPrimary12W500Inter
-                                            .copyWith(fontSize: 18),
+                                        color: Colors.white,
                                       ),
                                     ],
                                   ),
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      bottomBarList[index]['icon'],
-                                      height: 32,
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                ),
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),

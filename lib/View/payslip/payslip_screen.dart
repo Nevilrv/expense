@@ -94,7 +94,7 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    'Payslip',
+                    'PaySlip',
                     style: TextStyleHelper.kPrimary22W600Inter
                         .copyWith(color: Colors.white),
                   ),
@@ -192,166 +192,165 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * 0.030,
-                                    left: size.width * 0.050,
-                                    bottom: size.height * 0.010,
-                                    right: size.width * 0.050),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: SvgPicture.asset(
-                                        'assets/icons/arrow-circle-left.svg',
-                                        height: 25,
-                                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.030,
+                                  left: size.width * 0.050,
+                                  bottom: size.height * 0.010,
+                                  right: size.width * 0.050),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: SvgPicture.asset(
+                                      'assets/icons/arrow-circle-left.svg',
+                                      height: 25,
                                     ),
-                                    Text(
-                                      '2023',
-                                      style: TextStyleHelper.kWhite22W600Inter,
+                                  ),
+                                  Text(
+                                    '2023',
+                                    style: TextStyleHelper.kWhite22W600Inter,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: SvgPicture.asset(
+                                      'assets/icons/arrow-circle-right.svg',
+                                      height: 25,
+                                      color: Colors.white.withOpacity(0.14),
                                     ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: SvgPicture.asset(
-                                        'assets/icons/arrow-circle-right.svg',
-                                        height: 25,
-                                        color: Colors.white.withOpacity(0.14),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              Divider(
-                                height: 0,
-                                thickness: 2,
-                                color: ColorHelper.kPrimary,
-                              ),
-                              SizedBox(
-                                height: size.height * 0.02,
-                              ),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: paySlipList.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.030),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: size.width,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white
-                                                  .withOpacity(0.14),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.040,
-                                                vertical: size.height * 0.015),
-                                            child: Column(
-                                              children: [
-                                                SingleChildScrollView(
-                                                  child: Row(
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          SizedBox(
-                                                            width: size.width *
-                                                                0.40,
-                                                            child: Text(
-                                                              paySlipList[index]
-                                                                  ['name'],
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .clip,
-                                                              style: TextStyleHelper
-                                                                  .kWhite16W600Inter,
-                                                            ),
-                                                          ),
-                                                          Text(
+                            ),
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            Divider(
+                              height: 0,
+                              thickness: 2,
+                              color: ColorHelper.kPrimary,
+                            ),
+                            SizedBox(
+                              height: size.height * 0.02,
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: paySlipList.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.030),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: size.width,
+                                        decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.14),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.040,
+                                              vertical: size.height * 0.015),
+                                          child: Column(
+                                            children: [
+                                              SingleChildScrollView(
+                                                child: Row(
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          width:
+                                                              size.width * 0.40,
+                                                          child: Text(
                                                             paySlipList[index]
-                                                                ['day'],
+                                                                ['name'],
                                                             overflow:
                                                                 TextOverflow
                                                                     .clip,
                                                             style: TextStyleHelper
-                                                                .kWhite12w500BOLDInter,
+                                                                .kWhite16W600Inter,
                                                           ),
-                                                        ],
-                                                      ),
-                                                      Container(
-                                                        height:
-                                                            size.height * 0.045,
-                                                        width:
-                                                            size.width * 0.30,
-                                                        alignment:
-                                                            Alignment.center,
-                                                        decoration: BoxDecoration(
-                                                            color: const Color(
-                                                                    0xffFFC091)
-                                                                .withOpacity(
-                                                                    0.14),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20)),
-                                                        child: Text(
-                                                          "AED 20,000",
+                                                        ),
+                                                        Text(
+                                                          paySlipList[index]
+                                                              ['day'],
+                                                          overflow:
+                                                              TextOverflow.clip,
                                                           style: TextStyleHelper
                                                               .kWhite12w500BOLDInter,
                                                         ),
+                                                      ],
+                                                    ),
+                                                    Container(
+                                                      height:
+                                                          size.height * 0.045,
+                                                      width: size.width * 0.30,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          color: const Color(
+                                                                  0xffFFC091)
+                                                              .withOpacity(
+                                                                  0.14),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20)),
+                                                      child: Text(
+                                                        "AED 20,000",
+                                                        style: TextStyleHelper
+                                                            .kWhite12w500BOLDInter,
                                                       ),
-                                                      const Spacer(),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          Get.to(() =>
-                                                              const GeneratePaySlipScreen());
-                                                        },
-                                                        child: SvgPicture.asset(
-                                                          paySlipList[index]
-                                                              ['icon'],
-                                                          height: 25,
-                                                          color: Colors.white,
-                                                        ),
+                                                    ),
+                                                    const Spacer(),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Get.to(
+                                                          () =>
+                                                              const GeneratePaySlipScreen(),
+                                                        );
+                                                      },
+                                                      child: SvgPicture.asset(
+                                                        paySlipList[index]
+                                                            ['icon'],
+                                                        height: 25,
+                                                        color: Colors.white,
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: size.height * 0.020,
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                height: size.height * 0.020,
-                              ),
-                            ],
-                          ),
+                                      ),
+                                      SizedBox(
+                                        height: size.height * 0.020,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: size.height * 0.020,
+                            ),
+                          ],
                         ),
                       ),
                     ],

@@ -146,7 +146,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.only(
+                              right: 16, left: 16, bottom: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -222,6 +223,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                               .kPrimary20W600Inter
                                               .copyWith(
                                             fontSize: 14,
+                                            fontFamily: 'Inter-Medium',
                                             color: index == 0
                                                 ? ColorHelper.fontColor
                                                 : const Color(
@@ -250,6 +252,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                               .kPrimary20W600Inter
                                               .copyWith(
                                             fontSize: 14,
+                                            fontFamily: 'Inter-Medium',
                                             color: index == 1
                                                 ? ColorHelper.fontColor
                                                 : const Color(
@@ -340,15 +343,16 @@ class _NotificationScreenState extends State<NotificationScreen>
               return Column(
                 children: [
                   Container(
-                    // height: size.height * 0.120,
                     width: size.width,
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.14),
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.040,
-                          vertical: size.height * 0.015),
+                      padding: EdgeInsets.only(
+                          left: size.width * 0.040,
+                          right: size.width * 0.040,
+                          top: 20,
+                          bottom: 12),
                       child: Column(
                         children: [
                           Row(
@@ -376,7 +380,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                               ),
                               SvgPicture.asset(
                                 recentList[index]['icon2'],
-                                height: 25,
+                                height: 20,
                                 color: const Color(0xff868685),
                               ),
                             ],
@@ -489,15 +493,16 @@ class _NotificationScreenState extends State<NotificationScreen>
               return Column(
                 children: [
                   Container(
-                    // height: size.height * 0.120,
                     width: size.width,
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.14),
                         borderRadius: BorderRadius.circular(10)),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.040,
-                          vertical: size.height * 0.015),
+                      padding: EdgeInsets.only(
+                          left: size.width * 0.040,
+                          right: size.width * 0.040,
+                          top: 20,
+                          bottom: 12),
                       child: Column(
                         children: [
                           Row(
@@ -525,7 +530,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                               ),
                               SvgPicture.asset(
                                 previousList[index]['icon2'],
-                                height: 25,
+                                height: 20,
                                 color: const Color(0xff868685),
                               ),
                             ],
@@ -628,16 +633,15 @@ class _NotificationScreenState extends State<NotificationScreen>
               color: Colors.white.withOpacity(0.14),
               borderRadius: BorderRadius.circular(10)),
           child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.040, vertical: size.height * 0.015),
+            padding: EdgeInsets.all(size.height * 0.01826),
             child: Column(
               children: [
                 SizedBox(
                   width: size.width * 0.80,
                   child: Text(
-                      'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
+                      'Dear Team,\n\nI am excited to share that we have successfully aunched our new product line and it is now available for customer use.Our team s hard work and dedication has made  possible and I couldn t be more proud of each and every one of you.',
                       overflow: TextOverflow.clip,
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.justify,
                       style: TextStyleHelper.kWhite12w500BOLDInter),
                 ),
                 SizedBox(
@@ -648,15 +652,13 @@ class _NotificationScreenState extends State<NotificationScreen>
                     Text(
                       '12-02-2023',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kWhite12w500BOLDInter
-                          .copyWith(fontSize: 15, color: Colors.white),
+                      style: TextStyleHelper.kWhite12w500BOLDInter,
                     ),
                     const Spacer(),
                     Text(
                       '8:56 pm',
                       overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kWhite12w500BOLDInter
-                          .copyWith(fontSize: 15, color: Colors.white),
+                      style: TextStyleHelper.kWhite12w500BOLDInter,
                     ),
                   ],
                 ),
