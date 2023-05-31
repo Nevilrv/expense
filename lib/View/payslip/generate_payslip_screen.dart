@@ -3,6 +3,7 @@ import 'package:expense/View/payslip/payroll_components_screen.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -134,7 +135,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                         width: size.width,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15.r),
                           color: Colors.white.withOpacity(0.1),
                         ),
                         child: Padding(
@@ -159,7 +160,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                     color: ColorHelper.kPrimary,
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(10.r)),
                               ),
                               SizedBox(
                                 height: size.height * 0.005,
@@ -188,7 +189,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                             width: size.width * 0.40,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                               color: Colors.white.withOpacity(0.1),
                             ),
                             child: Padding(
@@ -215,7 +216,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                     decoration: BoxDecoration(
                                         color: const Color(0xffA0E5AE),
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                            BorderRadius.circular(10.r)),
                                   ),
                                   SizedBox(
                                     height: size.height * 0.005,
@@ -237,7 +238,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                             height: size.height * 0.115,
                             width: size.width * 0.40,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15.r),
                               color: Colors.white.withOpacity(0.1),
                             ),
                             child: Padding(
@@ -263,7 +264,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                     decoration: BoxDecoration(
                                         color: const Color(0xffFFBFBD),
                                         borderRadius:
-                                            BorderRadius.circular(10)),
+                                            BorderRadius.circular(10.r)),
                                   ),
                                   SizedBox(
                                     height: size.height * 0.005,
@@ -328,7 +329,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   color: ColorHelper.kPrimary,
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(30.r),
                                 ),
                                 child: Text(
                                   'Generate Payslip',
@@ -346,7 +347,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                               width: size.width,
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.14),
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(15.r),
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -395,7 +396,7 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                     ],
                   ),
                 ),
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.r),
                 blurColor: ColorHelper.kBGBlur,
                 child: Container(),
               ),

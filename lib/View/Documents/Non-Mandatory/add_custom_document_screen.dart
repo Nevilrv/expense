@@ -4,6 +4,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
@@ -119,7 +120,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                                       horizontal: 16),
                                   width: size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(30.r),
                                       border: Border.all(color: Colors.white)),
                                   child: Row(
                                     children: [
@@ -160,7 +161,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                                                   width: 1,
                                                   color: ColorHelper.kPrimary),
                                               borderRadius:
-                                                  BorderRadius.circular(56),
+                                                  BorderRadius.circular(56.r),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -184,7 +185,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                                           padding: const EdgeInsets.all(16),
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(24),
+                                                BorderRadius.circular(24.r),
                                             color:
                                                 Colors.white.withOpacity(0.1),
                                           ),
@@ -216,7 +217,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        4),
+                                                                        4.r),
                                                           ),
                                                           child: const Text(
                                                               'JPEG',
@@ -284,7 +285,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                                       horizontal: 16),
                                   width: size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(30.r),
                                       border: Border.all(color: Colors.white)),
                                   child: TextFormField(
                                     cursorColor: Colors.white,
@@ -321,7 +322,7 @@ class _AddCustomDocumentScreenState extends State<AddCustomDocumentScreen> {
                         ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     blurColor: ColorHelper.kBGBlur,
                     child: Container(),
                   ),

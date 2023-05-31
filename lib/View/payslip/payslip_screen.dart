@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -176,7 +177,7 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 22.0),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
@@ -188,7 +189,7 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                             margin: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                                 color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(24)),
+                                borderRadius: BorderRadius.circular(24.r)),
                           ),
                         ),
                       ),
@@ -258,7 +259,7 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                                               color: Colors.white
                                                   .withOpacity(0.14),
                                               borderRadius:
-                                                  BorderRadius.circular(10)),
+                                                  BorderRadius.circular(10.r)),
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: size.width * 0.040,
@@ -312,7 +313,7 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        20)),
+                                                                        20.r)),
                                                         child: Text(
                                                           "AED 20,000",
                                                           style: TextStyleHelper

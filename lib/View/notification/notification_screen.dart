@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constant/color_helper.dart';
@@ -19,6 +20,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int index = 0;
+  bool expansionChanges = false;
   List<Map<String, dynamic>> recentList = [
     {
       "icon": "assets/icons/Leave.svg",
@@ -157,9 +159,11 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   height: 35,
                                 ),
                               ),
-                              Text(
-                                'Latest Updates',
-                                style: TextStyleHelper.kPrimary20W600Inter,
+                              Center(
+                                child: Text(
+                                  'Latest Updates',
+                                  style: TextStyleHelper.kPrimary20W600Inter,
+                                ),
                               ),
                               const SizedBox(width: 35),
                             ],
@@ -171,7 +175,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                           color: ColorHelper.kPrimary,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: Column(
                             children: [
                               SizedBox(
@@ -182,7 +186,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                 decoration: BoxDecoration(
                                     color: const Color(0xff2F2D29)
                                         .withOpacity(0.4),
-                                    borderRadius: BorderRadius.circular(8)),
+                                    borderRadius: BorderRadius.circular(8.r)),
                                 child: TabBar(
                                   controller: _tabController,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -194,7 +198,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   },
                                   // give the indicator a decoration (color and border radius)
                                   indicator: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(8.r),
                                       color: const Color(0xffFFC091),
                                       border: Border.all(color: Colors.white)),
                                   labelColor: Colors.white,
@@ -206,7 +210,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       children: [
                                         SvgPicture.asset(
                                           'assets/icons/notification.svg',
-                                          height: 20,
+                                          height: 17,
                                           color: index == 0
                                               ? ColorHelper.fontColor
                                               : const Color(
@@ -214,14 +218,14 @@ class _NotificationScreenState extends State<NotificationScreen>
                                                 ),
                                         ),
                                         const SizedBox(
-                                          width: 5,
+                                          width: 2,
                                         ),
                                         Text(
                                           'Notifications',
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14,
+                                            fontSize: 13.2,
                                             color: index == 0
                                                 ? ColorHelper.fontColor
                                                 : const Color(
@@ -236,7 +240,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       children: [
                                         SvgPicture.asset(
                                           'assets/icons/notification.svg',
-                                          height: 20,
+                                          height: 17,
                                           color: index == 1
                                               ? ColorHelper.fontColor
                                               : const Color(
@@ -249,7 +253,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14,
+                                            fontSize: 13.2,
                                             color: index == 1
                                                 ? ColorHelper.fontColor
                                                 : const Color(
@@ -289,7 +293,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                       ],
                     ),
                   ),
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   blurColor: ColorHelper.kBGBlur,
                   child: Container(),
                 ),
@@ -306,290 +310,286 @@ class _NotificationScreenState extends State<NotificationScreen>
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          SizedBox(
-            height: size.height * 0.010,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: size.width * 0.38,
-              ),
-              Text(
+          ///recent--------------
+
+          ExpansionTile(
+            trailing: SvgPicture.asset(
+              'assets/icons/arrow-circle-up.svg',
+              height: 20,
+            ),
+            title: Center(
+              child: Text(
                 'Recent',
-                style: TextStyleHelper.kWhite14W600Inter
-                    .copyWith(color: Colors.white, fontSize: 15),
+                style: TextStyleHelper.kWhite14W600Inter,
               ),
-              const Spacer(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
-                child: SvgPicture.asset(
-                  'assets/icons/arrow-circle-up.svg',
-                  height: 20,
-                ),
+            ),
+            onExpansionChanged: (bool value) {
+              setState(() {
+                expansionChanges = value;
+              });
+              log('$expansionChanges');
+            },
+            children: [
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: recentList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Container(
+                        // height: size.height * 0.120,
+                        width: size.width,
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.14),
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.040,
+                              vertical: size.height * 0.015),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    recentList[index]['icon'],
+                                    height: 25,
+                                    color: const Color(0xffFFC091),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.62,
+                                    child: Text(
+                                      recentList[index]['name'],
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyleHelper.kWhite14W600Inter
+                                          .copyWith(
+                                              color: Colors.white,
+                                              fontSize: 15),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SvgPicture.asset(
+                                    recentList[index]['icon2'],
+                                    height: 25,
+                                    color: const Color(0xff868685),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size.height * 0.015,
+                              ),
+                              const Divider(
+                                height: 0,
+                                thickness: 1,
+                                color: Color(0xffF7F6F5),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.015,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    recentList[index]['time'],
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyleHelper.kWhite12w500BOLDInter
+                                        .copyWith(
+                                            color: Colors.white, fontSize: 15),
+                                  ),
+                                  const Spacer(),
+                                  Container(
+                                    height: size.height * 0.037,
+                                    width: size.width * 0.20,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xffFFC091),
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(20.r)),
+                                    child: Text(
+                                      'Reject',
+                                      overflow: TextOverflow.clip,
+                                      style:
+                                          TextStyleHelper.kPrimary10W700Inter,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.02,
+                                  ),
+                                  Container(
+                                    height: size.height * 0.037,
+                                    width: size.width * 0.20,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xffFFC091),
+                                        borderRadius:
+                                            BorderRadius.circular(20.r)),
+                                    child: Text(
+                                      'Approve',
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyleHelper.kPrimary20W600Inter
+                                          .copyWith(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorHelper.fontColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.020,
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
-          ),
-          SizedBox(
-            height: size.height * 0.020,
-          ),
-          ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: recentList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  Container(
-                    // height: size.height * 0.120,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.14),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.040,
-                          vertical: size.height * 0.015),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                recentList[index]['icon'],
-                                height: 25,
-                                color: const Color(0xffFFC091),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              SizedBox(
-                                width: size.width * 0.62,
-                                child: Text(
-                                  recentList[index]['name'],
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kWhite14W600Inter
-                                      .copyWith(
-                                          color: Colors.white, fontSize: 15),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              SvgPicture.asset(
-                                recentList[index]['icon2'],
-                                height: 25,
-                                color: const Color(0xff868685),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: size.height * 0.015,
-                          ),
-                          const Divider(
-                            height: 0,
-                            thickness: 1,
-                            color: Color(0xffF7F6F5),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.015,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                recentList[index]['time'],
-                                overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kWhite12w500BOLDInter
-                                    .copyWith(
-                                        color: Colors.white, fontSize: 15),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: size.height * 0.037,
-                                width: size.width * 0.20,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xffFFC091),
-                                    ),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Text(
-                                  'Reject',
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary10W700Inter,
-                                ),
-                              ),
-                              SizedBox(
-                                width: size.width * 0.02,
-                              ),
-                              Container(
-                                height: size.height * 0.037,
-                                width: size.width * 0.20,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: const Color(0xffFFC091),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Text(
-                                  'Approve',
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kPrimary20W600Inter
-                                      .copyWith(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w700,
-                                          color: ColorHelper.fontColor),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.020,
-                  ),
-                ],
-              );
-            },
           ),
           const Divider(
             height: 0,
             thickness: 1,
             color: Color(0xffF7F6F5),
           ),
-          SizedBox(
-            height: size.height * 0.020,
-          ),
-          Row(
+
+          ///previous--------------
+          ExpansionTile(
+            trailing: SvgPicture.asset(
+              'assets/icons/arrow-circle-up.svg',
+              height: 20,
+            ),
+            title: Center(
+              child: Text('Previous', style: TextStyleHelper.kWhite14W600Inter),
+            ),
+            onExpansionChanged: (bool value) {
+              setState(() {
+                expansionChanges = value;
+              });
+              log('$expansionChanges');
+            },
             children: [
-              SizedBox(
-                width: size.width * 0.38,
-              ),
-              Text(
-                'Previous',
-                style: TextStyleHelper.kPrimary20W600Inter
-                    .copyWith(color: Colors.white, fontSize: 15),
-              ),
-              const Spacer(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
-                child: SvgPicture.asset(
-                  'assets/icons/arrow-circle-up.svg',
-                  height: 20,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: size.height * 0.020,
-          ),
-          ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: previousList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
-                children: [
-                  Container(
-                    // height: size.height * 0.120,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.14),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size.width * 0.040,
-                          vertical: size.height * 0.015),
-                      child: Column(
-                        children: [
-                          Row(
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: previousList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Container(
+                        // height: size.height * 0.120,
+                        width: size.width,
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.14),
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.040,
+                              vertical: size.height * 0.015),
+                          child: Column(
                             children: [
-                              SvgPicture.asset(
-                                previousList[index]['icon'],
-                                height: 25,
-                                color: const Color(0xffFFC091),
-                              ),
-                              const SizedBox(
-                                width: 5,
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    previousList[index]['icon'],
+                                    height: 25,
+                                    color: const Color(0xffFFC091),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.62,
+                                    child: Text(
+                                      previousList[index]['name'],
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyleHelper.kWhite14W600Inter
+                                          .copyWith(
+                                              color: Colors.white,
+                                              fontSize: 15),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SvgPicture.asset(
+                                    previousList[index]['icon2'],
+                                    height: 25,
+                                    color: const Color(0xff868685),
+                                  ),
+                                ],
                               ),
                               SizedBox(
-                                width: size.width * 0.62,
-                                child: Text(
-                                  previousList[index]['name'],
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyleHelper.kWhite14W600Inter
-                                      .copyWith(
-                                          color: Colors.white, fontSize: 15),
-                                ),
+                                height: size.height * 0.015,
                               ),
-                              const SizedBox(
-                                width: 5,
+                              const Divider(
+                                height: 0,
+                                thickness: 1,
+                                color: Color(0xffF7F6F5),
                               ),
-                              SvgPicture.asset(
-                                previousList[index]['icon2'],
-                                height: 25,
-                                color: const Color(0xff868685),
+                              SizedBox(
+                                height: size.height * 0.015,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    previousList[index]['time'],
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyleHelper.kWhite12w500BOLDInter
+                                        .copyWith(
+                                            color: Colors.white, fontSize: 15),
+                                  ),
+                                  const Spacer(),
+                                  Container(
+                                    height: size.height * 0.037,
+                                    width: size.width * 0.35,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xffFFC091),
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(20.r)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          'Upload now',
+                                          overflow: TextOverflow.clip,
+                                          style: TextStyleHelper
+                                              .kPrimary10W700Inter
+                                              .copyWith(fontSize: 15),
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/icons/document-upload.svg",
+                                          height: 16,
+                                          color: ColorHelper.kPrimary,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: size.height * 0.015,
-                          ),
-                          const Divider(
-                            height: 0,
-                            thickness: 1,
-                            color: Color(0xffF7F6F5),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.015,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                previousList[index]['time'],
-                                overflow: TextOverflow.clip,
-                                style: TextStyleHelper.kWhite12w500BOLDInter
-                                    .copyWith(
-                                        color: Colors.white, fontSize: 15),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: size.height * 0.037,
-                                width: size.width * 0.35,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xffFFC091),
-                                    ),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      'Upload now',
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyleHelper.kPrimary10W700Inter
-                                          .copyWith(fontSize: 15),
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/icons/document-upload.svg",
-                                      height: 16,
-                                      color: ColorHelper.kPrimary,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.020,
-                  ),
-                ],
-              );
-            },
+                      SizedBox(
+                        height: size.height * 0.020,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -599,138 +599,132 @@ class _NotificationScreenState extends State<NotificationScreen>
   announcementMethod(Size size) {
     return Column(
       children: [
-        SizedBox(
-          height: size.height * 0.010,
-        ),
-        Row(
+        ExpansionTile(
+          trailing: SvgPicture.asset(
+            'assets/icons/arrow-circle-up.svg',
+            height: 20,
+          ),
+          title: Center(
+              child: Text('Recent', style: TextStyleHelper.kWhite14W600Inter)),
+          onExpansionChanged: (bool value) {
+            setState(() {
+              expansionChanges = value;
+            });
+            log('$expansionChanges');
+          },
           children: [
-            SizedBox(
-              width: size.width * 0.38,
-            ),
-            Text('Recent', style: TextStyleHelper.kWhite14W600Inter),
-            const Spacer(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
-              child: SvgPicture.asset(
-                'assets/icons/arrow-circle-up.svg',
-                height: 20,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: size.height * 0.020,
-        ),
-        Container(
-          // height: size.height * 0.120,
-          width: size.width,
-          decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.14),
-              borderRadius: BorderRadius.circular(10)),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.040, vertical: size.height * 0.015),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: size.width * 0.80,
-                  child: Text(
-                      'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.start,
-                      style: TextStyleHelper.kWhite12w500BOLDInter),
-                ),
-                SizedBox(
-                  height: size.height * 0.020,
-                ),
-                Row(
+            Container(
+              // height: size.height * 0.120,
+              width: size.width,
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.14),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.040,
+                    vertical: size.height * 0.015),
+                child: Column(
                   children: [
-                    Text(
-                      '12-02-2023',
-                      overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kWhite12w500BOLDInter
-                          .copyWith(fontSize: 15, color: Colors.white),
+                    SizedBox(
+                      width: size.width * 0.80,
+                      child: Text(
+                          'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.start,
+                          style: TextStyleHelper.kWhite12w500BOLDInter),
                     ),
-                    const Spacer(),
-                    Text(
-                      '8:56 pm',
-                      overflow: TextOverflow.clip,
-                      style: TextStyleHelper.kWhite12w500BOLDInter
-                          .copyWith(fontSize: 15, color: Colors.white),
+                    SizedBox(
+                      height: size.height * 0.020,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '12-02-2023',
+                          overflow: TextOverflow.clip,
+                          style: TextStyleHelper.kWhite12w500BOLDInter
+                              .copyWith(fontSize: 15, color: Colors.white),
+                        ),
+                        const Spacer(),
+                        Text(
+                          '8:56 pm',
+                          overflow: TextOverflow.clip,
+                          style: TextStyleHelper.kWhite12w500BOLDInter
+                              .copyWith(fontSize: 15, color: Colors.white),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: size.height * 0.025,
+            SizedBox(
+              height: size.height * 0.025,
+            ),
+          ],
         ),
         const Divider(
           height: 0,
           thickness: 1,
           color: Color(0xffF7F6F5),
         ),
-        SizedBox(
-          height: size.height * 0.020,
-        ),
-        Row(
+        ExpansionTile(
+          trailing: SvgPicture.asset(
+            'assets/icons/arrow-circle-up.svg',
+            height: 20,
+          ),
+          title: Center(
+              child:
+                  Text('Previous', style: TextStyleHelper.kWhite14W600Inter)),
+          onExpansionChanged: (bool value) {
+            setState(() {
+              expansionChanges = value;
+            });
+            log('$expansionChanges');
+          },
           children: [
-            SizedBox(
-              width: size.width * 0.38,
-            ),
-            Text('Previous', style: TextStyleHelper.kWhite14W600Inter),
-            const Spacer(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.020),
-              child: SvgPicture.asset(
-                'assets/icons/arrow-circle-up.svg',
-                height: 20,
+            Container(
+              // height: size.height * 0.120,
+              width: size.width,
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.14),
+                  borderRadius: BorderRadius.circular(10.r)),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.040,
+                    vertical: size.height * 0.015),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.80,
+                      child: Text(
+                        'Eid mubarak to all meet max family',
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.start,
+                        style: TextStyleHelper.kWhite12w500BOLDInter,
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.020,
+                    ),
+                    Row(
+                      children: [
+                        Text('10-8-2022',
+                            overflow: TextOverflow.clip,
+                            style: TextStyleHelper.kWhite12w500BOLDInter),
+                        const Spacer(),
+                        Text('12:00 am',
+                            overflow: TextOverflow.clip,
+                            style: TextStyleHelper.kWhite12w500BOLDInter),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
         SizedBox(
           height: size.height * 0.020,
-        ),
-        Container(
-          // height: size.height * 0.120,
-          width: size.width,
-          decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.14),
-              borderRadius: BorderRadius.circular(10)),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.040, vertical: size.height * 0.015),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: size.width * 0.80,
-                  child: Text(
-                    'Eid mubarak to all meet max family',
-                    overflow: TextOverflow.clip,
-                    textAlign: TextAlign.start,
-                    style: TextStyleHelper.kWhite12w500BOLDInter,
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.020,
-                ),
-                Row(
-                  children: [
-                    Text('10-8-2022',
-                        overflow: TextOverflow.clip,
-                        style: TextStyleHelper.kWhite12w500BOLDInter),
-                    const Spacer(),
-                    Text('12:00 am',
-                        overflow: TextOverflow.clip,
-                        style: TextStyleHelper.kWhite12w500BOLDInter),
-                  ],
-                ),
-              ],
-            ),
-          ),
         ),
       ],
     );

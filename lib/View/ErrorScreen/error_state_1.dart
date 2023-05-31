@@ -1,7 +1,7 @@
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -143,7 +143,7 @@ class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
                                   blurRadius: 10,
                                   offset: const Offset(0.0, 4.0))
                             ],
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Center(
                               child: Text(
@@ -164,7 +164,7 @@ class _ErrorRequestScreen1State extends State<ErrorRequestScreen1> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           width: size.width / 1.5,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(30.r),
                               border: Border.all(
                                   color: ColorHelper.kPrimary, width: 1)),
                           child: Center(

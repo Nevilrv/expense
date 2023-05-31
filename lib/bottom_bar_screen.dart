@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -112,7 +113,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           decoration: bottomIndex == index
                               ? BoxDecoration(
                                   color: ColorHelper.kPrimary.withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(30.r),
                                   border: Border.all(
                                       color: ColorHelper.kPrimary, width: 1.5))
                               : const BoxDecoration(

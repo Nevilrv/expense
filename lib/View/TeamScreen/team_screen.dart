@@ -1,6 +1,7 @@
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constant/common_widget.dart';
@@ -114,7 +115,7 @@ class _TeamScreenState extends State<TeamScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0xffFFD6D6).withOpacity(.16),
                     border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Stack(
                     alignment: Alignment.center,

@@ -28,6 +28,7 @@ dependencies:
   open_file:
   percent_indicator: ^4.2.3
   table_calendar: ^3.0.9
+  flutter_screenutil: ^5.7.0
 
 dev_dependencies:
   flutter_test:

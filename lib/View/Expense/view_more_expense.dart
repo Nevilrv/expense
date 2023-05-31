@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:expense/Controller/view_more_expense_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -124,7 +125,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                                 border:
                                     Border.all(color: ColorHelper.kDarkGrey),
                                 color: const Color(0xff2F2D29).withOpacity(0.4),
-                                borderRadius: BorderRadius.circular(8)),
+                                borderRadius: BorderRadius.circular(8.r)),
                             child: TabBar(
                               controller: _tabController,
                               physics: const NeverScrollableScrollPhysics(),
@@ -133,7 +134,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                               },
                               // give the indicator a decoration (color and border radius)
                               indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8.r),
                                   color: const Color(0xffFFC091),
                                   border: Border.all(color: Colors.white)),
                               labelColor: Colors.white,
@@ -187,7 +188,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                           ),
                         ],
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       blurColor: ColorHelper.kBGBlur,
                       child: Container(),
                     ),
@@ -213,7 +214,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
             color: Colors.white.withOpacity(0.14),
             border: Border.all(color: ColorHelper.kDarkGrey),
             borderRadius: BorderRadius.circular(
-              16,
+              16.r,
             ),
           ),
           child: Center(
@@ -295,7 +296,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                   color: Colors.white.withOpacity(0.14),
                   border: Border.all(color: ColorHelper.kDarkGrey),
                   borderRadius: BorderRadius.circular(
-                    16,
+                    16.r,
                   ),
                 ),
                 child: Center(
@@ -375,7 +376,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                         height: 35,
                         decoration: BoxDecoration(
                             color: ColorHelper.kBGBlur,
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.r),
                             boxShadow: [
                               BoxShadow(
                                 color: ColorHelper.kPrimary.withOpacity(0.3),

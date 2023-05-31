@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -162,7 +162,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                       ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   blurColor: ColorHelper.kBGBlur,
                   child: Container(),
                 ),
@@ -234,7 +234,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 width: size.width * 1,
                 decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.14),
-                    borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16.r)),
                 child: Row(
                   children: [
                     SizedBox(
@@ -269,7 +269,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
           width: size.width * 0.9,
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.14),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: TableCalendar(
             focusedDay: today,
@@ -299,7 +299,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 width: 17,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 0.7),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: const Icon(Icons.arrow_back_ios_new_rounded,
                     size: 10, color: Colors.white),
@@ -309,7 +309,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 width: 17,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white, width: 0.7),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: const Icon(Icons.arrow_forward_ios_outlined,
                     size: 10, color: Colors.white),
@@ -373,7 +373,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -404,7 +404,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -435,7 +435,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -473,7 +473,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -504,7 +504,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -535,7 +535,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: size.width,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     border: Border.all(color: Colors.white)),
                 child: Row(
                   children: [
@@ -571,7 +571,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: size.width,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   border: Border.all(color: Colors.white)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -614,7 +614,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                           blurRadius: 10,
                           offset: const Offset(0.0, 4.0))
                     ],
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                   ),
                   child: Center(
                       child: Text(
@@ -643,7 +643,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
           insetPadding: const EdgeInsets.symmetric(horizontal: 16),
           contentPadding: const EdgeInsets.all(16),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
           content: SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -685,7 +685,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                       height: 40,
                       decoration: BoxDecoration(
                         color: ColorHelper.kPrimary,
-                        borderRadius: BorderRadius.circular(56),
+                        borderRadius: BorderRadius.circular(56.r),
                       ),
                       child: Center(
                         child: Text('Go back home',

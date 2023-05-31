@@ -4,9 +4,11 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
+
 import '../Common/common_button.dart';
 
 class AddEducationCertificatesScreen extends StatefulWidget {
@@ -317,7 +319,7 @@ class _AddEducationCertificatesScreenState
                         ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     blurColor: ColorHelper.kBGBlur,
                     child: Container(),
                   ),

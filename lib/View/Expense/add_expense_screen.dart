@@ -2,9 +2,9 @@ import 'package:blur/blur.dart';
 import 'package:expense/Controller/add_expense_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'package:intl/intl.dart';
 
 import '../../constant/color_helper.dart';
@@ -117,7 +117,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -161,7 +161,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -212,7 +212,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -256,7 +256,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -302,7 +302,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -311,7 +311,7 @@ class _AddExpenseState extends State<AddExpense> {
                                             child: DropdownButton(
                                               dropdownColor: ColorHelper.kBG,
                                               borderRadius:
-                                                  BorderRadius.circular(15),
+                                                  BorderRadius.circular(15.r),
                                               underline: const SizedBox(),
                                               icon: SvgPicture.asset(
                                                 'assets/icons/arrow-circle-down.svg',
@@ -385,7 +385,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -435,7 +435,7 @@ class _AddExpenseState extends State<AddExpense> {
                                       width: size.width,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Row(
@@ -482,7 +482,7 @@ class _AddExpenseState extends State<AddExpense> {
                                                 offset: const Offset(0.0, 4.0))
                                           ],
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                              BorderRadius.circular(30.r),
                                         ),
                                         child: Center(
                                             child: Text(
@@ -498,7 +498,7 @@ class _AddExpenseState extends State<AddExpense> {
                           ],
                         ),
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       blurColor: ColorHelper.kBGBlur,
                       child: Container(),
                     ),

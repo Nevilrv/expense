@@ -1,14 +1,17 @@
 import 'dart:ui';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:expense/View/Assets/view_more_assets.dart';
 import 'package:expense/View/Expense/view_more_expense.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
 import '../../Controller/expense_controller.dart';
 
 class ExpenseScreen extends StatefulWidget {
@@ -129,7 +132,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(20),
+                                                      BorderRadius.circular(
+                                                          20.r),
                                                 ),
                                                 height: size.height * 0.15,
                                                 width: size.width * 0.7,
@@ -219,7 +223,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                         ],
                       ),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
@@ -232,7 +236,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                   decoration: BoxDecoration(
                                       color:
                                           ColorHelper.kBGBlur.withOpacity(0.3),
-                                      borderRadius: BorderRadius.circular(24)),
+                                      borderRadius:
+                                          BorderRadius.circular(24.r)),
                                 ),
                               ),
                             ),
@@ -291,7 +296,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              30),
+                                                              30.r),
                                                       color: controller
                                                                   .select ==
                                                               index
@@ -371,7 +376,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                     .withOpacity(0.14),
                                                 borderRadius:
                                                     BorderRadius.circular(
-                                                  10,
+                                                  10.r,
                                                 ),
                                               ),
                                               child: Center(
@@ -465,7 +470,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                   color: ColorHelper.kDarkGrey),
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                16,
+                                                16.r,
                                               ),
                                             ),
                                             child: Center(
@@ -500,11 +505,11 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                             .kPrimary,
                                                         elevation: 4,
                                                         shape:
-                                                            const RoundedRectangleBorder(
+                                                            RoundedRectangleBorder(
                                                           borderRadius:
                                                               BorderRadius.all(
                                                             Radius.circular(
-                                                                16.0),
+                                                                16.0.r),
                                                           ),
                                                         ),
                                                         itemBuilder:
@@ -684,7 +689,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                           .kDarkGrey),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                    16,
+                                                    16.r,
                                                   ),
                                                 ),
                                                 child: Center(
@@ -776,7 +781,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(
-                                                          16,
+                                                          16.r,
                                                         ),
                                                       ),
                                                       child: Stack(
@@ -794,7 +799,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              16),
+                                                                              16.r),
                                                                   border: Border.all(
                                                                       color: ColorHelper
                                                                           .kPrimary),
@@ -830,13 +835,12 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                                       .kPrimary,
                                                               elevation: 4,
                                                               shape:
-                                                                  const RoundedRectangleBorder(
+                                                                  RoundedRectangleBorder(
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          16.0),
+                                                                  Radius.circular(
+                                                                      16.0.r),
                                                                 ),
                                                               ),
                                                               itemBuilder:
@@ -993,7 +997,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                              16,
+                                                              16.r,
                                                             ),
                                                           ),
                                                           child: Row(
@@ -1185,7 +1189,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   ClipRRect viewExpenseHistory(Size size) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(30.r),
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -1530,7 +1534,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               border: Border.all(color: Colors.white)),
           child: Row(
             children: [
@@ -1568,7 +1572,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               border: Border.all(color: Colors.white)),
           child: Row(
             children: [
@@ -1607,7 +1611,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               border: Border.all(color: Colors.white)),
           child: Row(
             children: [
@@ -1652,7 +1656,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               border: Border.all(color: Colors.white)),
           child: Row(
             children: [
@@ -1690,7 +1694,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
               border: Border.all(color: Colors.white)),
           child: Row(
             children: [
@@ -1726,7 +1730,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             color: Colors.white.withOpacity(0.14),
             border: Border.all(color: ColorHelper.kDarkGrey),
             borderRadius: BorderRadius.circular(
-              16,
+              16.r,
             ),
           ),
           child: Column(
@@ -1814,7 +1818,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
             color: Colors.white.withOpacity(0.14),
             border: Border.all(color: ColorHelper.kDarkGrey),
             borderRadius: BorderRadius.circular(
-              16,
+              16.r,
             ),
           ),
           child: Column(
