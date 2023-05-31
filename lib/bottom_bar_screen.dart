@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'View/letters_screen/letter_requests_screen.dart';

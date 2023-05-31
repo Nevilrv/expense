@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:blur/blur.dart';
 import 'package:expense/Controller/view_more_assets_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';

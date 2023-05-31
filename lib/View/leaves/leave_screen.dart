@@ -20,8 +20,6 @@ class LeaveScreen extends StatefulWidget {
 
 class _LeaveScreenState extends State<LeaveScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool expansionChanges = false;
   bool expansionChanges1 = false;
   List<Map<String, dynamic>> leavesList = [
@@ -89,12 +87,11 @@ class _LeaveScreenState extends State<LeaveScreen> {
         backgroundColor: ColorHelper.kBG,
         key: _scaffoldKey,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(size.height * 0.0784),
+          preferredSize: const Size.fromHeight(50),
           child: Padding(
             padding: EdgeInsets.only(
               left: 10,
               top: size.height * 0.025,
-              bottom: size.height * 0.015,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,12 +115,10 @@ class _LeaveScreenState extends State<LeaveScreen> {
                   onTap: () {
                     Get.to(() => const RequestTimeOffScreen());
                   },
-                  child: Container(
-                    child: Image.asset(
-                      'assets/icons/floating_button.png',
-                      height: 69,
-                      width: 69,
-                    ),
+                  child: Image.asset(
+                    'assets/icons/floating_button.png',
+                    height: 69,
+                    width: 69,
                   ),
                 )
               ],
@@ -134,149 +129,162 @@ class _LeaveScreenState extends State<LeaveScreen> {
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
-        body: Stack(
-          children: [
-            Positioned(
-              top: size.height * 0.3,
-              left: 0,
-              // right: size.width * 0.9,
-              child: Image.asset(
-                'assets/icons/halfcircle.png',
-                height: 300,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.2,
-              left: size.width * 0.8,
-              child: RotatedBox(
-                quarterTurns: 3,
+        body: SizedBox(
+          height: size.height,
+          child: Stack(
+            children: [
+              Positioned(
+                top: size.height * 0.3,
+                left: 0,
+                // right: size.width * 0.9,
                 child: Image.asset(
-                  'assets/icons/Sales.png',
+                  'assets/icons/halfcircle.png',
                   height: 300,
                   fit: BoxFit.fitWidth,
                 ),
               ),
-            ),
-            Positioned(
-              top: size.height * 0.7,
-              left: size.width * 0.8,
-              child: RotatedBox(
-                quarterTurns: 4,
-                child: Image.asset(
-                  'assets/icons/Finance.png',
-                  height: size.height * 0.3,
+              Positioned(
+                top: size.height * 0.2,
+                left: size.width * 0.8,
+                child: RotatedBox(
+                  quarterTurns: 3,
+                  child: Image.asset(
+                    'assets/icons/Sales.png',
+                    height: 300,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: size.height * 0.025,
-                        ),
-                        Row(
-                          children: [
-                            Row(
-                              children:
-                                  List.generate(leavesList.length, (index) {
-                                log('leavesList.length---------->>>>>> ${leavesList.length}');
-                                return Row(
-                                  children: [
-                                    Container(
-                                      height: size.height * 0.110,
-                                      width: size.width * 0.25,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xff2F2D29)
-                                            .withOpacity(0.25),
-                                        border: Border.all(
-                                          color: ColorHelper.fontColor,
+              Positioned(
+                top: size.height * 0.7,
+                left: size.width * 0.8,
+                child: RotatedBox(
+                  quarterTurns: 4,
+                  child: Image.asset(
+                    'assets/icons/Finance.png',
+                    height: size.height * 0.3,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: size.height * 0.025,
+                          ),
+                          Row(
+                            children: [
+                              Row(
+                                children:
+                                    List.generate(leavesList.length, (index) {
+                                  log('leavesList.length---------->>>>>> ${leavesList.length}');
+                                  return Row(
+                                    children: [
+                                      Container(
+                                        height: size.height * 0.110,
+                                        width: size.width * 0.25,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20.r),
+                                          color: const Color(0xff2F2D29)
+                                              .withOpacity(0.25),
+                                          border: Border.all(
+                                            color: ColorHelper.fontColor,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                leavesList[index]['day'],
+                                                style: TextStyleHelper
+                                                    .kPrimary22W600Inter,
+                                              ),
+                                              Text(
+                                                leavesList[index]['name'],
+                                                textAlign: TextAlign.start,
+                                                overflow: TextOverflow.clip,
+                                                style: TextStyleHelper
+                                                    .kWhite10W700Inter,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              leavesList[index]['day'],
-                                              style: TextStyleHelper
-                                                  .kPrimary22W600Inter,
-                                            ),
-                                            Text(
-                                              leavesList[index]['name'],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyleHelper
-                                                  .kWhite10W700Inter,
-                                            ),
-                                          ],
-                                        ),
+                                      const SizedBox(
+                                        width: 10,
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                );
-                              }),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(right: size.width * 0.012),
-                              child: Container(
-                                height: size.height * 0.040,
-                                width: size.width * 0.09,
-                                decoration: const BoxDecoration(
-                                    color: Color(0xffFFC091),
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color:
-                                              Color.fromRGBO(255, 122, 0, 0.35),
-                                          blurRadius: 8,
-                                          spreadRadius: 4),
-                                    ]),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/arrow-circle-right.svg',
-                                      height: 25,
-                                      color: ColorHelper.fontColor,
-                                    ),
-                                  ],
+                                    ],
+                                  );
+                                }),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(right: size.width * 0.012),
+                                child: Container(
+                                  height: size.height * 0.040,
+                                  width: size.width * 0.09,
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xffFFC091),
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Color.fromRGBO(
+                                                255, 122, 0, 0.35),
+                                            blurRadius: 8,
+                                            spreadRadius: 4),
+                                      ]),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/arrow-circle-right.svg',
+                                        height: 25,
+                                        color: ColorHelper.fontColor,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size.height * 0.020,
-                        ),
-                        Container(
-                          height: size.height * 0.32,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(color: ColorHelper.fontColor),
+                            ],
                           ),
-                          child: Blur(
-                            blur: 10,
-                            colorOpacity: 0.25,
-                            overlay: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: SingleChildScrollView(
+                          SizedBox(
+                            height: size.height * 0.020,
+                          ),
+
+                          ///Pending Leave Request-------------
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(30.r),
+                            child: Stack(children: [
+                              Positioned.fill(
+                                child: BackdropFilter(
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          ColorHelper.kBGBlur.withOpacity(0.3),
+                                      borderRadius: BorderRadius.circular(30.r),
+                                      border: Border.all(
+                                          color: ColorHelper.fontColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
                                 child: Column(
                                   children: [
                                     ExpansionTile(
