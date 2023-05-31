@@ -20,8 +20,8 @@ class LeaveScreen extends StatefulWidget {
 
 class _LeaveScreenState extends State<LeaveScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool expansionChanges = false;
-  bool expansionChanges1 = false;
+  bool expansionChanges = true;
+  bool expansionChanges1 = true;
   List<Map<String, dynamic>> leavesList = [
     {
       "day": '14',
@@ -87,11 +87,12 @@ class _LeaveScreenState extends State<LeaveScreen> {
         backgroundColor: ColorHelper.kBG,
         key: _scaffoldKey,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
+          preferredSize: Size(size.width, size.height * 0.057),
           child: Padding(
             padding: EdgeInsets.only(
               left: 10,
-              top: size.height * 0.025,
+              right: 10,
+              top: size.height * 0.02,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,10 +116,18 @@ class _LeaveScreenState extends State<LeaveScreen> {
                   onTap: () {
                     Get.to(() => const RequestTimeOffScreen());
                   },
-                  child: Image.asset(
-                    'assets/icons/floating_button.png',
-                    height: 69,
-                    width: 69,
+                  child: Container(
+                    height: 32,
+                    width: 32,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/People.png',
+                          ),
+                          fit: BoxFit.cover),
+                    ),
+                    child:
+                        const Icon(Icons.add_circle_outline_outlined, size: 17),
                   ),
                 )
               ],
@@ -213,7 +222,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                               ),
                                               Text(
                                                 leavesList[index]['name'],
-                                                textAlign: TextAlign.start,
+                                                textAlign: TextAlign.center,
                                                 overflow: TextOverflow.clip,
                                                 style: TextStyleHelper
                                                     .kWhite10W700Inter,
@@ -287,115 +296,121 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                 padding: const EdgeInsets.all(10),
                                 child: Column(
                                   children: [
-                                    ExpansionTile(
-                                      trailing: expansionChanges
-                                          ? SvgPicture.asset(
-                                              'assets/icons/arrow-circle-up.svg',
-                                              height: 28,
-                                              color: ColorHelper.kPrimary,
-                                            )
-                                          : SvgPicture.asset(
-                                              'assets/icons/arrow-circle-down.svg',
-                                              height: 28,
-                                              color: ColorHelper.kPrimary,
+                                    Theme(
+                                      data: ThemeData(
+                                          dividerColor: Colors.transparent),
+                                      child: ExpansionTile(
+                                        initiallyExpanded: true,
+                                        trailing: expansionChanges
+                                            ? SvgPicture.asset(
+                                                'assets/icons/arrow-circle-up.svg',
+                                                height: 28,
+                                                color: ColorHelper.kPrimary,
+                                              )
+                                            : SvgPicture.asset(
+                                                'assets/icons/arrow-circle-down.svg',
+                                                height: 28,
+                                                color: ColorHelper.kPrimary,
+                                              ),
+                                        title: Text(
+                                          'Pending Leave Request',
+                                          style: TextStyleHelper
+                                              .kPrimary22W600Inter
+                                              .copyWith(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 20),
+                                        ),
+                                        onExpansionChanged: (bool value) {
+                                          setState(() {
+                                            expansionChanges = value;
+                                          });
+                                        },
+                                        children: [
+                                          SizedBox(
+                                            height: size.height * 0.020,
+                                          ),
+                                          Container(
+                                            // height: size.height * 0.17,
+                                            width: size.width,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.r),
+                                              color:
+                                                  Colors.white.withOpacity(0.1),
                                             ),
-                                      title: Text(
-                                        'Pending Leave Request',
-                                        style: TextStyleHelper
-                                            .kPrimary22W600Inter
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: 20),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "Sick Leave",
+                                                    style: TextStyleHelper
+                                                        .kPrimary22W600Inter
+                                                        .copyWith(fontSize: 16),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.005,
+                                                  ),
+                                                  Text(
+                                                    "4 Jan 2023 - 4 Feb 2023",
+                                                    style: TextStyleHelper
+                                                        .kWhite12w500BOLDInter,
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.010,
+                                                  ),
+                                                  const Divider(
+                                                    height: 0,
+                                                    thickness: 0,
+                                                    color: Color(0xffF7F6F5),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.010,
+                                                  ),
+                                                  Text(
+                                                    "Reason".toUpperCase(),
+                                                    style: TextStyleHelper
+                                                        .kWhite10W700Inter,
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.010,
+                                                  ),
+                                                  Text(
+                                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyleHelper
+                                                        .kWhite10W400Inter,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: size.height * 0.020,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "View more",
+                                                style: TextStyleHelper
+                                                    .kPrimary12W500Inter,
+                                              ),
+                                              SizedBox(
+                                                width: size.width * 0.020,
+                                              ),
+                                              SvgPicture.asset(
+                                                'assets/icons/arrow-circle-right.svg',
+                                                height: 17,
+                                                color: ColorHelper.kPrimary,
+                                              )
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                      onExpansionChanged: (bool value) {
-                                        setState(() {
-                                          expansionChanges = value;
-                                        });
-                                      },
-                                      children: [
-                                        SizedBox(
-                                          height: size.height * 0.020,
-                                        ),
-                                        Container(
-                                          // height: size.height * 0.17,
-                                          width: size.width,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15.r),
-                                            color:
-                                                Colors.white.withOpacity(0.1),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "Sick Leave",
-                                                  style: TextStyleHelper
-                                                      .kPrimary22W600Inter
-                                                      .copyWith(fontSize: 16),
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.005,
-                                                ),
-                                                Text(
-                                                  "4 Jan 2023 - 4 Feb 2023",
-                                                  style: TextStyleHelper
-                                                      .kWhite12w500BOLDInter,
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.010,
-                                                ),
-                                                const Divider(
-                                                  height: 0,
-                                                  thickness: 0,
-                                                  color: Color(0xffF7F6F5),
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.010,
-                                                ),
-                                                Text(
-                                                  "Reason".toUpperCase(),
-                                                  style: TextStyleHelper
-                                                      .kWhite10W700Inter,
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.010,
-                                                ),
-                                                Text(
-                                                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyleHelper
-                                                      .kWhite10W400Inter,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: size.height * 0.020,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "View more",
-                                              style: TextStyleHelper
-                                                  .kPrimary12W500Inter,
-                                            ),
-                                            SizedBox(
-                                              width: size.width * 0.020,
-                                            ),
-                                            SvgPicture.asset(
-                                              'assets/icons/arrow-circle-right.svg',
-                                              height: 17,
-                                              color: ColorHelper.kPrimary,
-                                            )
-                                          ],
-                                        ),
-                                      ],
                                     ),
                                     // Row(
                                     //   mainAxisAlignment:
@@ -448,145 +463,155 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(10),
-                                  child: ExpansionTile(
-                                    trailing: expansionChanges1
-                                        ? SvgPicture.asset(
-                                            'assets/icons/arrow-circle-up.svg',
-                                            height: 28,
-                                            color: ColorHelper.kPrimary,
-                                          )
-                                        : SvgPicture.asset(
-                                            'assets/icons/arrow-circle-down.svg',
-                                            height: 28,
-                                            color: ColorHelper.kPrimary,
-                                          ),
-                                    title: Text(
-                                      'Leave Request History',
-                                      style: TextStyleHelper.kPrimary22W600Inter
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                    onExpansionChanged: (bool value) {
-                                      setState(() {
-                                        expansionChanges1 = value;
-                                      });
-                                    },
-                                    children: [
-                                      SizedBox(
-                                        height: size.height * 0.020,
+                                  child: Theme(
+                                    data: ThemeData(
+                                        dividerColor: Colors.transparent),
+                                    child: ExpansionTile(
+                                      initiallyExpanded: true,
+                                      trailing: expansionChanges1
+                                          ? SvgPicture.asset(
+                                              'assets/icons/arrow-circle-up.svg',
+                                              height: 28,
+                                              color: ColorHelper.kPrimary,
+                                            )
+                                          : SvgPicture.asset(
+                                              'assets/icons/arrow-circle-down.svg',
+                                              height: 28,
+                                              color: ColorHelper.kPrimary,
+                                            ),
+                                      title: Text(
+                                        'Leave Request History',
+                                        style: TextStyleHelper
+                                            .kPrimary22W600Inter
+                                            .copyWith(color: Colors.white),
                                       ),
-                                      ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: leveRequestList.length,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return Column(
-                                            children: [
-                                              Container(
-                                                width: size.width,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white
-                                                        .withOpacity(0.14),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r)),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          size.width * 0.040,
-                                                      vertical:
-                                                          size.height * 0.015),
-                                                  child: Column(
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              SizedBox(
-                                                                width:
-                                                                    size.width *
-                                                                        0.62,
-                                                                child: Text(
-                                                                  leveRequestList[
-                                                                          index]
-                                                                      ['name'],
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .clip,
-                                                                  style: TextStyleHelper
-                                                                      .kPrimary16W600Inter,
+                                      onExpansionChanged: (bool value) {
+                                        setState(() {
+                                          expansionChanges1 = value;
+                                        });
+                                      },
+                                      children: [
+                                        SizedBox(
+                                          height: size.height * 0.020,
+                                        ),
+                                        ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: leveRequestList.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return Column(
+                                              children: [
+                                                Container(
+                                                  width: size.width,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white
+                                                          .withOpacity(0.14),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.r)),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                size.width *
+                                                                    0.040,
+                                                            vertical:
+                                                                size.height *
+                                                                    0.015),
+                                                    child: Column(
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                SizedBox(
+                                                                  width:
+                                                                      size.width *
+                                                                          0.62,
+                                                                  child: Text(
+                                                                    leveRequestList[
+                                                                            index]
+                                                                        [
+                                                                        'name'],
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style: TextStyleHelper
+                                                                        .kPrimary16W600Inter,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              SizedBox(
-                                                                height:
-                                                                    size.height *
-                                                                        0.010,
-                                                              ),
-                                                              Text(
+                                                                SizedBox(
+                                                                  height:
+                                                                      size.height *
+                                                                          0.010,
+                                                                ),
+                                                                Text(
+                                                                    leveRequestList[
+                                                                            index]
+                                                                        ['day'],
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    style: TextStyleHelper
+                                                                        .kWhite12W700Inter),
+                                                              ],
+                                                            ),
+                                                            const Spacer(),
+                                                            SvgPicture.asset(
+                                                              leveRequestList[
+                                                                      index]
+                                                                  ['icon'],
+                                                              height: 25,
+                                                              color:
                                                                   leveRequestList[
                                                                           index]
-                                                                      ['day'],
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .clip,
-                                                                  style: TextStyleHelper
-                                                                      .kWhite12W700Inter),
-                                                            ],
-                                                          ),
-                                                          const Spacer(),
-                                                          SvgPicture.asset(
-                                                            leveRequestList[
-                                                                index]['icon'],
-                                                            height: 25,
-                                                            color:
-                                                                leveRequestList[
-                                                                        index]
-                                                                    ["color"],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                                      ["color"],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: size.height * 0.020,
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.020,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "View more",
-                                            style: TextStyleHelper
-                                                .kPrimary12W500Inter,
-                                          ),
-                                          SizedBox(
-                                            width: size.width * 0.020,
-                                          ),
-                                          SvgPicture.asset(
-                                            'assets/icons/arrow-circle-right.svg',
-                                            height: 17,
-                                            color: ColorHelper.kPrimary,
-                                          )
-                                        ],
-                                      ),
-                                    ],
+                                                SizedBox(
+                                                  height: size.height * 0.020,
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.020,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "View more",
+                                              style: TextStyleHelper
+                                                  .kPrimary12W500Inter,
+                                            ),
+                                            SizedBox(
+                                              width: size.width * 0.020,
+                                            ),
+                                            SvgPicture.asset(
+                                              'assets/icons/arrow-circle-right.svg',
+                                              height: 17,
+                                              color: ColorHelper.kPrimary,
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-
                           const SizedBox(
                             height: 100,
                           ),

@@ -622,7 +622,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: size.width,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.r),
+                  borderRadius: BorderRadius.circular(24.r),
                   border: Border.all(color: Colors.white)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -711,7 +711,8 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                   ),
                   Text(
                     "Letter Request Submitted",
-                    style: TextStyleHelper.kWhite22W600Inter,
+                    style: TextStyleHelper.kWhite22W600Inter
+                        .copyWith(fontSize: 20.sp),
                   ),
                   const SizedBox(
                     height: 16,

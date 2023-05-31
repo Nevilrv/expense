@@ -20,7 +20,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int index = 0;
-  bool expansionChanges = false;
+  bool expansionChanges = true;
   List<Map<String, dynamic>> recentList = [
     {
       "icon": "assets/icons/Leave.svg",
@@ -49,7 +49,7 @@ class _NotificationScreenState extends State<NotificationScreen>
       "time": "6:33 pm"
     },
   ];
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -62,6 +62,11 @@ class _NotificationScreenState extends State<NotificationScreen>
     super.dispose();
     _tabController.dispose();
   }
+
+  bool recent = true;
+  bool previous = true;
+  bool recent1 = true;
+  bool previous1 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -316,10 +321,19 @@ class _NotificationScreenState extends State<NotificationScreen>
           ///recent--------------
 
           ExpansionTile(
-            trailing: SvgPicture.asset(
-              'assets/icons/arrow-circle-up.svg',
-              height: 20,
-            ),
+            initiallyExpanded: true,
+            trailing: recent
+                ? SvgPicture.asset(
+                    'assets/icons/arrow-circle-up.svg',
+                    height: 20,
+                  )
+                : RotatedBox(
+                    quarterTurns: 2,
+                    child: SvgPicture.asset(
+                      'assets/icons/arrow-circle-up.svg',
+                      height: 20,
+                    ),
+                  ),
             title: Center(
               child: Text(
                 'Recent',
@@ -328,9 +342,8 @@ class _NotificationScreenState extends State<NotificationScreen>
             ),
             onExpansionChanged: (bool value) {
               setState(() {
-                expansionChanges = value;
+                recent = value;
               });
-              log('$expansionChanges');
             },
             children: [
               ListView.builder(
@@ -465,18 +478,26 @@ class _NotificationScreenState extends State<NotificationScreen>
 
           ///previous--------------
           ExpansionTile(
-            trailing: SvgPicture.asset(
-              'assets/icons/arrow-circle-up.svg',
-              height: 20,
-            ),
+            initiallyExpanded: true,
+            trailing: previous
+                ? SvgPicture.asset(
+                    'assets/icons/arrow-circle-up.svg',
+                    height: 20,
+                  )
+                : RotatedBox(
+                    quarterTurns: 2,
+                    child: SvgPicture.asset(
+                      'assets/icons/arrow-circle-up.svg',
+                      height: 20,
+                    ),
+                  ),
             title: Center(
               child: Text('Previous', style: TextStyleHelper.kWhite14W600Inter),
             ),
             onExpansionChanged: (bool value) {
               setState(() {
-                expansionChanges = value;
+                previous = value;
               });
-              log('$expansionChanges');
             },
             children: [
               ListView.builder(
@@ -603,17 +624,25 @@ class _NotificationScreenState extends State<NotificationScreen>
     return Column(
       children: [
         ExpansionTile(
-          trailing: SvgPicture.asset(
-            'assets/icons/arrow-circle-up.svg',
-            height: 20,
-          ),
+          initiallyExpanded: true,
+          trailing: recent1
+              ? SvgPicture.asset(
+                  'assets/icons/arrow-circle-up.svg',
+                  height: 20,
+                )
+              : RotatedBox(
+                  quarterTurns: 2,
+                  child: SvgPicture.asset(
+                    'assets/icons/arrow-circle-up.svg',
+                    height: 20,
+                  ),
+                ),
           title: Center(
               child: Text('Recent', style: TextStyleHelper.kWhite14W600Inter)),
           onExpansionChanged: (bool value) {
             setState(() {
-              expansionChanges = value;
+              recent1 = value;
             });
-            log('$expansionChanges');
           },
           children: [
             Container(
@@ -671,18 +700,26 @@ class _NotificationScreenState extends State<NotificationScreen>
           color: Color(0xffF7F6F5),
         ),
         ExpansionTile(
-          trailing: SvgPicture.asset(
-            'assets/icons/arrow-circle-up.svg',
-            height: 20,
-          ),
+          initiallyExpanded: true,
+          trailing: previous1
+              ? SvgPicture.asset(
+                  'assets/icons/arrow-circle-up.svg',
+                  height: 20,
+                )
+              : RotatedBox(
+                  quarterTurns: 2,
+                  child: SvgPicture.asset(
+                    'assets/icons/arrow-circle-up.svg',
+                    height: 20,
+                  ),
+                ),
           title: Center(
               child:
                   Text('Previous', style: TextStyleHelper.kWhite14W600Inter)),
           onExpansionChanged: (bool value) {
             setState(() {
-              expansionChanges = value;
+              previous1 = value;
             });
-            log('$expansionChanges');
           },
           children: [
             Container(

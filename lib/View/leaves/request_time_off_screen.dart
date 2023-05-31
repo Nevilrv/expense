@@ -5,6 +5,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -179,7 +180,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                   blurColor: ColorHelper.kBGBlur,
                   child: Container(),
                 ),
@@ -254,7 +255,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       width: size.width * 1,
                       decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20.r)),
                       child: Row(
                         children: [
                           SizedBox(
@@ -281,7 +282,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                       color: ColorHelper.kPrimary,
-                                      borderRadius: BorderRadius.circular(32)),
+                                      borderRadius:
+                                          BorderRadius.circular(32.r)),
                                   child: Text(
                                     'Unpaid',
                                     style: TextStyleHelper.kWhite14W600Inter,
@@ -324,7 +326,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           decoration: BoxDecoration(
             // color: Colors.white.withOpacity(0.15),
             color: Colors.white.withOpacity(0.14),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: TableCalendar(
               focusedDay: selectDate1 ?? DateTime.now(),
@@ -375,8 +377,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 todayTextStyle: const TextStyle(color: Colors.white),
                 todayDecoration: BoxDecoration(
                     color: const Color(0xffB2FF81).withOpacity(0.26),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(4.r),
                     ),
                     border: Border.all(color: const Color(0xffFFBFBD))),
                 weekendTextStyle: const TextStyle(color: Colors.white),
@@ -386,8 +388,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 selectedTextStyle: const TextStyle(color: Colors.white),
                 selectedDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(4),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(4.r),
                   ),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
@@ -427,7 +429,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
             width: size.width * 0.34,
             decoration: BoxDecoration(
               color: ColorHelper.kPrimary,
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30.r),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -513,7 +515,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(20.r)),
               child: TextFormField(
                 autofocus: false,
                 maxLines: 5,
@@ -528,7 +530,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       fontSize: 15,
                       fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
@@ -560,13 +562,13 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       setState(() {});
                     },
                     child: Container(
-                      height: size.height * 0.057,
-                      width: size.width * 0.50,
+                      height: size.height * 0.0639,
+                      width: size.width * 0.517,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: ColorHelper.kPrimary,
                         ),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -575,6 +577,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                             'Upload Attachment',
                             style: TextStyleHelper.kWhite16W400Inter.copyWith(
                               fontWeight: FontWeight.w600,
+                              fontSize: 14.sp,
                               color: ColorHelper.kPrimary,
                             ),
                           ),
@@ -602,7 +605,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                         width: size.width,
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.14),
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15.r),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -661,13 +664,13 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                           setState(() {});
                         },
                         child: Container(
-                          height: size.height * 0.057,
-                          width: size.width * 0.50,
+                          height: size.height * 0.0639,
+                          width: size.width * 0.517,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: ColorHelper.kPrimary,
                             ),
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -677,6 +680,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                                 style:
                                     TextStyleHelper.kWhite16W400Inter.copyWith(
                                   fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
                                   color: ColorHelper.kPrimary,
                                 ),
                               ),
@@ -699,14 +703,14 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 : const SizedBox(),
             InkWell(
               onTap: () {
-                Global().commonPopUp(title: 'Leave Request Submitted');
+                Global().commonPopUp(title: 'Leave Request\nSubmitted');
               },
               child: Container(
-                height: size.height * 0.057,
-                width: size.width * 0.50,
+                height: size.height * 0.0639,
+                width: size.width * 0.517,
                 decoration: BoxDecoration(
                   color: ColorHelper.kPrimary,
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(30.r),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -715,6 +719,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       'Submit Request',
                       style: TextStyleHelper.kWhite16W400Inter.copyWith(
                           fontWeight: FontWeight.w600,
+                          fontSize: 15.sp,
                           color: const Color(0xff331600)),
                     ),
                     const SizedBox(

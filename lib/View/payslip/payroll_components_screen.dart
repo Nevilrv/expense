@@ -119,7 +119,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.036,
+                                horizontal: 14,
                                 vertical: size.height * 0.011,
                               ),
                               child: Row(
@@ -128,7 +128,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      Get.back();
                                     },
                                     child: SvgPicture.asset(
                                       'assets/icons/arrow-left-rounded.svg',
@@ -137,16 +137,21 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                   ),
                                   Text(
                                     'Payroll Components',
-                                    style: TextStyleHelper.kPrimary22W600Inter,
+                                    style: TextStyleHelper.kPrimary22W600Inter
+                                        .copyWith(fontSize: 20),
                                   ),
                                   const SizedBox(width: 25),
                                 ],
                               ),
                             ),
-                            Divider(
-                              height: 0,
-                              thickness: 2,
-                              color: ColorHelper.kPrimary,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 1.0),
+                              child: Divider(
+                                height: 0,
+                                thickness: 2,
+                                color: ColorHelper.kPrimary,
+                              ),
                             ),
                             const SizedBox(
                               height: 49,
