@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:file_picker/file_picker.dart';
@@ -42,6 +43,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   bool isAvilable = false;
   DateTime? selectDate1;
   bool open = false;
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,12 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),

@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../constant/color_helper.dart';
 import '../../constant/common_widget.dart';
@@ -49,7 +51,8 @@ class _NotificationScreenState extends State<NotificationScreen>
       "time": "6:33 pm"
     },
   ];
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   void initState() {
@@ -74,7 +77,12 @@ class _NotificationScreenState extends State<NotificationScreen>
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),

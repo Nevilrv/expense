@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:blur/blur.dart';
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,6 +80,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
   ];
 
   int bottomIndex = 0;
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +89,10 @@ class _LeaveScreenState extends State<LeaveScreen> {
       child: Scaffold(
         backgroundColor: ColorHelper.kBG,
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         appBar: PreferredSize(
           preferredSize: Size(size.width, size.height * 0.057),
           child: Padding(
@@ -135,6 +142,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
           ),
         ),
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),

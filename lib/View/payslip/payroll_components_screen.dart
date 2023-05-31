@@ -94,7 +94,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 45.0),
+                  padding: EdgeInsets.symmetric(vertical: 45.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.r),
                     child: Stack(clipBehavior: Clip.none, children: [

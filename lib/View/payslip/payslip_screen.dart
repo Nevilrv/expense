@@ -1,5 +1,7 @@
+import 'dart:developer';
 import 'dart:ui';
 
+import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,8 @@ class PaySlipScreen extends StatefulWidget {
 }
 
 class _PaySlipScreenState extends State<PaySlipScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  DrawerGetController drawerGetController = Get.put(DrawerGetController());
   List<Map<String, dynamic>> paySlipList = [
     {
       "day": "4 Jun - 4 Jul",
@@ -79,8 +82,13 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
+        onDrawerChanged: (val) {
+          drawerGetController.setDrawer(val);
+          log("isDrawer---${drawerGetController.isDrawer}");
+        },
         backgroundColor: ColorHelper.kBG,
         drawer: Drawer(
+          backgroundColor: ColorHelper.kBG.withOpacity(0.9),
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
