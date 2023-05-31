@@ -5,6 +5,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -54,7 +55,7 @@ class _AddLabourCardScreenState extends State<AddLabourCardScreen> {
                       vertical: size.height * 0.042,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -65,7 +66,7 @@ class _AddLabourCardScreenState extends State<AddLabourCardScreen> {
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -133,7 +134,7 @@ class _AddLabourCardScreenState extends State<AddLabourCardScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(

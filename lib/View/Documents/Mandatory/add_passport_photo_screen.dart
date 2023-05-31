@@ -1,9 +1,10 @@
 import 'package:blur/blur.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
-import 'package:expense/passport_photo_controller.dart';
+import 'package:expense/Controller/AddDocumentsController/passport_photo_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
@@ -121,7 +122,7 @@ class _AddPassportPhotoScreenState extends State<AddPassportPhotoScreen> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(20),
+                                                BorderRadius.circular(20.r),
                                           ),
                                           height: size.height * 0.15,
                                           width: size.width * 0.7,
@@ -202,7 +203,7 @@ class _AddPassportPhotoScreenState extends State<AddPassportPhotoScreen> {
                                                   width: 1,
                                                   color: ColorHelper.kPrimary),
                                               borderRadius:
-                                                  BorderRadius.circular(56),
+                                                  BorderRadius.circular(56.r),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -226,7 +227,7 @@ class _AddPassportPhotoScreenState extends State<AddPassportPhotoScreen> {
                                           padding: const EdgeInsets.all(16),
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(24),
+                                                BorderRadius.circular(24.r),
                                             color:
                                                 Colors.white.withOpacity(0.1),
                                           ),
@@ -302,7 +303,7 @@ class _AddPassportPhotoScreenState extends State<AddPassportPhotoScreen> {
                         ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(30.r),
                     blurColor: ColorHelper.kBGBlur,
                     child: Container(),
                   ),

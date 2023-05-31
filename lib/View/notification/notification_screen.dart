@@ -231,7 +231,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14,
+                                            fontSize: 14.sp,
                                             fontFamily: 'Inter-Medium',
                                             color: index == 0
                                                 ? ColorHelper.fontColor
@@ -260,7 +260,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           style: TextStyleHelper
                                               .kPrimary20W600Inter
                                               .copyWith(
-                                            fontSize: 14,
+                                            fontSize: 14.sp,
                                             fontFamily: 'Inter-Medium',
                                             color: index == 1
                                                 ? ColorHelper.fontColor
@@ -383,7 +383,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       style: TextStyleHelper.kWhite14W600Inter
                                           .copyWith(
                                               color: Colors.white,
-                                              fontSize: 15),
+                                              fontSize: 15.sp),
                                     ),
                                   ),
                                   const SizedBox(
@@ -414,7 +414,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                                     overflow: TextOverflow.clip,
                                     style: TextStyleHelper.kWhite12w500BOLDInter
                                         .copyWith(
-                                            color: Colors.white, fontSize: 15),
+                                            color: Colors.white,
+                                            fontSize: 15.sp),
                                   ),
                                   const Spacer(),
                                   Container(
@@ -450,7 +451,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       overflow: TextOverflow.clip,
                                       style: TextStyleHelper.kPrimary20W600Inter
                                           .copyWith(
-                                              fontSize: 10,
+                                              fontSize: 10.sp,
                                               fontWeight: FontWeight.w700,
                                               color: ColorHelper.fontColor),
                                     ),
@@ -537,7 +538,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       style: TextStyleHelper.kWhite14W600Inter
                                           .copyWith(
                                               color: Colors.white,
-                                              fontSize: 15),
+                                              fontSize: 15.sp),
                                     ),
                                   ),
                                   const SizedBox(
@@ -568,7 +569,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                                     overflow: TextOverflow.clip,
                                     style: TextStyleHelper.kWhite12w500BOLDInter
                                         .copyWith(
-                                            color: Colors.white, fontSize: 15),
+                                            color: Colors.white,
+                                            fontSize: 15.sp),
                                   ),
                                   const Spacer(),
                                   Container(
@@ -590,7 +592,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                           overflow: TextOverflow.clip,
                                           style: TextStyleHelper
                                               .kPrimary10W700Inter
-                                              .copyWith(fontSize: 15),
+                                              .copyWith(fontSize: 15.sp),
                                         ),
                                         SvgPicture.asset(
                                           "assets/icons/document-upload.svg",
@@ -674,14 +676,14 @@ class _NotificationScreenState extends State<NotificationScreen>
                           '12-02-2023',
                           overflow: TextOverflow.clip,
                           style: TextStyleHelper.kWhite12w500BOLDInter
-                              .copyWith(fontSize: 15, color: Colors.white),
+                              .copyWith(fontSize: 15.sp, color: Colors.white),
                         ),
                         const Spacer(),
                         Text(
                           '8:56 pm',
                           overflow: TextOverflow.clip,
                           style: TextStyleHelper.kWhite12w500BOLDInter
-                              .copyWith(fontSize: 15, color: Colors.white),
+                              .copyWith(fontSize: 15.sp, color: Colors.white),
                         ),
                       ],
                     ),

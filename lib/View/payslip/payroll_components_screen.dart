@@ -138,7 +138,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                   Text(
                                     'Payroll Components',
                                     style: TextStyleHelper.kPrimary22W600Inter
-                                        .copyWith(fontSize: 20),
+                                        .copyWith(fontSize: 20.sp),
                                   ),
                                   const SizedBox(width: 25),
                                 ],
@@ -185,7 +185,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                       'Additions',
                                       style: TextStyleHelper.kPrimary20W600Inter
                                           .copyWith(
-                                        fontSize: 14,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
                                         color: controller.index == 0
                                             ? ColorHelper.fontColor
@@ -200,7 +200,7 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                                       'Deductions',
                                       style: TextStyleHelper.kWhite14W400Inter
                                           .copyWith(
-                                        fontSize: 14,
+                                        fontSize: 14.sp,
                                         color: controller.index == 1
                                             ? ColorHelper.fontColor
                                             : const Color(

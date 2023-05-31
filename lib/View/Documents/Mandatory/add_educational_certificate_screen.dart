@@ -120,7 +120,7 @@ class _AddEducationCertificatesScreenState
                                       horizontal: 16),
                                   width: size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(30.r),
                                       border: Border.all(color: Colors.white)),
                                   child: Row(
                                     children: [
@@ -161,7 +161,7 @@ class _AddEducationCertificatesScreenState
                                                   width: 1,
                                                   color: ColorHelper.kPrimary),
                                               borderRadius:
-                                                  BorderRadius.circular(56),
+                                                  BorderRadius.circular(56.r),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -185,7 +185,7 @@ class _AddEducationCertificatesScreenState
                                           padding: const EdgeInsets.all(16),
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(24),
+                                                BorderRadius.circular(24.r),
                                             color:
                                                 Colors.white.withOpacity(0.1),
                                           ),
@@ -217,7 +217,7 @@ class _AddEducationCertificatesScreenState
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        4),
+                                                                        4.r),
                                                           ),
                                                           child: const Text(
                                                               'JPEG',
@@ -285,7 +285,7 @@ class _AddEducationCertificatesScreenState
                                       horizontal: 16),
                                   width: size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(30.r),
                                       border: Border.all(color: Colors.white)),
                                   child: TextFormField(
                                     cursorColor: Colors.white,

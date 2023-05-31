@@ -1,6 +1,8 @@
 import 'package:expense/constant/color_helper.dart';
+import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'common_dialog.dart';
 
 class CommonButton {
@@ -26,7 +28,7 @@ class CommonButton {
                   blurRadius: 10,
                   offset: const Offset(0.0, 4.0))
             ],
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
           ),
           child: Center(
             child: Text(

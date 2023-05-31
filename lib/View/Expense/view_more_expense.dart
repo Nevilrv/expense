@@ -145,7 +145,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                                     'Pending',
                                     style: TextStyleHelper.kPrimary20W600Inter
                                         .copyWith(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       color: controller.index == 0
                                           ? ColorHelper.fontColor
                                           : const Color(
@@ -159,7 +159,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                                     'Approved',
                                     style: TextStyleHelper.kPrimary20W600Inter
                                         .copyWith(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       color: controller.index == 1
                                           ? ColorHelper.fontColor
                                           : const Color(

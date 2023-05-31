@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:expense/Controller/view_more_assets_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -83,7 +84,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 45.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -93,7 +94,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -144,7 +145,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                                         .withOpacity(0.4),
                                     border: Border.all(
                                         color: ColorHelper.kDarkGrey),
-                                    borderRadius: BorderRadius.circular(8)),
+                                    borderRadius: BorderRadius.circular(8.r)),
                                 child: TabBar(
                                   controller: _tabController,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -153,7 +154,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                                   },
                                   // give the indicator a decoration (color and border radius)
                                   indicator: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(8.r),
                                       color: const Color(0xffFFC091),
                                       border: Border.all(color: Colors.white)),
                                   labelColor: Colors.white,
@@ -165,7 +166,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                                         style: TextStyleHelper
                                             .kPrimary20W600Inter
                                             .copyWith(
-                                          fontSize: 14,
+                                          fontSize: 14.sp,
                                           color: controller.index == 0
                                               ? ColorHelper.fontColor
                                               : const Color(
@@ -180,7 +181,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                                         style: TextStyleHelper
                                             .kPrimary20W600Inter
                                             .copyWith(
-                                          fontSize: 14,
+                                          fontSize: 14.sp,
                                           color: controller.index == 1
                                               ? ColorHelper.fontColor
                                               : const Color(
@@ -234,7 +235,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
             color: Colors.white.withOpacity(0.14),
             border: Border.all(color: ColorHelper.kDarkGrey),
             borderRadius: BorderRadius.circular(
-              16,
+              16.r,
             ),
           ),
           child: Center(
@@ -253,9 +254,9 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                       color: ColorHelper.kBGBlur,
                       shadowColor: ColorHelper.kPrimary,
                       elevation: 4,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
-                          Radius.circular(16.0),
+                          Radius.circular(16.0.r),
                         ),
                       ),
                       itemBuilder: (context) => [
@@ -350,7 +351,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                   height: 35,
                   decoration: BoxDecoration(
                       color: ColorHelper.kBGBlur,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       boxShadow: [
                         BoxShadow(
                           color: ColorHelper.kPrimary.withOpacity(0.3),
@@ -389,7 +390,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
             color: Colors.white.withOpacity(0.14),
             border: Border.all(color: ColorHelper.kDarkGrey),
             borderRadius: BorderRadius.circular(
-              16,
+              16.r,
             ),
           ),
           child: Center(
@@ -439,7 +440,7 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                   height: 35,
                   decoration: BoxDecoration(
                       color: ColorHelper.kBGBlur,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       boxShadow: [
                         BoxShadow(
                           color: ColorHelper.kPrimary.withOpacity(0.3),

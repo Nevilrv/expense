@@ -5,6 +5,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -57,7 +58,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                       vertical: size.height * 0.042,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -68,7 +69,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -136,7 +137,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -168,7 +169,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -200,7 +201,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -232,7 +233,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -264,7 +265,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -273,7 +274,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                               child: DropdownButton(
                                                 dropdownColor: ColorHelper.kBG,
                                                 borderRadius:
-                                                    BorderRadius.circular(15),
+                                                    BorderRadius.circular(15.r),
                                                 underline: const SizedBox(),
                                                 icon: SvgPicture.asset(
                                                   'assets/icons/arrow-circle-down.svg',
@@ -344,7 +345,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -353,7 +354,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                               child: DropdownButton(
                                                 dropdownColor: ColorHelper.kBG,
                                                 borderRadius:
-                                                    BorderRadius.circular(15),
+                                                    BorderRadius.circular(15.r),
                                                 underline: const SizedBox(),
                                                 icon: SvgPicture.asset(
                                                   'assets/icons/arrow-circle-down.svg',
@@ -425,7 +426,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -434,7 +435,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                               child: DropdownButton(
                                                 dropdownColor: ColorHelper.kBG,
                                                 borderRadius:
-                                                    BorderRadius.circular(15),
+                                                    BorderRadius.circular(15.r),
                                                 underline: const SizedBox(),
                                                 icon: SvgPicture.asset(
                                                   'assets/icons/arrow-circle-down.svg',
@@ -507,7 +508,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -539,7 +540,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -571,7 +572,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -615,7 +616,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -670,7 +671,7 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                                             .kPrimary),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            56),
+                                                            56.r),
                                                   ),
                                                   child: Row(
                                                     mainAxisAlignment:
@@ -696,7 +697,8 @@ class _AddVisaScreenState extends State<AddVisaScreen> {
                                                     const EdgeInsets.all(16),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(24),
+                                                      BorderRadius.circular(
+                                                          24.r),
                                                   color: Colors.white
                                                       .withOpacity(0.1),
                                                 ),

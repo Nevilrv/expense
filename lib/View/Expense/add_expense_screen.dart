@@ -54,7 +54,7 @@ class _AddExpenseState extends State<AddExpense> {
                     padding:
                         EdgeInsets.symmetric(vertical: size.height * 0.05136),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -64,7 +64,7 @@ class _AddExpenseState extends State<AddExpense> {
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -137,7 +137,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -183,7 +183,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -235,7 +235,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -281,7 +281,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -329,7 +329,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -339,7 +339,8 @@ class _AddExpenseState extends State<AddExpense> {
                                                   dropdownColor:
                                                       ColorHelper.kBG,
                                                   borderRadius:
-                                                      BorderRadius.circular(15),
+                                                      BorderRadius.circular(
+                                                          15.r),
                                                   underline: const SizedBox(),
                                                   icon: SvgPicture.asset(
                                                     'assets/icons/arrow-circle-down.svg',
@@ -414,7 +415,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -467,7 +468,7 @@ class _AddExpenseState extends State<AddExpense> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -515,7 +516,7 @@ class _AddExpenseState extends State<AddExpense> {
                                                         const Offset(0.0, 4.0))
                                               ],
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                             ),
                                             child: Center(
                                               child: Text(

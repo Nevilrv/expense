@@ -216,7 +216,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                     'Mandatory',
                                     style: TextStyleHelper.kPrimary20W600Inter
                                         .copyWith(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       color: index == 0
                                           ? ColorHelper.fontColor
                                           : const Color(
@@ -230,7 +230,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                                     'Non-Mandatory',
                                     style: TextStyleHelper.kPrimary20W600Inter
                                         .copyWith(
-                                      fontSize: 14,
+                                      fontSize: 14.sp,
                                       color: index == 1
                                           ? ColorHelper.fontColor
                                           : const Color(

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'View/letters_screen/letter_requests_screen.dart';
@@ -96,23 +97,25 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            setState(() {
-                              bottomIndex = index;
-                            });
+                            setState(
+                              () {
+                                bottomIndex = index;
+                              },
+                            );
 
                             log('bottomIndex---------->>>>>> $bottomIndex');
                           },
                           child: Container(
                             height: size.height * 0.06,
                             width: bottomIndex == index
-                                ? size.width * 0.40
+                                ? size.width * 0.381
                                 : size.width * 0.165,
                             alignment: Alignment.center,
                             decoration: bottomIndex == index
                                 ? BoxDecoration(
                                     color:
                                         ColorHelper.kPrimary.withOpacity(0.5),
-                                    borderRadius: BorderRadius.circular(30),
+                                    borderRadius: BorderRadius.circular(30.r),
                                     border: Border.all(
                                         color: ColorHelper.kPrimary,
                                         width: 1.5))
@@ -139,7 +142,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                                           bottomBarList[index]['name'],
                                           style: TextStyleHelper
                                               .kPrimary12W500Inter
-                                              .copyWith(fontSize: 18),
+                                              .copyWith(fontSize: 18.sp),
                                         ),
                                       ],
                                     ),

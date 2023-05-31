@@ -6,6 +6,7 @@ import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +54,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                       vertical: size.height * 0.042,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -64,7 +65,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -132,7 +133,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -164,7 +165,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -196,7 +197,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -228,7 +229,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -260,7 +261,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -292,7 +293,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: TextFormField(
@@ -324,7 +325,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -370,7 +371,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                                BorderRadius.circular(30.r),
                                             border: Border.all(
                                                 color: Colors.white)),
                                         child: Row(
@@ -427,7 +428,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                                             .kPrimary),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            56),
+                                                            56.r),
                                                   ),
                                                   child: Row(
                                                     mainAxisAlignment:
@@ -453,7 +454,8 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                                     const EdgeInsets.all(16),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(24),
+                                                      BorderRadius.circular(
+                                                          24.r),
                                                   color: Colors.white
                                                       .withOpacity(0.1),
                                                 ),
@@ -490,7 +492,7 @@ class _AddEmiratesIdScreenState extends State<AddEmiratesIdScreen> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              4),
+                                                                              4.r),
                                                                 ),
                                                                 child: const Text(
                                                                     'JPEG',

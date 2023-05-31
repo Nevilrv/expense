@@ -348,7 +348,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                                     "Sick Leave",
                                                     style: TextStyleHelper
                                                         .kPrimary22W600Inter
-                                                        .copyWith(fontSize: 16),
+                                                        .copyWith(
+                                                            fontSize: 16.sp),
                                                   ),
                                                   SizedBox(
                                                     height: size.height * 0.005,
@@ -408,6 +409,9 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                                 color: ColorHelper.kPrimary,
                                               )
                                             ],
+                                          ),
+                                          SizedBox(
+                                            height: size.height * 0.010,
                                           ),
                                         ],
                                       ),
@@ -496,6 +500,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                         ),
                                         ListView.builder(
                                           shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
                                           itemCount: leveRequestList.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
@@ -584,7 +590,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                           },
                                         ),
                                         SizedBox(
-                                          height: size.height * 0.020,
+                                          height: size.height * 0.0050,
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -604,6 +610,9 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                               color: ColorHelper.kPrimary,
                                             )
                                           ],
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.010,
                                         ),
                                       ],
                                     ),

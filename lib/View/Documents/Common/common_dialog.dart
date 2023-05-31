@@ -3,6 +3,7 @@ import 'package:expense/View/Documents/add_document_screen.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class AddDocumentDialog {
           insetPadding: const EdgeInsets.symmetric(horizontal: 16),
           contentPadding: const EdgeInsets.all(16),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
           content: SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -61,7 +62,7 @@ class AddDocumentDialog {
                       height: 40,
                       decoration: BoxDecoration(
                         color: ColorHelper.kPrimary,
-                        borderRadius: BorderRadius.circular(56),
+                        borderRadius: BorderRadius.circular(56.r),
                       ),
                       child: Center(
                         child: Text('Go back home',

@@ -4,6 +4,7 @@ import 'package:expense/Controller/add_assets_controller.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -52,7 +53,7 @@ class _AddAssetsState extends State<AddAssets> {
                     padding:
                         EdgeInsets.symmetric(vertical: size.height * 0.05136),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
                         Positioned.fill(
                           child: BackdropFilter(
@@ -62,7 +63,7 @@ class _AddAssetsState extends State<AddAssets> {
                                   const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
@@ -128,7 +129,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -180,7 +181,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -190,7 +191,8 @@ class _AddAssetsState extends State<AddAssets> {
                                                   dropdownColor:
                                                       ColorHelper.kBG,
                                                   borderRadius:
-                                                      BorderRadius.circular(15),
+                                                      BorderRadius.circular(
+                                                          15.r),
                                                   underline: const SizedBox(),
                                                   icon: SvgPicture.asset(
                                                     'assets/icons/arrow-circle-down.svg',
@@ -257,7 +259,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -297,7 +299,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -340,7 +342,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -384,7 +386,7 @@ class _AddAssetsState extends State<AddAssets> {
                                             width: size.width,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
+                                                    BorderRadius.circular(30.r),
                                                 border: Border.all(
                                                     color: Colors.white)),
                                             child: Row(
@@ -419,7 +421,7 @@ class _AddAssetsState extends State<AddAssets> {
                                           width: size.width,
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(30),
+                                                  BorderRadius.circular(30.r),
                                               border: Border.all(
                                                   color: Colors.white)),
                                           child: Row(
@@ -472,7 +474,7 @@ class _AddAssetsState extends State<AddAssets> {
                                                           0.0, 4.0))
                                                 ],
                                                 borderRadius:
-                                                    BorderRadius.circular(30),
+                                                    BorderRadius.circular(30.r),
                                               ),
                                               child: Center(
                                                 child: Text(
@@ -518,7 +520,7 @@ class _AddAssetsState extends State<AddAssets> {
           insetPadding: const EdgeInsets.symmetric(horizontal: 16),
           contentPadding: const EdgeInsets.all(16),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.r)),
           content: SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -558,7 +560,7 @@ class _AddAssetsState extends State<AddAssets> {
                       height: 40,
                       decoration: BoxDecoration(
                         color: ColorHelper.kPrimary,
-                        borderRadius: BorderRadius.circular(56),
+                        borderRadius: BorderRadius.circular(56.r),
                       ),
                       child: Center(
                         child: Text('Go back home',
