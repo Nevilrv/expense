@@ -22,7 +22,7 @@ class RequestTimeOffScreen extends StatefulWidget {
 class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final PageController _controller = PageController();
-
+  DateTime today = DateTime.now();
   PlatformFile? file1;
   String fileName = '';
 
@@ -155,6 +155,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       ),
                       Expanded(
                         child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
                           controller: _controller,
                           onPageChanged: (index) {
                             log('index---------->>>>>> $index');
@@ -321,15 +322,15 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           height: 20,
         ),
         Container(
-          height: size.height * 0.4,
-          width: size.width * 0.9,
-          decoration: BoxDecoration(
-            // color: Colors.white.withOpacity(0.15),
-            color: Colors.white.withOpacity(0.14),
-            borderRadius: BorderRadius.circular(16.r),
-          ),
-          child: TableCalendar(
-              focusedDay: selectDate1 ?? DateTime.now(),
+            height: size.height * 0.4,
+            width: size.width * 0.9,
+            decoration: BoxDecoration(
+              // color: Colors.white.withOpacity(0.15),
+              color: Colors.white.withOpacity(0.14),
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+            child: TableCalendar(
+              focusedDay: today,
               firstDay: DateTime(2000),
               lastDay: DateTime.now(),
               calendarFormat: CalendarFormat.month,
@@ -337,6 +338,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               daysOfWeekVisible: true,
               weekNumbersVisible: false,
               shouldFillViewport: true,
+              onDaySelected: _onDaySelected,
+              selectedDayPredicate: (day) => isSameDay(day, today),
               headerStyle: HeaderStyle(
                 formatButtonShowsNext: false,
                 formatButtonVisible: false,
@@ -353,8 +356,9 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                   height: 17,
                   width: 17,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 0.7)),
+                    border: Border.all(color: Colors.white, width: 0.7),
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
                   child: const Icon(Icons.arrow_back_ios_new_rounded,
                       size: 10, color: Colors.white),
                 ),
@@ -362,8 +366,9 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                   height: 17,
                   width: 17,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 0.7)),
+                    border: Border.all(color: Colors.white, width: 0.7),
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
                   child: const Icon(Icons.arrow_forward_ios_outlined,
                       size: 10, color: Colors.white),
                 ),
@@ -372,15 +377,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               calendarStyle: CalendarStyle(
                 cellMargin:
                     const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
-                isTodayHighlighted: true,
+                isTodayHighlighted: false,
                 outsideDaysVisible: true,
-                todayTextStyle: const TextStyle(color: Colors.white),
-                todayDecoration: BoxDecoration(
-                    color: const Color(0xffB2FF81).withOpacity(0.26),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(4.r),
-                    ),
-                    border: Border.all(color: const Color(0xffFFBFBD))),
                 weekendTextStyle: const TextStyle(color: Colors.white),
                 defaultTextStyle: const TextStyle(color: Colors.white),
                 disabledTextStyle: const TextStyle(color: Colors.grey),
@@ -388,9 +386,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 selectedTextStyle: const TextStyle(color: Colors.white),
                 selectedDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4.r),
-                  ),
+                  //  borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
@@ -403,20 +399,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 weekendStyle: TextStyle(color: Colors.white),
               ),
               daysOfWeekHeight: 35,
-              onPageChanged: (focusedDay) {
-                selectDate1 = focusedDay;
-                setState(() {});
-              },
-              onDaySelected: (selectedDay, selectDate) {
-                log('DAY $selectedDay');
-                log('DATE $selectDate');
-                log('DATE $selectDate1');
-
-                setState(() {
-                  selectDate1 = selectDate;
-                });
-              }),
-        ),
+            )),
         const Spacer(),
         InkWell(
           onTap: () {
@@ -457,6 +440,12 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
         )
       ],
     );
+  }
+
+  void _onDaySelected(DateTime day, DateTime focusedDay) {
+    setState(() {
+      today = day;
+    });
   }
 
   thirdPage(Size size) {

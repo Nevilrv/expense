@@ -31,7 +31,6 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    print('size ${13.sp}');
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,

@@ -142,6 +142,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                       ),
                       Expanded(
                         child: PageView(
+                          physics: const NeverScrollableScrollPhysics(),
                           controller: _controller,
                           onPageChanged: (index) {
                             log('index---------->>>>>> $index');
