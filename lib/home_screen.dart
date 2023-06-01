@@ -27,6 +27,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<SlideActionState> _containerKey = GlobalKey();
+  final GlobalKey<SlideActionState> _container2Key = GlobalKey();
+  final GlobalKey<SlideActionState> _container3Key = GlobalKey();
+  final GlobalKey<SlideActionState> _container4Key = GlobalKey();
   DrawerGetController drawerGetController = Get.find();
   bool expansionChanges1 = true;
   List<Map<String, dynamic>> listView = [
@@ -73,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
 
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
+  HomeScreenController homeScreenController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -289,16 +293,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   controller.Container1 == true
-                                      ? const Container1()
+                                      ? qrClockIn(size)
                                       : controller.Container2 == true
-                                          ? const Container2()
+                                          ? qrClockOut(size)
                                           : controller.Container3 == true
-                                              ? const Container3()
+                                              ? qrClockInTime(size)
                                               : controller.Container4 == true
-                                                  ? const Container4()
+                                                  ? clockOutNoLocation(size)
                                                   : controller.Container5 ==
                                                           true
-                                                      ? const Container5()
+                                                      ? workBreak(size)
                                                       : const SizedBox()
                                 ],
                               ),
@@ -550,22 +554,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
 
-/// Container1
-class Container1 extends StatefulWidget {
-  const Container1({Key? key}) : super(key: key);
-
-  @override
-  State<Container1> createState() => _Container1State();
-}
-
-class _Container1State extends State<Container1> {
-  final GlobalKey<SlideActionState> _key = GlobalKey();
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  /// Container1
+  qrClockIn(Size size) {
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
         return ClipRRect(
@@ -605,10 +596,10 @@ class _Container1State extends State<Container1> {
                   height: size.height * 0.03,
                 ),
                 SlideAction(
-                  key: _key,
+                  key: _containerKey,
                   onSubmit: () {
                     Future.delayed(const Duration(seconds: 1), () {
-                      _key.currentState?.reset();
+                      _containerKey.currentState?.reset();
                       controller.Container1 = false;
                       controller.Container2 = true;
                       controller.clockIn = '${DateTime.now()}';
@@ -649,466 +640,97 @@ class _Container1State extends State<Container1> {
       },
     );
   }
-}
 
-/// Container2
-class Container2 extends StatefulWidget {
-  const Container2({Key? key}) : super(key: key);
-
-  @override
-  State<Container2> createState() => _Container2State();
-}
-
-class _Container2State extends State<Container2> {
-  final GlobalKey<SlideActionState> _key = GlobalKey();
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  /// Container2
+  qrClockOut(Size size) {
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(30.r),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: size.height * 0.011,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Clocked-in at",
-                      style: TextStyleHelper.kPrimary12W500Inter,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.005,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.timeFormat
-                            .format(DateTime.parse(controller.clockIn)),
-                        style: const TextStyle(
-                          fontSize: 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Inter-Medium',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.010,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.dateFormat
-                            .format(DateTime.parse(controller.clockIn)),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Inter',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Divider(
-                      height: 0,
-                      thickness: 1,
-                      color: ColorHelper.kPrimary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Iconsax.location,
-                        color: ColorHelper.kPrimary,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: size.width * 0.028,
-                      ),
-                      Text(
-                        "The Pods - Blue Waters",
-                        style: TextStyleHelper.kWhite14W600Inter,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  SlideAction(
-                    key: _key,
-                    onSubmit: () {
-                      Future.delayed(const Duration(seconds: 1), () {
-                        _key.currentState?.reset();
-                        controller.Container2 = false;
-                        controller.Container3 = true;
-                        controller.clockOut = '${DateTime.now()}';
-                        controller.updateMethod();
-                        setState(() {});
-                      });
-                    },
-                    height: size.height * 0.067,
-                    borderRadius: 30,
-                    sliderButtonIcon: Container(
-                      height: size.height * 0.056,
-                      width: size.width * 0.11,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFF211F1D), shape: BoxShape.circle),
-                      child: Center(
-                          child: Icon(
-                        Iconsax.timer_pause,
-                        color: ColorHelper.kPrimary,
-                        size: 24,
-                      )),
-                    ),
-                    outerColor: ColorHelper.kPrimary,
-                    text: 'Slide to Clock-Out',
-                    textStyle: TextStyleHelper.kPrimary18W600Inter
-                        .copyWith(color: ColorHelper.fontColor),
-                    sliderButtonIconPadding: 0,
-                    innerColor: Colors.transparent,
-                    sliderButtonYOffset: -5,
-                    submittedIcon: Icon(
-                      Icons.check_circle_outline,
-                      size: 35,
-                      color: ColorHelper.fontColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return commonContainer(size,
+            key: _container2Key,
+            title: "Clocked-in at",
+            date: controller.dateFormat
+                .format(DateTime.parse(controller.clockIn)),
+            time: controller.timeFormat
+                .format(DateTime.parse(controller.clockIn)),
+            location: "The Pods - Blue Waters",
+            locationIcon: Iconsax.location,
+            locationTextStyle: TextStyleHelper.kWhite14W600Inter,
+            sliderText: "Slide to Clock-Out", onSubmit: () {
+          Future.delayed(
+            const Duration(seconds: 1),
+            () {
+              _container2Key.currentState?.reset();
+              controller.Container2 = false;
+              controller.Container3 = true;
+              controller.clockOut = '${DateTime.now()}';
+              controller.updateMethod();
+              setState(() {});
+            },
+          );
+        });
       },
     );
   }
-}
 
-/// Container3
-class Container3 extends StatefulWidget {
-  const Container3({Key? key}) : super(key: key);
-
-  @override
-  State<Container3> createState() => _Container3State();
-}
-
-class _Container3State extends State<Container3> {
-  final GlobalKey<SlideActionState> _key = GlobalKey();
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  ///Container3
+  qrClockInTime(Size size) {
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(30.r),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: size.height * 0.011,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Clocked-out at",
-                      style: TextStyleHelper.kPrimary12W500Inter,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.005,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.timeFormat
-                            .format(DateTime.parse(controller.clockOut)),
-                        style: const TextStyle(
-                          fontSize: 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Inter-Medium',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.010,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.dateFormat
-                            .format(DateTime.parse(controller.clockOut)),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Inter',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Divider(
-                      height: 0,
-                      thickness: 1,
-                      color: ColorHelper.kPrimary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Iconsax.location,
-                        color: ColorHelper.kPrimary,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: size.width * 0.028,
-                      ),
-                      Text(
-                        "The Pods - Blue Waters",
-                        style: TextStyleHelper.kWhite14W600Inter,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  SlideAction(
-                    key: _key,
-                    onSubmit: () {
-                      Future.delayed(const Duration(seconds: 1), () {
-                        _key.currentState?.reset();
-                        controller.Container3 = false;
-                        controller.Container4 = true;
-                        controller.clockIn1 = '${DateTime.now()}';
-                        controller.updateMethod();
-                        setState(() {});
-                      });
-                    },
-                    height: size.height * 0.067,
-                    borderRadius: 30,
-                    sliderButtonIcon: Container(
-                      height: size.height * 0.056,
-                      width: size.width * 0.11,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFF211F1D), shape: BoxShape.circle),
-                      child: Center(
-                          child: Icon(
-                        Iconsax.timer_pause,
-                        color: ColorHelper.kPrimary,
-                        size: 24,
-                      )),
-                    ),
-                    outerColor: ColorHelper.kPrimary,
-                    text: 'Slide to Clock-In',
-                    textStyle: TextStyleHelper.kPrimary18W600Inter
-                        .copyWith(color: ColorHelper.fontColor),
-                    sliderButtonIconPadding: 0,
-                    innerColor: Colors.transparent,
-                    sliderButtonYOffset: -5,
-                    submittedIcon: Icon(
-                      Icons.check_circle_outline,
-                      size: 35,
-                      color: ColorHelper.fontColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return commonContainer(size,
+            key: _container3Key,
+            title: "Clocked-out at",
+            date: controller.dateFormat
+                .format(DateTime.parse(controller.clockOut)),
+            time: controller.timeFormat
+                .format(DateTime.parse(controller.clockOut)),
+            location: "The Pods - Blue Waters",
+            locationIcon: Iconsax.location,
+            locationTextStyle: TextStyleHelper.kWhite14W600Inter,
+            sliderText: "Slide to Clock-In", onSubmit: () {
+          Future.delayed(const Duration(seconds: 1), () {
+            _container3Key.currentState?.reset();
+            controller.Container3 = false;
+            controller.Container4 = true;
+            controller.clockIn1 = '${DateTime.now()}';
+            controller.updateMethod();
+            setState(() {});
+          });
+        });
       },
     );
   }
-}
 
-/// Container4
-class Container4 extends StatefulWidget {
-  const Container4({Key? key}) : super(key: key);
-
-  @override
-  State<Container4> createState() => _Container4State();
-}
-
-class _Container4State extends State<Container4> {
-  final GlobalKey<SlideActionState> _key = GlobalKey();
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  /// Container4
+  clockOutNoLocation(Size size) {
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(30.r),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: size.height * 0.011,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Clocked-in at",
-                      style: TextStyleHelper.kPrimary12W500Inter,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.005,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.timeFormat
-                            .format(DateTime.parse(controller.clockIn1)),
-                        style: const TextStyle(
-                          fontSize: 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: 'Inter-Medium',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.010,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                        controller.dateFormat
-                            .format(DateTime.parse(controller.clockIn1)),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Inter',
-                        )),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Divider(
-                      height: 0,
-                      thickness: 1,
-                      color: ColorHelper.kPrimary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Iconsax.location_cross,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: size.width * 0.028,
-                      ),
-                      Text(
-                        "Location Not Available",
-                        style: TextStyleHelper.kWhite14W600Inter
-                            .copyWith(color: const Color(0xFF868685)),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.015,
-                  ),
-                  SlideAction(
-                    key: _key,
-                    onSubmit: () {
-                      Future.delayed(const Duration(seconds: 1), () {
-                        _key.currentState?.reset();
-                        controller.Container4 = false;
-                        controller.Container5 = true;
-                        controller.clockOut1 = '${DateTime.now()}';
-                        controller.updateMethod();
-                        setState(() {});
-                      });
-                    },
-                    height: size.height * 0.067,
-                    borderRadius: 30,
-                    sliderButtonIcon: Container(
-                      height: size.height * 0.056,
-                      width: size.width * 0.11,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFF211F1D), shape: BoxShape.circle),
-                      child: Center(
-                          child: Icon(
-                        Iconsax.timer_pause,
-                        color: ColorHelper.kPrimary,
-                        size: 24,
-                      )),
-                    ),
-                    outerColor: ColorHelper.kPrimary,
-                    text: 'Slide to Clock-Out',
-                    textStyle: TextStyleHelper.kPrimary18W600Inter
-                        .copyWith(color: ColorHelper.fontColor),
-                    sliderButtonIconPadding: 0,
-                    innerColor: Colors.transparent,
-                    sliderButtonYOffset: -5,
-                    submittedIcon: Icon(
-                      Icons.check_circle_outline,
-                      size: 35,
-                      color: ColorHelper.fontColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return commonContainer(size,
+            key: _container4Key,
+            title: "Clocked-in at",
+            date: controller.dateFormat
+                .format(DateTime.parse(controller.clockIn1)),
+            time: controller.timeFormat
+                .format(DateTime.parse(controller.clockIn1)),
+            location: "Location Not Available",
+            locationIcon: Iconsax.location_cross,
+            locationTextStyle: TextStyleHelper.kWhite14W600Inter
+                .copyWith(color: const Color(0xFF868685)),
+            sliderText: "Slide to Clock-Out", onSubmit: () {
+          Future.delayed(const Duration(seconds: 1), () {
+            _container4Key.currentState?.reset();
+            controller.Container4 = false;
+            controller.Container5 = true;
+            controller.clockOut1 = '${DateTime.now()}';
+            controller.updateMethod();
+            setState(() {});
+          });
+        });
       },
     );
   }
-}
 
-/// Container5
-class Container5 extends StatefulWidget {
-  const Container5({Key? key}) : super(key: key);
-
-  @override
-  State<Container5> createState() => _Container5State();
-}
-
-class _Container5State extends State<Container5> {
-  HomeScreenController homeScreenController = Get.put(HomeScreenController());
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  ///Container5
+  workBreak(Size size) {
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
         return ClipRRect(
@@ -1215,6 +837,133 @@ class _Container5State extends State<Container5> {
           ),
         );
       },
+    );
+  }
+
+  ///commonContainer
+  commonContainer(Size size,
+      {String? title,
+      String? time,
+      String? date,
+      String? location,
+      String? sliderText,
+      Key? key,
+      Function()? onSubmit,
+      IconData? locationIcon,
+      TextStyle? locationTextStyle}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.r),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: size.height * 0.011,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "${title}",
+                  style: TextStyleHelper.kPrimary12W500Inter,
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.005,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Text('$time',
+                    style: TextStyle(
+                      fontSize: 31.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Inter-Medium',
+                    )),
+              ),
+              SizedBox(
+                height: size.height * 0.010,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Text("$date",
+                    style: TextStyle(
+                      fontSize: 11.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Inter',
+                    )),
+              ),
+              SizedBox(
+                height: size.height * 0.020,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Divider(
+                  height: 0,
+                  thickness: 1,
+                  color: ColorHelper.kPrimary,
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.015,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    locationIcon,
+                    color: ColorHelper.kPrimary,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: size.width * 0.028,
+                  ),
+                  Text(
+                    "$location",
+                    style: locationTextStyle,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size.height * 0.015,
+              ),
+              SlideAction(
+                key: key,
+                onSubmit: onSubmit,
+                height: size.height * 0.067,
+                borderRadius: 30.r,
+                sliderButtonIcon: Container(
+                  height: size.height * 0.056,
+                  width: size.width * 0.11,
+                  decoration: const BoxDecoration(
+                      color: Color(0xFF211F1D), shape: BoxShape.circle),
+                  child: Center(
+                      child: Icon(
+                    Iconsax.timer_pause,
+                    color: ColorHelper.kPrimary,
+                    size: 24.h,
+                  )),
+                ),
+                outerColor: ColorHelper.kPrimary,
+                text: '$sliderText',
+                textStyle: TextStyleHelper.kPrimary18W600Inter
+                    .copyWith(color: ColorHelper.fontColor),
+                sliderButtonIconPadding: 0,
+                innerColor: Colors.transparent,
+                sliderButtonYOffset: -5,
+                submittedIcon: Icon(
+                  Icons.check_circle_outline,
+                  size: 35.h,
+                  color: ColorHelper.fontColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
