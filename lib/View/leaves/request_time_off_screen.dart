@@ -9,7 +9,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../constant/text_style_helper.dart';
@@ -43,10 +46,23 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   List scroll = [0];
   DateTime? rangeStart;
   DateTime? rangeEnd;
+  String startDate = "";
+  String startMonth = "";
+  String endDate = "";
+  String endMonth = "";
   bool isAvilable = false;
   DateTime? selectDate1;
   bool open = false;
   DrawerGetController drawerGetController = Get.find();
+  FToast? fToast;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    fToast = FToast();
+    fToast?.init(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -447,9 +463,18 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
         const Spacer(),
         InkWell(
           onTap: () {
-            setState(() {
-              _controller.jumpToPage(2);
-            });
+            if (rangeStart != null && rangeEnd != null) {
+              final DateFormat format = DateFormat('MMMM');
+              startDate = rangeStart!.day.toString();
+              endDate = rangeEnd!.day.toString();
+              startMonth = format.format(rangeStart!);
+              endMonth = format.format(rangeEnd!);
+              setState(() {
+                _controller.jumpToPage(2);
+              });
+            } else {
+              showCustomToast(size);
+            }
           },
           child: Container(
             height: size.height * 0.057,
@@ -511,7 +536,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '11\nMay',
+                  '${startDate}\n${startMonth}',
                   textAlign: TextAlign.center,
                   style: TextStyleHelper.kWhite22W600Inter,
                 ),
@@ -535,7 +560,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                   width: size.width * 0.020,
                 ),
                 Text(
-                  '13\nMay',
+                  '${endDate}\n${endMonth}',
                   textAlign: TextAlign.center,
                   style: TextStyleHelper.kWhite22W600Inter,
                 ),
@@ -779,6 +804,65 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  showCustomToast(Size size) {
+    Widget toast = Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: 15.w, vertical: size.height * 0.1),
+      child: Container(
+        height: 55.h,
+        width: Get.width,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(231, 157, 157, 0.24),
+          borderRadius: BorderRadius.circular(15.r),
+          // border: Border.all(color: ColorPicker.blue),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(
+                Iconsax.close_circle,
+                color: Color(0xffFFBFBD),
+                size: 35.h,
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'ERROR',
+                    style: TextStyle(
+                        fontFamily: 'Inter-Bold',
+                        fontSize: 16.sp,
+                        color: Color(0xffFFBFBD),
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Please Select Start and End Date!',
+                    style: TextStyle(
+                        fontFamily: 'Inter-Medium',
+                        fontSize: 13.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    fToast?.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 3),
     );
   }
 }
