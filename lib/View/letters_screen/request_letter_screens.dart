@@ -351,7 +351,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 outsideDaysVisible: true,
                 todayDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.0),
-                  borderRadius: BorderRadius.circular(4),
+                  //borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD).withOpacity(0.5),
                   ),
@@ -364,21 +364,21 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 selectedTextStyle: const TextStyle(color: Colors.white),
                 selectedDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  //borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
                 ),
                 rangeStartDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  //borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
                 ),
                 rangeEndDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  //borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
@@ -386,7 +386,7 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
                 withinRangeTextStyle: const TextStyle(color: Colors.white),
                 withinRangeDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  // borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
