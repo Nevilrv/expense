@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
 import '../../Controller/expense_controller.dart';
@@ -221,953 +222,977 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                           )
                         ],
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30.r),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Positioned.fill(
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-                                child: Container(
-                                  padding: const EdgeInsets.all(12),
-                                  margin: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                      color:
-                                          ColorHelper.kBGBlur.withOpacity(0.3),
-                                      borderRadius:
-                                          BorderRadius.circular(24.r)),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30.r),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Positioned.fill(
+                                child: BackdropFilter(
+                                  filter:
+                                      ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: ColorHelper.kBGBlur
+                                            .withOpacity(0.3),
+                                        borderRadius:
+                                            BorderRadius.circular(24.r)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              margin: const EdgeInsets.all(12),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  /// tab row
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    /// tab row
 
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: size.width * 0.01,
-                                      ),
-                                      Expanded(
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          controller: scrollController,
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          child: Row(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  scrollController.animateTo(
-                                                      duration: const Duration(
-                                                          milliseconds: 200),
-                                                      curve: Curves.bounceIn,
-                                                      scrollController.position
-                                                          .maxScrollExtent);
-                                                },
-                                                child: SvgPicture.asset(
-                                                  'assets/icons/arrow-left.svg',
-                                                  height: 25,
-                                                  width: 25,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  width: size.width * 0.091),
-                                              ...List.generate(
-                                                controller.tabs.length,
-                                                (index) => GestureDetector(
+                                    Row(
+                                      children: [
+                                        SizedBox(
+                                          width: size.width * 0.01,
+                                        ),
+                                        Expanded(
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            controller: scrollController,
+                                            physics:
+                                                const BouncingScrollPhysics(),
+                                            child: Row(
+                                              children: [
+                                                GestureDetector(
                                                   onTap: () {
-                                                    controller
-                                                        .changeValue(index);
+                                                    scrollController.animateTo(
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    200),
+                                                        curve: Curves.bounceIn,
+                                                        scrollController
+                                                            .position
+                                                            .maxScrollExtent);
                                                   },
-                                                  child: Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 7),
-                                                    height: 34,
-                                                    width: size.width * 0.25,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.r),
-                                                      color: controller
-                                                                  .select ==
-                                                              index
-                                                          ? ColorHelper.kPrimary
-                                                          : Colors.transparent,
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        controller.tabs[index]
-                                                            ['title'],
-                                                        style: controller
+                                                  child: SvgPicture.asset(
+                                                    'assets/icons/arrow-left.svg',
+                                                    height: 25,
+                                                    width: 25,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width: size.width * 0.091),
+                                                ...List.generate(
+                                                  controller.tabs.length,
+                                                  (index) => GestureDetector(
+                                                    onTap: () {
+                                                      controller
+                                                          .changeValue(index);
+                                                    },
+                                                    child: Container(
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              right: 7),
+                                                      height: 34,
+                                                      width: size.width * 0.25,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(30.r),
+                                                        color: controller
                                                                     .select ==
                                                                 index
-                                                            ? TextStyleHelper
-                                                                .kBG14WBOLDInter
-                                                            : TextStyleHelper
-                                                                .kWhite14WBOLDInter,
+                                                            ? ColorHelper
+                                                                .kPrimary
+                                                            : Colors
+                                                                .transparent,
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  width: size.width * 0.091),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  scrollController.animateTo(
-                                                      duration: const Duration(
-                                                          milliseconds: 200),
-                                                      curve: Curves.bounceIn,
-                                                      scrollController.position
-                                                          .minScrollExtent);
-                                                },
-                                                child: SvgPicture.asset(
-                                                  'assets/icons/arrow-right.svg',
-                                                  height: 25,
-                                                  width: 25,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-
-                                  /// first add container
-
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              controller.tabs[controller.select]
-                                                  ['screen'],
-                                        ),
-                                      );
-                                    },
-                                    child: controller.select == 0 ||
-                                            controller.select == 1 ||
-                                            controller.select == 2
-                                        ? DottedBorder(
-                                            color: ColorHelper.kPrimary,
-                                            strokeWidth: 1,
-                                            dashPattern: const [10, 5],
-                                            borderType: BorderType.RRect,
-                                            radius: const Radius.circular(16),
-                                            child: Container(
-                                              width: size.width,
-                                              height: size.height * 0.12,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white
-                                                    .withOpacity(0.14),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  10.r,
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                        'assets/icons/add-circle.svg'),
-                                                    const SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Text(
-                                                      controller.tabs[controller
-                                                          .select]['view'],
-                                                      style: TextStyleHelper
-                                                          .kLightGrey16W600Inter,
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : controller.select == 3
-                                            ? Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 16),
-                                                child: workView(size),
-                                              )
-                                            : Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 16),
-                                                child: personalView(
-                                                    size, controller),
-                                              ),
-                                  ),
-
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-
-                                  /// second container more >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-                                  controller.select == 0
-                                      ? Slidable(
-                                          startActionPane: ActionPane(
-                                            key: const ValueKey(0),
-                                            motion: const ScrollMotion(),
-                                            children: [
-                                              const SizedBox(
-                                                width: 14,
-                                              ),
-                                              SvgPicture.asset(
-                                                  'assets/icons/tick-circle.svg'),
-                                              SlidableAction(
-                                                onPressed: (context) {},
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                foregroundColor: Colors.white,
-                                                label: 'Reimbursement',
-                                              ),
-                                            ],
-                                          ),
-                                          endActionPane: ActionPane(
-                                            key: const ValueKey(0),
-                                            motion: const ScrollMotion(),
-                                            children: [
-                                              const SizedBox(
-                                                width: 15,
-                                              ),
-                                              SvgPicture.asset(
-                                                  'assets/icons/edit.svg'),
-                                              SlidableAction(
-                                                padding: EdgeInsets.only(
-                                                    right: size.width * 0.073),
-                                                onPressed: (context) {},
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                foregroundColor: Colors.white,
-                                                label: 'Edit Expense',
-                                              ),
-                                            ],
-                                          ),
-                                          child: Container(
-                                            width: size.width,
-                                            padding: const EdgeInsets.all(16),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white
-                                                  .withOpacity(0.14),
-                                              border: Border.all(
-                                                  color: ColorHelper.kDarkGrey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                16.r,
-                                              ),
-                                            ),
-                                            child: Center(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                          'assets/icons/wallet.svg'),
-                                                      const SizedBox(
-                                                        width: 8,
-                                                      ),
-                                                      Text(
-                                                        'Medical',
-                                                        style: TextStyleHelper
-                                                            .kLightGrey16W600Inter,
-                                                      ),
-                                                      const Spacer(),
-                                                      PopupMenuButton<String>(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 1),
-                                                        color:
-                                                            ColorHelper.kBGBlur,
-                                                        shadowColor: ColorHelper
-                                                            .kPrimary,
-                                                        elevation: 4,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                            Radius.circular(
-                                                                16.0.r),
-                                                          ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          controller.tabs[index]
+                                                              ['title'],
+                                                          style: controller
+                                                                      .select ==
+                                                                  index
+                                                              ? TextStyleHelper
+                                                                  .kBG14WBOLDInter
+                                                              : TextStyleHelper
+                                                                  .kWhite14WBOLDInter,
                                                         ),
-                                                        itemBuilder:
-                                                            (context) => [
-                                                          PopupMenuItem(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 20,
-                                                                    top: 10,
-                                                                    bottom: 10),
-                                                            height: 10,
-                                                            child: Center(
-                                                              child: Row(
-                                                                children: [
-                                                                  SvgPicture.asset(
-                                                                      'assets/icons/tick-circle.svg'),
-                                                                  const SizedBox(
-                                                                    width: 5,
-                                                                  ),
-                                                                  Text(
-                                                                      'Reimbursement',
-                                                                      style: TextStyleHelper
-                                                                          .kWhite12w500BOLDInter),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          const PopupMenuDivider(
-                                                            height: 2,
-                                                          ),
-                                                          PopupMenuItem(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 20,
-                                                                    top: 10,
-                                                                    bottom: 10),
-                                                            height: 10,
-                                                            child: Center(
-                                                              child: Column(
-                                                                children: [
-                                                                  Row(
-                                                                    children: [
-                                                                      SvgPicture
-                                                                          .asset(
-                                                                        'assets/icons/edit1.svg',
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        width:
-                                                                            7,
-                                                                      ),
-                                                                      Text(
-                                                                          'Edit Expense',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite12w500BOLDInter),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                        child: SvgPicture.asset(
-                                                            'assets/icons/Kebab Menu Horizontal.svg',
-                                                            height: 20),
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                  const SizedBox(
-                                                    height: 8,
+                                                ),
+                                                SizedBox(
+                                                    width: size.width * 0.091),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    scrollController.animateTo(
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    200),
+                                                        curve: Curves.bounceIn,
+                                                        scrollController
+                                                            .position
+                                                            .minScrollExtent);
+                                                  },
+                                                  child: SvgPicture.asset(
+                                                    'assets/icons/arrow-right.svg',
+                                                    height: 25,
+                                                    width: 25,
                                                   ),
-                                                  Text(
-                                                    '40 AED',
-                                                    style: TextStyleHelper
-                                                        .kLightGrey16W600Inter,
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Receipt Number:',
-                                                        style: TextStyleHelper
-                                                            .kWhite10W500Inter,
-                                                      ),
-                                                      Text(
-                                                        'N-051-a2475',
-                                                        style: TextStyleHelper
-                                                            .kWhite10W700Inter,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        'Expense Date:',
-                                                        style: TextStyleHelper
-                                                            .kWhite10W500Inter,
-                                                      ),
-                                                      Text(
-                                                        '02/04/27',
-                                                        style: TextStyleHelper
-                                                            .kWhite10W700Inter,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        )
-                                      : controller.select == 1
-                                          ? Slidable(
-                                              startActionPane: ActionPane(
-                                                key: const ValueKey(0),
-                                                motion: const ScrollMotion(),
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 14,
-                                                  ),
-                                                  SvgPicture.asset(
-                                                      'assets/icons/tick-circle.svg'),
-                                                  SlidableAction(
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    label: 'Reimbursement',
-                                                  ),
-                                                ],
-                                              ),
-                                              endActionPane: ActionPane(
-                                                key: const ValueKey(0),
-                                                motion: const ScrollMotion(),
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 15,
-                                                  ),
-                                                  SvgPicture.asset(
-                                                      'assets/icons/edit.svg'),
-                                                  SlidableAction(
-                                                    padding: EdgeInsets.only(
-                                                        right:
-                                                            size.width * 0.073),
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    label: 'Edit Assets',
-                                                  ),
-                                                ],
-                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+
+                                    /// first add container
+
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => controller
+                                                    .tabs[controller.select]
+                                                ['screen'],
+                                          ),
+                                        );
+                                      },
+                                      child: controller.select == 0 ||
+                                              controller.select == 1 ||
+                                              controller.select == 2
+                                          ? DottedBorder(
+                                              color: ColorHelper.kPrimary,
+                                              strokeWidth: 1,
+                                              dashPattern: const [10, 5],
+                                              borderType: BorderType.RRect,
+                                              radius: const Radius.circular(16),
                                               child: Container(
                                                 width: size.width,
-                                                padding:
-                                                    const EdgeInsets.all(16),
+                                                height: size.height * 0.12,
                                                 decoration: BoxDecoration(
                                                   color: Colors.white
                                                       .withOpacity(0.14),
-                                                  border: Border.all(
-                                                      color: ColorHelper
-                                                          .kDarkGrey),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                    16.r,
+                                                    10.r,
                                                   ),
                                                 ),
                                                 child: Center(
                                                   child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
+                                                      SvgPicture.asset(
+                                                          'assets/icons/add-circle.svg'),
+                                                      const SizedBox(
+                                                        height: 8,
+                                                      ),
                                                       Text(
-                                                        'HP Dell - Mac 10',
+                                                        controller.tabs[
+                                                                controller
+                                                                    .select]
+                                                            ['view'],
                                                         style: TextStyleHelper
-                                                            .kWhite144WBOLDInter,
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 8,
-                                                      ),
-                                                      Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          SvgPicture.asset(
-                                                              'assets/icons/monitor-mobbile.svg'),
-                                                          const SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Text(
-                                                            'Laptop',
-                                                            style: TextStyleHelper
-                                                                .kLightGrey16W600Inter,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 8,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'Receipt Number:',
-                                                            style: TextStyleHelper
-                                                                .kWhite10W500Inter,
-                                                          ),
-                                                          Text(
-                                                            'N-051-a2475',
-                                                            style: TextStyleHelper
-                                                                .kWhite10W700Inter,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 8,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'Issue Date: ',
-                                                            style: TextStyleHelper
-                                                                .kWhite10W500Inter,
-                                                          ),
-                                                          Text(
-                                                            '02/04/27',
-                                                            style: TextStyleHelper
-                                                                .kWhite10W700Inter,
-                                                          ),
-                                                        ],
-                                                      ),
+                                                            .kLightGrey16W600Inter,
+                                                      )
                                                     ],
                                                   ),
                                                 ),
                                               ),
                                             )
-                                          : controller.select == 2
-                                              ? Column(
+                                          : const SizedBox(),
+                                    ),
+
+                                    SizedBox(
+                                      height: controller.select == 3 ||
+                                              controller.select == 4
+                                          ? 0
+                                          : 16,
+                                    ),
+
+                                    /// second container more >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+                                    controller.select == 0
+                                        ? Slidable(
+                                            startActionPane: ActionPane(
+                                              key: const ValueKey(0),
+                                              motion: const ScrollMotion(),
+                                              children: [
+                                                const SizedBox(
+                                                  width: 14,
+                                                ),
+                                                SvgPicture.asset(
+                                                    'assets/icons/tick-circle.svg'),
+                                                SlidableAction(
+                                                  onPressed: (context) {},
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  foregroundColor: Colors.white,
+                                                  label: 'Reimbursement',
+                                                ),
+                                              ],
+                                            ),
+                                            endActionPane: ActionPane(
+                                              key: const ValueKey(0),
+                                              motion: const ScrollMotion(),
+                                              children: [
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                SvgPicture.asset(
+                                                    'assets/icons/edit.svg'),
+                                                SlidableAction(
+                                                  padding: EdgeInsets.only(
+                                                      right:
+                                                          size.width * 0.073),
+                                                  onPressed: (context) {},
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  foregroundColor: Colors.white,
+                                                  label: 'Edit Expense',
+                                                ),
+                                              ],
+                                            ),
+                                            child: Container(
+                                              width: size.width,
+                                              padding: const EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white
+                                                    .withOpacity(0.14),
+                                                border: Border.all(
+                                                    color:
+                                                        ColorHelper.kDarkGrey),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  16.r,
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white
-                                                            .withOpacity(0.14),
-                                                        border: Border.all(
-                                                            color: ColorHelper
-                                                                .kDarkGrey),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          16.r,
+                                                    Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                            'assets/icons/wallet.svg'),
+                                                        const SizedBox(
+                                                          width: 8,
                                                         ),
-                                                      ),
-                                                      child: Stack(
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Container(
-                                                                height: 60,
-                                                                width: 60,
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .all(16),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              16.r),
-                                                                  border: Border.all(
-                                                                      color: ColorHelper
-                                                                          .kPrimary),
-                                                                  image:
-                                                                      const DecorationImage(
-                                                                    image: AssetImage(
-                                                                        'assets/images/profile.png'),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Text(
-                                                                'Passport Photo',
-                                                                style: TextStyleHelper
-                                                                    .white16W600Inter,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Positioned(
-                                                            right: 16,
-                                                            top: 16,
-                                                            child:
-                                                                PopupMenuButton<
-                                                                    String>(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          1),
-                                                              color: ColorHelper
-                                                                  .kBGBlur,
-                                                              shadowColor:
-                                                                  ColorHelper
-                                                                      .kPrimary,
-                                                              elevation: 4,
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .all(
-                                                                  Radius.circular(
-                                                                      16.0.r),
-                                                                ),
-                                                              ),
-                                                              itemBuilder:
-                                                                  (context) => [
-                                                                PopupMenuItem(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      horizontal:
-                                                                          20,
-                                                                      vertical:
-                                                                          10),
-                                                                  height: 10,
-                                                                  child: Center(
-                                                                    child: Row(
-                                                                      children: [
-                                                                        SvgPicture.asset(
-                                                                            'assets/icons/export.svg'),
-                                                                        const SizedBox(
-                                                                          width:
-                                                                              5,
-                                                                        ),
-                                                                        Text(
-                                                                            'Replace',
-                                                                            style:
-                                                                                TextStyleHelper.kWhite12w500BOLDInter),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                const PopupMenuDivider(
-                                                                  height: 2,
-                                                                ),
-                                                                PopupMenuItem(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          10,
-                                                                      horizontal:
-                                                                          20),
-                                                                  height: 10,
-                                                                  child: Center(
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        Row(
-                                                                          children: [
-                                                                            SvgPicture.asset(
-                                                                              'assets/icons/close-circle1.svg',
-                                                                              height: 20,
-                                                                            ),
-                                                                            const SizedBox(
-                                                                              width: 5,
-                                                                            ),
-                                                                            Text('Delete',
-                                                                                style: TextStyleHelper.kWhite12w500BOLDInter),
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              child: SvgPicture
-                                                                  .asset(
-                                                                'assets/icons/Kebab Menu Horizontal.svg',
-                                                              ),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 16,
-                                                    ),
-                                                    ...List.generate(
-                                                      2,
-                                                      (index) => Slidable(
-                                                        startActionPane:
-                                                            ActionPane(
-                                                          key:
-                                                              const ValueKey(0),
-                                                          motion:
-                                                              const ScrollMotion(),
-                                                          children: [
-                                                            const SizedBox(
-                                                              width: 14,
-                                                            ),
-                                                            SvgPicture.asset(
-                                                                'assets/icons/tick-circle.svg'),
-                                                            SlidableAction(
-                                                              onPressed:
-                                                                  (context) {},
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              foregroundColor:
-                                                                  Colors.white,
-                                                              label:
-                                                                  'Reimbursement',
-                                                            ),
-                                                          ],
+                                                        Text(
+                                                          'Medical',
+                                                          style: TextStyleHelper
+                                                              .kLightGrey16W600Inter,
                                                         ),
-                                                        endActionPane:
-                                                            ActionPane(
-                                                          key:
-                                                              const ValueKey(0),
-                                                          motion:
-                                                              const ScrollMotion(),
-                                                          children: [
-                                                            const SizedBox(
-                                                              width: 15,
-                                                            ),
-                                                            SvgPicture.asset(
-                                                                'assets/icons/edit.svg'),
-                                                            SlidableAction(
-                                                              padding: EdgeInsets.only(
-                                                                  right: size
-                                                                          .width *
-                                                                      0.073),
-                                                              onPressed:
-                                                                  (context) {},
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              foregroundColor:
-                                                                  Colors.white,
-                                                              label:
-                                                                  'Edit Document',
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        child: Container(
-                                                          width:
-                                                              double.infinity,
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  bottom: 16),
+                                                        const Spacer(),
+                                                        PopupMenuButton<String>(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
-                                                                  left: 28,
-                                                                  right: 16,
-                                                                  top: 16,
-                                                                  bottom: 16),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                    0.14),
-                                                            border: Border.all(
-                                                                color: ColorHelper
-                                                                    .kDarkGrey),
+                                                                      .symmetric(
+                                                                  vertical: 1),
+                                                          color: ColorHelper
+                                                              .kBGBlur,
+                                                          shadowColor:
+                                                              ColorHelper
+                                                                  .kPrimary,
+                                                          elevation: 4,
+                                                          shape:
+                                                              RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
-                                                                    .circular(
-                                                              16.r,
+                                                                    .all(
+                                                              Radius.circular(
+                                                                  16.0.r),
                                                             ),
                                                           ),
-                                                          child: Row(
-                                                            children: [
-                                                              SvgPicture.asset(
-                                                                  'assets/icons/document-text.svg'),
-                                                              const SizedBox(
-                                                                width: 18,
+                                                          itemBuilder:
+                                                              (context) => [
+                                                            PopupMenuItem(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 20,
+                                                                      top: 10,
+                                                                      bottom:
+                                                                          10),
+                                                              height: 10,
+                                                              child: Center(
+                                                                child: Row(
+                                                                  children: [
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                            'assets/icons/tick-circle.svg'),
+                                                                    const SizedBox(
+                                                                      width: 5,
+                                                                    ),
+                                                                    Text(
+                                                                        'Reimbursement',
+                                                                        style: TextStyleHelper
+                                                                            .kWhite12w500BOLDInter),
+                                                                  ],
+                                                                ),
                                                               ),
-                                                              Expanded(
+                                                            ),
+                                                            const PopupMenuDivider(
+                                                              height: 2,
+                                                            ),
+                                                            PopupMenuItem(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 20,
+                                                                      top: 10,
+                                                                      bottom:
+                                                                          10),
+                                                              height: 10,
+                                                              child: Center(
                                                                 child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
                                                                   children: [
                                                                     Row(
                                                                       children: [
+                                                                        SvgPicture
+                                                                            .asset(
+                                                                          'assets/icons/edit1.svg',
+                                                                          height:
+                                                                              20,
+                                                                        ),
+                                                                        const SizedBox(
+                                                                          width:
+                                                                              7,
+                                                                        ),
                                                                         Text(
-                                                                            'VISA',
+                                                                            'Edit Expense',
                                                                             style:
-                                                                                TextStyleHelper.white16W600Inter),
-                                                                        const Spacer(),
-                                                                        SvgPicture.asset(
-                                                                            'assets/icons/Kebab Menu Horizontal.svg'),
-                                                                      ],
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      height: 5,
-                                                                    ),
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'DOCUMENT NUMBER',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
-                                                                        const Spacer(),
-                                                                        Text(
-                                                                          'ACG00-14072-46232',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      height: 3,
-                                                                    ),
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'ISSUED DATE',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
-                                                                        const Spacer(),
-                                                                        Text(
-                                                                          '02/04/23',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    const SizedBox(
-                                                                      height: 3,
-                                                                    ),
-                                                                    Row(
-                                                                      children: [
-                                                                        Text(
-                                                                          'EXPIRY DATE',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
-                                                                        const Spacer(),
-                                                                        Text(
-                                                                          '02/04/27',
-                                                                          style:
-                                                                              TextStyleHelper.kWhite10W500Inter,
-                                                                        ),
+                                                                                TextStyleHelper.kWhite12w500BOLDInter),
                                                                       ],
                                                                     ),
                                                                   ],
                                                                 ),
                                                               ),
+                                                            ),
+                                                          ],
+                                                          child: SvgPicture.asset(
+                                                              'assets/icons/Kebab Menu Horizontal.svg',
+                                                              height: 20),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Text(
+                                                      '40 AED',
+                                                      style: TextStyleHelper
+                                                          .kLightGrey16W600Inter,
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          'Receipt Number:',
+                                                          style: TextStyleHelper
+                                                              .kWhite10W500Inter,
+                                                        ),
+                                                        Text(
+                                                          'N-051-a2475',
+                                                          style: TextStyleHelper
+                                                              .kWhite10W700Inter,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 8,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          'Expense Date:',
+                                                          style: TextStyleHelper
+                                                              .kWhite10W500Inter,
+                                                        ),
+                                                        Text(
+                                                          '02/04/27',
+                                                          style: TextStyleHelper
+                                                              .kWhite10W700Inter,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : controller.select == 1
+                                            ? Slidable(
+                                                startActionPane: ActionPane(
+                                                  key: const ValueKey(0),
+                                                  motion: const ScrollMotion(),
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 14,
+                                                    ),
+                                                    SvgPicture.asset(
+                                                        'assets/icons/tick-circle.svg'),
+                                                    SlidableAction(
+                                                      onPressed: (context) {},
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      foregroundColor:
+                                                          Colors.white,
+                                                      label: 'Reimbursement',
+                                                    ),
+                                                  ],
+                                                ),
+                                                endActionPane: ActionPane(
+                                                  key: const ValueKey(0),
+                                                  motion: const ScrollMotion(),
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 15,
+                                                    ),
+                                                    SvgPicture.asset(
+                                                        'assets/icons/edit.svg'),
+                                                    SlidableAction(
+                                                      padding: EdgeInsets.only(
+                                                          right: size.width *
+                                                              0.073),
+                                                      onPressed: (context) {},
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      foregroundColor:
+                                                          Colors.white,
+                                                      label: 'Edit Assets',
+                                                    ),
+                                                  ],
+                                                ),
+                                                child: Container(
+                                                  width: size.width,
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white
+                                                        .withOpacity(0.14),
+                                                    border: Border.all(
+                                                        color: ColorHelper
+                                                            .kDarkGrey),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      16.r,
+                                                    ),
+                                                  ),
+                                                  child: Center(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          'HP Dell - Mac 10',
+                                                          style: TextStyleHelper
+                                                              .kWhite144WBOLDInter,
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 8,
+                                                        ),
+                                                        Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            SvgPicture.asset(
+                                                                'assets/icons/monitor-mobbile.svg'),
+                                                            const SizedBox(
+                                                              width: 8,
+                                                            ),
+                                                            Text(
+                                                              'Laptop',
+                                                              style: TextStyleHelper
+                                                                  .kLightGrey16W600Inter,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 8,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              'Receipt Number:',
+                                                              style: TextStyleHelper
+                                                                  .kWhite10W500Inter,
+                                                            ),
+                                                            Text(
+                                                              'N-051-a2475',
+                                                              style: TextStyleHelper
+                                                                  .kWhite10W700Inter,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 8,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              'Issue Date: ',
+                                                              style: TextStyleHelper
+                                                                  .kWhite10W500Inter,
+                                                            ),
+                                                            Text(
+                                                              '02/04/27',
+                                                              style: TextStyleHelper
+                                                                  .kWhite10W700Inter,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : controller.select == 2
+                                                ? Column(
+                                                    children: [
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white
+                                                              .withOpacity(
+                                                                  0.14),
+                                                          border: Border.all(
+                                                              color: ColorHelper
+                                                                  .kDarkGrey),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                            16.r,
+                                                          ),
+                                                        ),
+                                                        child: Stack(
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Container(
+                                                                  height: 60,
+                                                                  width: 60,
+                                                                  margin:
+                                                                      const EdgeInsets
+                                                                          .all(16),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16.r),
+                                                                    border: Border.all(
+                                                                        color: ColorHelper
+                                                                            .kPrimary),
+                                                                    image:
+                                                                        const DecorationImage(
+                                                                      image: AssetImage(
+                                                                          'assets/images/profile.png'),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  'Passport Photo',
+                                                                  style: TextStyleHelper
+                                                                      .white16W600Inter,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Positioned(
+                                                              right: 16,
+                                                              top: 16,
+                                                              child:
+                                                                  PopupMenuButton<
+                                                                      String>(
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        1),
+                                                                color:
+                                                                    ColorHelper
+                                                                        .kBGBlur,
+                                                                shadowColor:
+                                                                    ColorHelper
+                                                                        .kPrimary,
+                                                                elevation: 4,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .all(
+                                                                    Radius.circular(
+                                                                        16.0.r),
+                                                                  ),
+                                                                ),
+                                                                itemBuilder:
+                                                                    (context) =>
+                                                                        [
+                                                                  PopupMenuItem(
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        horizontal:
+                                                                            20,
+                                                                        vertical:
+                                                                            10),
+                                                                    height: 10,
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          SvgPicture.asset(
+                                                                              'assets/icons/export.svg'),
+                                                                          const SizedBox(
+                                                                            width:
+                                                                                5,
+                                                                          ),
+                                                                          Text(
+                                                                              'Replace',
+                                                                              style: TextStyleHelper.kWhite12w500BOLDInter),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  const PopupMenuDivider(
+                                                                    height: 2,
+                                                                  ),
+                                                                  PopupMenuItem(
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        vertical:
+                                                                            10,
+                                                                        horizontal:
+                                                                            20),
+                                                                    height: 10,
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Column(
+                                                                        children: [
+                                                                          Row(
+                                                                            children: [
+                                                                              SvgPicture.asset(
+                                                                                'assets/icons/close-circle1.svg',
+                                                                                height: 20,
+                                                                              ),
+                                                                              const SizedBox(
+                                                                                width: 5,
+                                                                              ),
+                                                                              Text('Delete', style: TextStyleHelper.kWhite12w500BOLDInter),
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                                child:
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/icons/Kebab Menu Horizontal.svg',
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      ...List.generate(
+                                                        2,
+                                                        (index) => Slidable(
+                                                          startActionPane:
+                                                              ActionPane(
+                                                            key: const ValueKey(
+                                                                0),
+                                                            motion:
+                                                                const ScrollMotion(),
+                                                            children: [
+                                                              const SizedBox(
+                                                                width: 14,
+                                                              ),
+                                                              SvgPicture.asset(
+                                                                  'assets/icons/tick-circle.svg'),
+                                                              SlidableAction(
+                                                                onPressed:
+                                                                    (context) {},
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                foregroundColor:
+                                                                    Colors
+                                                                        .white,
+                                                                label:
+                                                                    'Reimbursement',
+                                                              ),
                                                             ],
+                                                          ),
+                                                          endActionPane:
+                                                              ActionPane(
+                                                            key: const ValueKey(
+                                                                0),
+                                                            motion:
+                                                                const ScrollMotion(),
+                                                            children: [
+                                                              const SizedBox(
+                                                                width: 15,
+                                                              ),
+                                                              SvgPicture.asset(
+                                                                  'assets/icons/edit.svg'),
+                                                              SlidableAction(
+                                                                padding: EdgeInsets.only(
+                                                                    right: size
+                                                                            .width *
+                                                                        0.073),
+                                                                onPressed:
+                                                                    (context) {},
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                foregroundColor:
+                                                                    Colors
+                                                                        .white,
+                                                                label:
+                                                                    'Edit Document',
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          child: Container(
+                                                            width:
+                                                                double.infinity,
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    bottom: 16),
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 28,
+                                                                    right: 16,
+                                                                    top: 16,
+                                                                    bottom: 16),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Colors
+                                                                  .white
+                                                                  .withOpacity(
+                                                                      0.14),
+                                                              border: Border.all(
+                                                                  color: ColorHelper
+                                                                      .kDarkGrey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                16.r,
+                                                              ),
+                                                            ),
+                                                            child: Row(
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                    'assets/icons/document-text.svg'),
+                                                                const SizedBox(
+                                                                  width: 18,
+                                                                ),
+                                                                Expanded(
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Row(
+                                                                        children: [
+                                                                          Text(
+                                                                              'VISA',
+                                                                              style: TextStyleHelper.white16W600Inter),
+                                                                          const Spacer(),
+                                                                          SvgPicture.asset(
+                                                                              'assets/icons/Kebab Menu Horizontal.svg'),
+                                                                        ],
+                                                                      ),
+                                                                      const SizedBox(
+                                                                        height:
+                                                                            5,
+                                                                      ),
+                                                                      Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            'DOCUMENT NUMBER',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Text(
+                                                                            'ACG00-14072-46232',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      const SizedBox(
+                                                                        height:
+                                                                            3,
+                                                                      ),
+                                                                      Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            'ISSUED DATE',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Text(
+                                                                            '02/04/23',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      const SizedBox(
+                                                                        height:
+                                                                            3,
+                                                                      ),
+                                                                      Row(
+                                                                        children: [
+                                                                          Text(
+                                                                            'EXPIRY DATE',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                          const Spacer(),
+                                                                          Text(
+                                                                            '02/04/27',
+                                                                            style:
+                                                                                TextStyleHelper.kWhite10W500Inter,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
+                                                    ],
+                                                  )
+                                                : controller.select == 3
+                                                    ? workView(size)
+                                                    : personalView(
+                                                        size, controller),
+
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+
+                                    /// view more
+
+                                    controller.select == 0
+                                        ? GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ExpenseViewMoreScreen()),
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'View more',
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color:
+                                                          ColorHelper.kPrimary),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  'assets/icons/arrow-circle-right.svg',
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        : controller.select == 1
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const AssetsViewMoreScreen(),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'View more',
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: ColorHelper
+                                                              .kPrimary),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    SvgPicture.asset(
+                                                      'assets/icons/arrow-circle-right.svg',
                                                     ),
                                                   ],
-                                                )
-                                              : const SizedBox(),
+                                                ),
+                                              )
+                                            : const SizedBox(),
 
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-
-                                  /// view more
-
-                                  controller.select == 0
-                                      ? GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const ExpenseViewMoreScreen()),
-                                            );
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'View more',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
-                                                    color:
-                                                        ColorHelper.kPrimary),
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              SvgPicture.asset(
-                                                'assets/icons/arrow-circle-right.svg',
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : controller.select == 1
-                                          ? GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const AssetsViewMoreScreen(),
-                                                  ),
-                                                );
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'View more',
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: ColorHelper
-                                                            .kPrimary),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    'assets/icons/arrow-circle-right.svg',
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          : const SizedBox(),
-
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       controller.select == 0
@@ -1190,156 +1215,156 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   /// ------------- ///
 
-  ClipRRect viewExpenseHistory(Size size) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.r),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                margin: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: ColorHelper.kBGBlur.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(24)),
+  Padding viewExpenseHistory(Size size) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.r),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: ColorHelper.kBGBlur.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(24)),
+                ),
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                Text(
-                  'Expense History',
-                  style: TextStyleHelper.kLightGrey16W600Inter,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                expenseHistory(size),
-                const SizedBox(
-                  height: 15,
-                ),
-                expenseHistory(size),
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ExpenseViewMoreScreen(),
-                      ),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'View more',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ColorHelper.kPrimary),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/arrow-circle-right.svg',
-                      ),
-                    ],
+            Container(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Text(
+                    'Expense History',
+                    style: TextStyleHelper.kLightGrey16W600Inter,
                   ),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-              ],
-            ),
-          )
-        ],
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  expenseHistory(size),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  expenseHistory(size),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ExpenseViewMoreScreen(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'View more',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: ColorHelper.kPrimary),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/arrow-circle-right.svg',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  ClipRRect viewAssetsHistory(Size size) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                margin: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: ColorHelper.kBGBlur.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(24)),
+  Padding viewAssetsHistory(Size size) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: ColorHelper.kBGBlur.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(24)),
+                ),
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(12),
-            margin: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                Text(
-                  'Asset History',
-                  style: TextStyleHelper.kLightGrey16W600Inter,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                assetHistory(size),
-                const SizedBox(
-                  height: 15,
-                ),
-                assetHistory(size),
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AssetsViewMoreScreen(),
-                      ),
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'View more',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ColorHelper.kPrimary),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/arrow-circle-right.svg',
-                      ),
-                    ],
+            Container(
+              margin: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Text(
+                    'Asset History',
+                    style: TextStyleHelper.kLightGrey16W600Inter,
                   ),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-              ],
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  assetHistory(size),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  assetHistory(size),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AssetsViewMoreScreen(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'View more',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: ColorHelper.kPrimary),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/arrow-circle-right.svg',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -1744,21 +1769,11 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           ),
           child: Column(
             children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Center(
-                    child: Text(
-                      'Job details',
-                      style: TextStyleHelper.white16W600Inter,
-                    ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: SvgPicture.asset('assets/icons/edit.svg'),
-                  )
-                ],
+              Center(
+                child: Text(
+                  'Job details',
+                  style: TextStyleHelper.white16W600Inter,
+                ),
               ),
               const SizedBox(
                 height: 16,

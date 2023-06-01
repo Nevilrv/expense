@@ -22,7 +22,7 @@ class PassportPhotoController extends GetxController {
 
   Future getImageFromCamera() async {
     XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+      source: ImageSource.camera,
     );
 
     if (pickedFile != null) {

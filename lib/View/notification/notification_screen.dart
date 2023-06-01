@@ -11,7 +11,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({Key? key}) : super(key: key);
+  NotificationScreen({Key? key, this.index}) : super(key: key);
+  int? index;
 
   @override
   State<NotificationScreen> createState() => _NotificationScreenState();
@@ -20,7 +21,7 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  int index = 0;
+
   bool expansionChanges = true;
   List<Map<String, dynamic>> recentList = [
     {
@@ -55,7 +56,8 @@ class _NotificationScreenState extends State<NotificationScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController =
+        TabController(length: 2, vsync: this, initialIndex: widget.index!);
     super.initState();
   }
 
@@ -208,7 +210,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                   physics: const NeverScrollableScrollPhysics(),
                                   onTap: (value) {
                                     setState(() {
-                                      index = value;
+                                      widget.index = value;
                                     });
                                     log('value---------->>>>>> $value');
                                   },
@@ -227,7 +229,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                         SvgPicture.asset(
                                           'assets/icons/notification.svg',
                                           height: 17,
-                                          color: index == 0
+                                          color: widget.index == 0
                                               ? ColorHelper.fontColor
                                               : const Color(
                                                   0xffF7F6F5,
@@ -243,7 +245,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                               .copyWith(
                                             fontSize: 13.sp,
                                             fontFamily: 'Inter-Medium',
-                                            color: index == 0
+                                            color: widget.index == 0
                                                 ? ColorHelper.fontColor
                                                 : const Color(
                                                     0xffF7F6F5,
@@ -258,7 +260,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                         SvgPicture.asset(
                                           'assets/icons/notification.svg',
                                           height: 17,
-                                          color: index == 1
+                                          color: widget.index == 1
                                               ? ColorHelper.fontColor
                                               : const Color(
                                                   0xffF7F6F5,
@@ -272,7 +274,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                               .copyWith(
                                             fontSize: 13.sp,
                                             fontFamily: 'Inter-Medium',
-                                            color: index == 1
+                                            color: widget.index == 1
                                                 ? ColorHelper.fontColor
                                                 : const Color(
                                                     0xffF7F6F5,

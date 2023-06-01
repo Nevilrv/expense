@@ -3,6 +3,8 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:expense/Common/bottom_bar_screen.dart';
 import 'package:expense/Controller/bottom_bar_controller.dart';
 import 'package:expense/Controller/drawer_controller.dart';
+import 'package:expense/View/TeamScreen/team_screen.dart';
+import 'package:expense/View/notification/notification_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
+import '../View/leaves/request_time_off_screen.dart';
 
 class Global {
   DrawerGetController drawerGetController = Get.find();
@@ -112,7 +115,10 @@ class Global {
             child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: drawerGetController.controller,
-                children: [commonPersonal(size, context), commonManager(size)]),
+                children: [
+                  commonPersonal(size, context),
+                  commonManager(size, context)
+                ]),
           ),
         ],
       ),
@@ -126,7 +132,7 @@ class Global {
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: SizedBox(
         height: 20,
         width: Get.width,
         child: Row(
@@ -169,18 +175,31 @@ class Global {
               onTap: () {
                 drawerGetController.setDrawer(false);
                 bottomBarController.setBottomIndex(0);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const BottomBarScreen(),
-                    ));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BottomBarScreen(),
+                  ),
+                );
               },
               title: "Home",
               icon: Iconsax.home),
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(title: "Announcements", icon: Iconsax.message_text),
+          rowData(
+            title: "Announcements",
+            icon: Iconsax.message_text,
+            onTap: () {
+              drawerGetController.setDrawer(true);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationScreen(index: 1),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -239,10 +258,11 @@ class Global {
                 drawerGetController.setDrawer(false);
                 bottomBarController.setBottomIndex(1);
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const BottomBarScreen(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BottomBarScreen(),
+                  ),
+                );
               },
               title: "Leaves",
               icon: Iconsax.setting_24),
@@ -257,7 +277,20 @@ class Global {
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(title: "Letter Requests", icon: Iconsax.folder_open),
+          rowData(
+            title: "Letter Requests",
+            icon: Iconsax.folder_open,
+            onTap: () {
+              drawerGetController.setDrawer(false);
+              bottomBarController.setBottomIndex(3);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BottomBarScreen(),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -285,13 +318,25 @@ class Global {
     );
   }
 
-  commonManager(Size size) {
+  commonManager(Size size, BuildContext context) {
     return Column(
       children: [
         SizedBox(
           height: size.height * 0.02,
         ),
-        rowData(title: "Leave Requests", icon: Iconsax.receipt_square),
+        rowData(
+          title: "Leave Requests",
+          icon: Iconsax.receipt_square,
+          onTap: () {
+            Get.back();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RequestTimeOffScreen(),
+              ),
+            );
+          },
+        ),
         SizedBox(
           height: size.height * 0.03,
         ),
@@ -304,6 +349,23 @@ class Global {
           height: size.height * 0.03,
         ),
         rowData(title: "Work expenses Requests", icon: Iconsax.receipt_text),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        rowData(
+          title: "Team",
+          icon: Iconsax.people,
+          onTap: () {
+            Get.back();
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TeamScreen(),
+              ),
+            );
+          },
+        ),
         const Spacer(),
         Divider(
           thickness: size.height * 0.001,

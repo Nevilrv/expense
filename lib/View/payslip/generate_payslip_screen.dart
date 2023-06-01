@@ -366,21 +366,21 @@ class _GeneratePaySlipScreenState extends State<GeneratePaySlipScreen> {
                                       children: [
                                         SvgPicture.asset(
                                           'assets/icons/share.svg',
-                                          height: 15,
+                                          height: 22,
                                         ),
                                         SizedBox(
-                                          width: size.width * 0.02,
+                                          width: size.width * 0.03,
                                         ),
                                         SvgPicture.asset(
                                           'assets/icons/import.svg',
-                                          height: 15,
+                                          height: 22,
                                         ),
                                         SizedBox(
-                                          width: size.width * 0.02,
+                                          width: size.width * 0.03,
                                         ),
                                         SvgPicture.asset(
                                           'assets/icons/eye.svg',
-                                          height: 15,
+                                          height: 22,
                                         ),
                                       ],
                                     ),

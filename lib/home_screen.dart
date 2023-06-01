@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool expansionChanges1 = true;
   List<Map<String, dynamic>> listView = [
     {
-      "icon": Iconsax.wallet_money,
+      "icon": 'assets/icons/Leave.svg',
       "name": "LEAVE",
       "screen": const LeaveScreen()
     },
@@ -132,7 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       left: size.width * 0.12,
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(() => const NotificationScreen());
+                          Get.to(() => NotificationScreen(
+                                index: 0,
+                              ));
                         },
                         child: Container(
                           height: size.height * 0.045,
@@ -327,6 +329,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemBuilder: (BuildContext context, int index) {
                                 log("listView.length--------------> ${listView.length}");
                                 return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     GestureDetector(
                                       onTap: () {
@@ -351,11 +355,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Icon(
-                                              listView[index]['icon'],
-                                              size: 30.h,
-                                              color: ColorHelper.kPrimary,
-                                            ),
+                                            index == 0
+                                                ? SvgPicture.asset(
+                                                    'assets/icons/Leave.svg',
+                                                    height: 30.h)
+                                                : Icon(
+                                                    listView[index]['icon'],
+                                                    size: 30.h,
+                                                    color: ColorHelper.kPrimary,
+                                                  ),
                                             SizedBox(
                                               height: size.height * 0.005,
                                             ),
@@ -606,11 +614,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       setState(() {});
                     });
                   },
-                  height: size.height * 0.067,
+                  height: 48.h,
                   borderRadius: 30,
                   sliderButtonIcon: Container(
-                    height: size.height * 0.056,
-                    width: size.width * 0.11,
+                    // height: size.height * 0.0456,
+                    // width: size.height * 0.0456,
+                    height: 40.h,
+                    width: 40.w,
                     decoration: const BoxDecoration(
                         color: Color(0xFF211F1D), shape: BoxShape.circle),
                     child: Center(
@@ -622,13 +632,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   outerColor: ColorHelper.kPrimary,
                   text: 'Slide to Clock-In',
-                  textStyle: TextStyleHelper.kPrimary18W600Inter,
+                  textStyle: TextStyleHelper.kPrimary18W600Inter
+                      .copyWith(fontFamily: 'Inter-SemiBold'),
                   sliderButtonIconPadding: 0,
                   innerColor: Colors.transparent,
                   sliderButtonYOffset: -5,
                   submittedIcon: Icon(
                     Icons.check_circle_outline,
-                    size: 35,
+                    size: 30.h,
                     color: ColorHelper.fontColor,
                   ),
                 ),
@@ -817,7 +828,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: size.height * 0.015,
                   ),
                   Container(
-                    height: size.height * 0.067,
+                    height: 48.h,
                     width: size.width,
                     decoration: BoxDecoration(
                         color: ColorHelper.kPrimary,
@@ -932,11 +943,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SlideAction(
                 key: key,
                 onSubmit: onSubmit,
-                height: size.height * 0.067,
+                height: 48.h,
                 borderRadius: 30.r,
                 sliderButtonIcon: Container(
-                  height: size.height * 0.056,
-                  width: size.width * 0.11,
+                  height: 40.h,
+                  width: 40.w,
                   decoration: const BoxDecoration(
                       color: Color(0xFF211F1D), shape: BoxShape.circle),
                   child: Center(
@@ -955,7 +966,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 sliderButtonYOffset: -5,
                 submittedIcon: Icon(
                   Icons.check_circle_outline,
-                  size: 35.h,
+                  size: 30.h,
                   color: ColorHelper.fontColor,
                 ),
               ),

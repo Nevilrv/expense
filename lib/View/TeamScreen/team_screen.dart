@@ -123,19 +123,38 @@ class _TeamScreenState extends State<TeamScreen> {
                   decoration: BoxDecoration(
                     color: const Color(0xffFFD6D6).withOpacity(.16),
                     border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20.r),
+                    borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      Positioned(
+                        child: Container(
+                          height: size.height * 0.237,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: FractionalOffset.center,
+                              end: FractionalOffset.bottomCenter,
+                              colors: [
+                                Colors.black.withOpacity(0.0),
+                                Colors.black.withOpacity(0.6),
+                                Colors.black.withOpacity(0.7),
+                                Colors.black,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(16.r),
+                          ),
+                        ),
+                      ),
                       SvgPicture.asset(
                         team[index]['image'],
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                          height: 120,
+                          height: size.height * 0.1369,
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.r),
                             gradient: LinearGradient(
                               colors: [
                                 const Color(0xff260b3b).withOpacity(0.0),

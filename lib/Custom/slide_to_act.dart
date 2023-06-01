@@ -2,6 +2,7 @@ library flutterslidetoact;
 
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// Slider call to action component
@@ -251,8 +252,8 @@ class SlideActionState extends State<SlideAction>
                           bottom: 0,
                           child: SvgPicture.asset(
                             'assets/icons/arrow-right-rounded.svg',
-                            height: 35,
-                            width: 35,
+                            height: 40.h,
+                            width: 40.w,
                           )),
                     ],
                   ),
