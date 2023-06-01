@@ -91,42 +91,6 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
           child: Global()
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
-        appBar: PreferredSize(
-          preferredSize: Size(size.width, size.height * 0.078),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    _scaffoldKey.currentState!.openDrawer();
-                  },
-                  child: Icon(
-                    Icons.menu,
-                    color: ColorHelper.kPrimary,
-                    size: 24,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'PaySlip',
-                    style: TextStyleHelper.kPrimary22W600Inter
-                        .copyWith(color: Colors.white),
-                  ),
-                ),
-                const Icon(
-                  Icons.add,
-                  color: Colors.transparent,
-                )
-              ],
-            ),
-          ),
-        ),
         body: SizedBox(
           height: size.height,
           width: size.width,
@@ -165,209 +129,247 @@ class _PaySlipScreenState extends State<PaySlipScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: size.height * 0.083),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30.r),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Positioned.fill(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            margin: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                                color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(24.r)),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                        top: size.height * 0.0228,
+                        bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            _scaffoldKey.currentState!.openDrawer();
+                          },
+                          child: Icon(
+                            Icons.menu,
+                            color: ColorHelper.kPrimary,
+                            size: 24,
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                        Text(
+                          'Payslip',
+                          style: TextStyleHelper.kPrimary22W600Inter
+                              .copyWith(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.0365,
+                          width: size.height * 0.0365,
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 12,
+                          right: 12,
+                          top: size.height * 0.0228,
+                          bottom: size.height * 0.103),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30.r),
+                        child: Stack(
+                          clipBehavior: Clip.none,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.030,
-                                  left: size.width * 0.050,
-                                  bottom: size.height * 0.010,
-                                  right: size.width * 0.050),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: SvgPicture.asset(
-                                      'assets/icons/arrow-circle-left.svg',
-                                      height: 25,
-                                    ),
-                                  ),
-                                  Text(
-                                    '2023',
-                                    style: TextStyleHelper.kWhite22W600Inter,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: SvgPicture.asset(
-                                      'assets/icons/arrow-circle-right.svg',
-                                      height: 25,
-                                      color: Colors.white.withOpacity(0.14),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: size.height * 0.01,
-                            ),
-                            Divider(
-                              height: 0,
-                              thickness: 2,
-                              color: ColorHelper.kPrimary,
-                            ),
-                            SizedBox(
-                              height: size.height * 0.02,
-                            ),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                child: Column(
-                                  children: List.generate(
-                                      paySlipList.length,
-                                      (index) => Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.030),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  width: size.width,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white
-                                                          .withOpacity(0.14),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.r)),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal:
-                                                                size.width *
-                                                                    0.040,
-                                                            vertical:
-                                                                size.height *
-                                                                    0.015),
-                                                    child: Column(
-                                                      children: [
-                                                        SingleChildScrollView(
-                                                          child: Row(
-                                                            children: [
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  SizedBox(
-                                                                    width: size
-                                                                            .width *
-                                                                        0.40,
-                                                                    child: Text(
-                                                                      paySlipList[
-                                                                              index]
-                                                                          [
-                                                                          'name'],
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .clip,
-                                                                      style: TextStyleHelper
-                                                                          .kWhite16W600Inter,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    paySlipList[
-                                                                            index]
-                                                                        ['day'],
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .clip,
-                                                                    style: TextStyleHelper
-                                                                        .kWhite12w500BOLDInter,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Container(
-                                                                height:
-                                                                    size.height *
-                                                                        0.045,
-                                                                width:
-                                                                    size.width *
-                                                                        0.30,
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                decoration: BoxDecoration(
-                                                                    color: const Color(
-                                                                            0xffFFC091)
-                                                                        .withOpacity(
-                                                                            0.14),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20.r)),
-                                                                child: Text(
-                                                                  "AED 20,000",
-                                                                  style: TextStyleHelper
-                                                                      .kWhite12w500BOLDInter,
-                                                                ),
-                                                              ),
-                                                              const Spacer(),
-                                                              InkWell(
-                                                                onTap: () {
-                                                                  Get.to(
-                                                                    () =>
-                                                                        const GeneratePaySlipScreen(),
-                                                                  );
-                                                                },
-                                                                child:
-                                                                    SvgPicture
-                                                                        .asset(
-                                                                  paySlipList[
-                                                                          index]
-                                                                      ['icon'],
-                                                                  height: 25,
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: size.height * 0.020,
-                                                ),
-                                              ],
-                                            ),
-                                          )),
+                            Positioned.fill(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color:
+                                          ColorHelper.kBGBlur.withOpacity(0.3),
+                                      borderRadius:
+                                          BorderRadius.circular(24.r)),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: size.height * 0.02,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.020,
+                                      left: size.width * 0.050,
+                                      bottom: size.height * 0.010,
+                                      right: size.width * 0.050),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: SvgPicture.asset(
+                                          'assets/icons/arrow-circle-left.svg',
+                                          height: 25,
+                                        ),
+                                      ),
+                                      Text(
+                                        '2023',
+                                        style:
+                                            TextStyleHelper.kWhite22W600Inter,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: SvgPicture.asset(
+                                          'assets/icons/arrow-circle-right.svg',
+                                          height: 25,
+                                          color: Colors.white.withOpacity(0.14),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.01,
+                                ),
+                                Divider(
+                                  height: 0,
+                                  thickness: 2,
+                                  color: ColorHelper.kPrimary,
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    child: Column(
+                                      children: List.generate(
+                                          paySlipList.length,
+                                          (index) => Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        size.width * 0.030),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      width: size.width,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.white
+                                                              .withOpacity(
+                                                                  0.14),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.r)),
+                                                      child: Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    size.width *
+                                                                        0.040,
+                                                                vertical:
+                                                                    size.height *
+                                                                        0.015),
+                                                        child: Column(
+                                                          children: [
+                                                            SingleChildScrollView(
+                                                              child: Row(
+                                                                children: [
+                                                                  Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      SizedBox(
+                                                                        width: size.width *
+                                                                            0.40,
+                                                                        child:
+                                                                            Text(
+                                                                          paySlipList[index]
+                                                                              [
+                                                                              'name'],
+                                                                          overflow:
+                                                                              TextOverflow.clip,
+                                                                          style:
+                                                                              TextStyleHelper.kWhite16W600Inter,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        paySlipList[index]
+                                                                            [
+                                                                            'day'],
+                                                                        overflow:
+                                                                            TextOverflow.clip,
+                                                                        style: TextStyleHelper
+                                                                            .kWhite12w500BOLDInter,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Container(
+                                                                    height: size
+                                                                            .height *
+                                                                        0.045,
+                                                                    width: size
+                                                                            .width *
+                                                                        0.30,
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    decoration: BoxDecoration(
+                                                                        color: const Color(0xffFFC091).withOpacity(
+                                                                            0.14),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.r)),
+                                                                    child: Text(
+                                                                      "AED 20,000",
+                                                                      style: TextStyleHelper
+                                                                          .kWhite12w500BOLDInter,
+                                                                    ),
+                                                                  ),
+                                                                  const Spacer(),
+                                                                  InkWell(
+                                                                    onTap: () {
+                                                                      Get.to(
+                                                                        () =>
+                                                                            const GeneratePaySlipScreen(),
+                                                                      );
+                                                                    },
+                                                                    child: SvgPicture
+                                                                        .asset(
+                                                                      paySlipList[
+                                                                              index]
+                                                                          [
+                                                                          'icon'],
+                                                                      height:
+                                                                          25,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          size.height * 0.020,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.02,
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               )
             ],
           ),

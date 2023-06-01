@@ -380,171 +380,161 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: size.height * 0.02,
                       ),
 
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30.r),
-                        child: Stack(clipBehavior: Clip.none, children: [
-                          Positioned.fill(
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 12),
-                                decoration: BoxDecoration(
-                                    color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                    borderRadius: BorderRadius.circular(24.r)),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: size.width,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.03),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
-                              //  border: Border.all(color: ColorHelper.fontColor),
-                            ),
-                            child: Theme(
-                              data: ThemeData(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                initiallyExpanded: true,
-                                trailing: expansionChanges1
-                                    ? SvgPicture.asset(
-                                        'assets/icons/arrow-circle-up.svg',
-                                        height: 28,
-                                        color: ColorHelper.kPrimary,
-                                      )
-                                    : SvgPicture.asset(
-                                        'assets/icons/arrow-circle-down.svg',
-                                        height: 28,
-                                        color: ColorHelper.kPrimary,
-                                      ),
-                                title: Text(
-                                  'Activity',
-                                  style: TextStyleHelper.kPrimary22W600Inter
-                                      .copyWith(color: Colors.white),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30.r),
+                          child: Stack(clipBehavior: Clip.none, children: [
+                            Positioned.fill(
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color:
+                                          ColorHelper.kBGBlur.withOpacity(0.3),
+                                      borderRadius:
+                                          BorderRadius.circular(24.r)),
                                 ),
-                                onExpansionChanged: (bool value) {
-                                  setState(() {
-                                    expansionChanges1 = value;
-                                  });
-                                },
-                                children: [
-                                  Divider(
-                                    thickness: size.height * 0.002,
-                                    color: Colors.black,
-                                  ),
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: leveRequestList.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.05,
-                                                vertical: size.height * 0.015),
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                        radius: 23.r,
-                                                        backgroundColor:
-                                                            index.isOdd
-                                                                ? ColorHelper
-                                                                    .fontColor
-                                                                : ColorHelper
-                                                                    .kPrimary,
-                                                        child: Icon(
-                                                          index.isOdd
-                                                              ? Iconsax
-                                                                  .timer_start
-                                                              : Iconsax
-                                                                  .timer_pause,
-                                                          color: index.isOdd
-                                                              ? ColorHelper
-                                                                  .kPrimary
-                                                              : ColorHelper
-                                                                  .fontColor,
-                                                        )),
-                                                    SizedBox(
-                                                      width: size.width * 0.015,
-                                                    ),
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        SizedBox(
-                                                          width:
-                                                              size.width * 0.55,
-                                                          child: Text(
-                                                            leveRequestList[
-                                                                index]['name'],
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                            style: TextStyleHelper
-                                                                .kWhite16W600Inter,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: size.height *
-                                                              0.010,
-                                                        ),
-                                                        Text(
-                                                            leveRequestList[
-                                                                index]['day'],
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                            style: TextStyleHelper
-                                                                .kgrey12W500Inter),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                        leveRequestList[index]
-                                                            ['icon'],
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: TextStyleHelper
-                                                            .white14W600Inter),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.020,
-                                  ),
-                                  // Row(
-                                  //   mainAxisAlignment: MainAxisAlignment.center,
-                                  //   children: [
-                                  //     Text(
-                                  //       "View more",
-                                  //       style:
-                                  //           TextStyleHelper.kPrimary12W500Inter,
-                                  //     ),
-                                  //     SizedBox(
-                                  //       width: size.width * 0.020,
-                                  //     ),
-                                  //     SvgPicture.asset(
-                                  //       'assets/icons/arrow-circle-right.svg',
-                                  //       height: 17,
-                                  //       color: ColorHelper.kPrimary,
-                                  //     )
-                                  //   ],
-                                  // ),
-                                ],
                               ),
                             ),
-                          ),
-                        ]),
+                            Container(
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.r),
+                                //  border: Border.all(color: ColorHelper.fontColor),
+                              ),
+                              child: Theme(
+                                data:
+                                    ThemeData(dividerColor: Colors.transparent),
+                                child: ExpansionTile(
+                                  initiallyExpanded: true,
+                                  trailing: expansionChanges1
+                                      ? SvgPicture.asset(
+                                          'assets/icons/arrow-circle-up.svg',
+                                          height: 28,
+                                          color: ColorHelper.kPrimary,
+                                        )
+                                      : SvgPicture.asset(
+                                          'assets/icons/arrow-circle-down.svg',
+                                          height: 28,
+                                          color: ColorHelper.kPrimary,
+                                        ),
+                                  title: Text(
+                                    'Activity',
+                                    style: TextStyleHelper.kPrimary22W600Inter
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                  onExpansionChanged: (bool value) {
+                                    setState(() {
+                                      expansionChanges1 = value;
+                                    });
+                                  },
+                                  children: [
+                                    Divider(
+                                      thickness: size.height * 0.002,
+                                      color: Colors.black,
+                                    ),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: leveRequestList.length,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: size.width * 0.05,
+                                                  vertical:
+                                                      size.height * 0.015),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                          radius: 23.r,
+                                                          backgroundColor:
+                                                              index.isOdd
+                                                                  ? ColorHelper
+                                                                      .fontColor
+                                                                  : ColorHelper
+                                                                      .kPrimary,
+                                                          child: Icon(
+                                                            index.isOdd
+                                                                ? Iconsax
+                                                                    .timer_start
+                                                                : Iconsax
+                                                                    .timer_pause,
+                                                            color: index.isOdd
+                                                                ? ColorHelper
+                                                                    .kPrimary
+                                                                : ColorHelper
+                                                                    .fontColor,
+                                                          )),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.015,
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.55,
+                                                            child: Text(
+                                                              leveRequestList[
+                                                                      index]
+                                                                  ['name'],
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyleHelper
+                                                                  .kWhite16W600Inter,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                size.height *
+                                                                    0.010,
+                                                          ),
+                                                          Text(
+                                                              leveRequestList[
+                                                                  index]['day'],
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyleHelper
+                                                                  .kgrey12W500Inter),
+                                                        ],
+                                                      ),
+                                                      Text(
+                                                          leveRequestList[index]
+                                                              ['icon'],
+                                                          overflow:
+                                                              TextOverflow.clip,
+                                                          style: TextStyleHelper
+                                                              .white14W600Inter),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: size.height * 0.020,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
                       ),
 
                       SizedBox(
@@ -578,97 +568,81 @@ class _Container1State extends State<Container1> {
     final size = MediaQuery.of(context).size;
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return Center(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Container(
-              height: size.height * 0.29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                // border: Border.all(color: ColorHelper.fontColor),
-              ),
-              child: Blur(
-                blur: 10,
-                colorOpacity: 0.25,
-                overlay: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Scan QR Code to Clock-in",
-                          style: TextStyleHelper.kPrimary16W600Inter,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      const Divider(
-                        height: 0,
-                        thickness: 2,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Text(
-                        "Please scan the QR code provided by your organization to clock-in to Max",
-                        textAlign: TextAlign.center,
-                        style: TextStyleHelper.kWhite16W400Inter,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.03,
-                      ),
-                      SlideAction(
-                        key: _key,
-                        onSubmit: () {
-                          Future.delayed(const Duration(seconds: 1), () {
-                            _key.currentState?.reset();
-                            controller.Container1 = false;
-                            controller.Container2 = true;
-                            controller.clockIn = '${DateTime.now()}';
-                            controller.updateMethod();
-                            setState(() {});
-                          });
-                        },
-                        height: size.height * 0.067,
-                        borderRadius: 30,
-                        sliderButtonIcon: Container(
-                          height: size.height * 0.056,
-                          width: size.width * 0.11,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF211F1D), shape: BoxShape.circle),
-                          child: Center(
-                              child: Icon(
-                            Iconsax.timer_pause,
-                            color: ColorHelper.kPrimary,
-                            size: 24,
-                          )),
-                        ),
-                        outerColor: ColorHelper.kPrimary,
-                        text: 'Slide to Clock-In',
-                        textStyle: TextStyleHelper.kPrimary18W600Inter,
-                        sliderButtonIconPadding: 0,
-                        innerColor: Colors.transparent,
-                        sliderButtonYOffset: -5,
-                        submittedIcon: Icon(
-                          Icons.check_circle_outline,
-                          size: 35,
-                          color: ColorHelper.fontColor,
-                        ),
-                      ),
-                    ],
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: size.height * 0.020,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Scan QR Code to Clock-in",
+                    style: TextStyleHelper.kPrimary16W600Inter,
                   ),
                 ),
-                borderRadius: BorderRadius.circular(30),
-                blurColor: ColorHelper.kBGBlur,
-                child: Container(),
-              ),
+                SizedBox(
+                  height: size.height * 0.020,
+                ),
+                const Divider(
+                  height: 0,
+                  thickness: 2,
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  height: size.height * 0.020,
+                ),
+                Text(
+                  "Please scan the QR code provided by your organization to clock-in to Max",
+                  textAlign: TextAlign.center,
+                  style: TextStyleHelper.kWhite16W400Inter,
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                SlideAction(
+                  key: _key,
+                  onSubmit: () {
+                    Future.delayed(const Duration(seconds: 1), () {
+                      _key.currentState?.reset();
+                      controller.Container1 = false;
+                      controller.Container2 = true;
+                      controller.clockIn = '${DateTime.now()}';
+                      controller.updateMethod();
+                      setState(() {});
+                    });
+                  },
+                  height: size.height * 0.067,
+                  borderRadius: 30,
+                  sliderButtonIcon: Container(
+                    height: size.height * 0.056,
+                    width: size.width * 0.11,
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF211F1D), shape: BoxShape.circle),
+                    child: Center(
+                        child: Icon(
+                      Iconsax.timer_pause,
+                      color: ColorHelper.kPrimary,
+                      size: 24,
+                    )),
+                  ),
+                  outerColor: ColorHelper.kPrimary,
+                  text: 'Slide to Clock-In',
+                  textStyle: TextStyleHelper.kPrimary18W600Inter,
+                  sliderButtonIconPadding: 0,
+                  innerColor: Colors.transparent,
+                  sliderButtonYOffset: -5,
+                  submittedIcon: Icon(
+                    Icons.check_circle_outline,
+                    size: 35,
+                    color: ColorHelper.fontColor,
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -693,143 +667,129 @@ class _Container2State extends State<Container2> {
     final size = MediaQuery.of(context).size;
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return Center(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Container(
-              height: size.height * 0.29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                // border: Border.all(color: ColorHelper.fontColor),
-              ),
-              child: Blur(
-                blur: 10,
-                colorOpacity: 0.25,
-                overlay: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.011,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Clocked-in at",
+                      style: TextStyleHelper.kPrimary12W500Inter,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.005,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.timeFormat
+                            .format(DateTime.parse(controller.clockIn)),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Inter-Medium',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.010,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.dateFormat
+                            .format(DateTime.parse(controller.clockIn)),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Inter',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.020,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Divider(
+                      height: 0,
+                      thickness: 1,
+                      color: ColorHelper.kPrimary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: size.height * 0.011,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Clocked-in at",
-                          style: TextStyleHelper.kPrimary12W500Inter,
-                        ),
+                      Icon(
+                        Iconsax.location,
+                        color: ColorHelper.kPrimary,
+                        size: 20,
                       ),
                       SizedBox(
-                        height: size.height * 0.005,
+                        width: size.width * 0.028,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.timeFormat
-                                .format(DateTime.parse(controller.clockIn)),
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Inter-Medium',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.010,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.dateFormat
-                                .format(DateTime.parse(controller.clockIn)),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Inter',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Divider(
-                          height: 0,
-                          thickness: 1,
-                          color: ColorHelper.kPrimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Iconsax.location,
-                            color: ColorHelper.kPrimary,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.028,
-                          ),
-                          Text(
-                            "The Pods - Blue Waters",
-                            style: TextStyleHelper.kWhite14W600Inter,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      SlideAction(
-                        key: _key,
-                        onSubmit: () {
-                          Future.delayed(const Duration(seconds: 1), () {
-                            _key.currentState?.reset();
-                            controller.Container2 = false;
-                            controller.Container3 = true;
-                            controller.clockOut = '${DateTime.now()}';
-                            controller.updateMethod();
-                            setState(() {});
-                          });
-                        },
-                        height: size.height * 0.067,
-                        borderRadius: 30,
-                        sliderButtonIcon: Container(
-                          height: size.height * 0.056,
-                          width: size.width * 0.11,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF211F1D), shape: BoxShape.circle),
-                          child: Center(
-                              child: Icon(
-                            Iconsax.timer_pause,
-                            color: ColorHelper.kPrimary,
-                            size: 24,
-                          )),
-                        ),
-                        outerColor: ColorHelper.kPrimary,
-                        text: 'Slide to Clock-Out',
-                        textStyle: TextStyleHelper.kPrimary18W600Inter
-                            .copyWith(color: ColorHelper.fontColor),
-                        sliderButtonIconPadding: 0,
-                        innerColor: Colors.transparent,
-                        sliderButtonYOffset: -5,
-                        submittedIcon: Icon(
-                          Icons.check_circle_outline,
-                          size: 35,
-                          color: ColorHelper.fontColor,
-                        ),
+                      Text(
+                        "The Pods - Blue Waters",
+                        style: TextStyleHelper.kWhite14W600Inter,
                       ),
                     ],
                   ),
-                ),
-                borderRadius: BorderRadius.circular(30),
-                blurColor: ColorHelper.kBGBlur,
-                child: Container(),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  SlideAction(
+                    key: _key,
+                    onSubmit: () {
+                      Future.delayed(const Duration(seconds: 1), () {
+                        _key.currentState?.reset();
+                        controller.Container2 = false;
+                        controller.Container3 = true;
+                        controller.clockOut = '${DateTime.now()}';
+                        controller.updateMethod();
+                        setState(() {});
+                      });
+                    },
+                    height: size.height * 0.067,
+                    borderRadius: 30,
+                    sliderButtonIcon: Container(
+                      height: size.height * 0.056,
+                      width: size.width * 0.11,
+                      decoration: const BoxDecoration(
+                          color: Color(0xFF211F1D), shape: BoxShape.circle),
+                      child: Center(
+                          child: Icon(
+                        Iconsax.timer_pause,
+                        color: ColorHelper.kPrimary,
+                        size: 24,
+                      )),
+                    ),
+                    outerColor: ColorHelper.kPrimary,
+                    text: 'Slide to Clock-Out',
+                    textStyle: TextStyleHelper.kPrimary18W600Inter
+                        .copyWith(color: ColorHelper.fontColor),
+                    sliderButtonIconPadding: 0,
+                    innerColor: Colors.transparent,
+                    sliderButtonYOffset: -5,
+                    submittedIcon: Icon(
+                      Icons.check_circle_outline,
+                      size: 35,
+                      color: ColorHelper.fontColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -855,143 +815,129 @@ class _Container3State extends State<Container3> {
     final size = MediaQuery.of(context).size;
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return Center(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Container(
-              height: size.height * 0.29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                // border: Border.all(color: ColorHelper.fontColor),
-              ),
-              child: Blur(
-                blur: 10,
-                colorOpacity: 0.25,
-                overlay: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.011,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Clocked-out at",
+                      style: TextStyleHelper.kPrimary12W500Inter,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.005,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.timeFormat
+                            .format(DateTime.parse(controller.clockOut)),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Inter-Medium',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.010,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.dateFormat
+                            .format(DateTime.parse(controller.clockOut)),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Inter',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.020,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Divider(
+                      height: 0,
+                      thickness: 1,
+                      color: ColorHelper.kPrimary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: size.height * 0.011,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Clocked-out at",
-                          style: TextStyleHelper.kPrimary12W500Inter,
-                        ),
+                      Icon(
+                        Iconsax.location,
+                        color: ColorHelper.kPrimary,
+                        size: 20,
                       ),
                       SizedBox(
-                        height: size.height * 0.005,
+                        width: size.width * 0.028,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.timeFormat
-                                .format(DateTime.parse(controller.clockOut)),
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Inter-Medium',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.010,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.dateFormat
-                                .format(DateTime.parse(controller.clockOut)),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Inter',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Divider(
-                          height: 0,
-                          thickness: 1,
-                          color: ColorHelper.kPrimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Iconsax.location,
-                            color: ColorHelper.kPrimary,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.028,
-                          ),
-                          Text(
-                            "The Pods - Blue Waters",
-                            style: TextStyleHelper.kWhite14W600Inter,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      SlideAction(
-                        key: _key,
-                        onSubmit: () {
-                          Future.delayed(const Duration(seconds: 1), () {
-                            _key.currentState?.reset();
-                            controller.Container3 = false;
-                            controller.Container4 = true;
-                            controller.clockIn1 = '${DateTime.now()}';
-                            controller.updateMethod();
-                            setState(() {});
-                          });
-                        },
-                        height: size.height * 0.067,
-                        borderRadius: 30,
-                        sliderButtonIcon: Container(
-                          height: size.height * 0.056,
-                          width: size.width * 0.11,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF211F1D), shape: BoxShape.circle),
-                          child: Center(
-                              child: Icon(
-                            Iconsax.timer_pause,
-                            color: ColorHelper.kPrimary,
-                            size: 24,
-                          )),
-                        ),
-                        outerColor: ColorHelper.kPrimary,
-                        text: 'Slide to Clock-In',
-                        textStyle: TextStyleHelper.kPrimary18W600Inter
-                            .copyWith(color: ColorHelper.fontColor),
-                        sliderButtonIconPadding: 0,
-                        innerColor: Colors.transparent,
-                        sliderButtonYOffset: -5,
-                        submittedIcon: Icon(
-                          Icons.check_circle_outline,
-                          size: 35,
-                          color: ColorHelper.fontColor,
-                        ),
+                      Text(
+                        "The Pods - Blue Waters",
+                        style: TextStyleHelper.kWhite14W600Inter,
                       ),
                     ],
                   ),
-                ),
-                borderRadius: BorderRadius.circular(30),
-                blurColor: ColorHelper.kBGBlur,
-                child: Container(),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  SlideAction(
+                    key: _key,
+                    onSubmit: () {
+                      Future.delayed(const Duration(seconds: 1), () {
+                        _key.currentState?.reset();
+                        controller.Container3 = false;
+                        controller.Container4 = true;
+                        controller.clockIn1 = '${DateTime.now()}';
+                        controller.updateMethod();
+                        setState(() {});
+                      });
+                    },
+                    height: size.height * 0.067,
+                    borderRadius: 30,
+                    sliderButtonIcon: Container(
+                      height: size.height * 0.056,
+                      width: size.width * 0.11,
+                      decoration: const BoxDecoration(
+                          color: Color(0xFF211F1D), shape: BoxShape.circle),
+                      child: Center(
+                          child: Icon(
+                        Iconsax.timer_pause,
+                        color: ColorHelper.kPrimary,
+                        size: 24,
+                      )),
+                    ),
+                    outerColor: ColorHelper.kPrimary,
+                    text: 'Slide to Clock-In',
+                    textStyle: TextStyleHelper.kPrimary18W600Inter
+                        .copyWith(color: ColorHelper.fontColor),
+                    sliderButtonIconPadding: 0,
+                    innerColor: Colors.transparent,
+                    sliderButtonYOffset: -5,
+                    submittedIcon: Icon(
+                      Icons.check_circle_outline,
+                      size: 35,
+                      color: ColorHelper.fontColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -1017,144 +963,130 @@ class _Container4State extends State<Container4> {
     final size = MediaQuery.of(context).size;
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return Center(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Container(
-              height: size.height * 0.29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                // border: Border.all(color: ColorHelper.fontColor),
-              ),
-              child: Blur(
-                blur: 10,
-                colorOpacity: 0.25,
-                overlay: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.011,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Clocked-in at",
+                      style: TextStyleHelper.kPrimary12W500Inter,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.005,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.timeFormat
+                            .format(DateTime.parse(controller.clockIn1)),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Inter-Medium',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.010,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.dateFormat
+                            .format(DateTime.parse(controller.clockIn1)),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Inter',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.020,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Divider(
+                      height: 0,
+                      thickness: 1,
+                      color: ColorHelper.kPrimary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: size.height * 0.011,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Clocked-in at",
-                          style: TextStyleHelper.kPrimary12W500Inter,
-                        ),
+                      const Icon(
+                        Iconsax.location_cross,
+                        color: Colors.white,
+                        size: 20,
                       ),
                       SizedBox(
-                        height: size.height * 0.005,
+                        width: size.width * 0.028,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.timeFormat
-                                .format(DateTime.parse(controller.clockIn1)),
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Inter-Medium',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.010,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.dateFormat
-                                .format(DateTime.parse(controller.clockIn1)),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Inter',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Divider(
-                          height: 0,
-                          thickness: 1,
-                          color: ColorHelper.kPrimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Iconsax.location_cross,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.028,
-                          ),
-                          Text(
-                            "Location Not Available",
-                            style: TextStyleHelper.kWhite14W600Inter
-                                .copyWith(color: const Color(0xFF868685)),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      SlideAction(
-                        key: _key,
-                        onSubmit: () {
-                          Future.delayed(const Duration(seconds: 1), () {
-                            _key.currentState?.reset();
-                            controller.Container4 = false;
-                            controller.Container5 = true;
-                            controller.clockOut1 = '${DateTime.now()}';
-                            controller.updateMethod();
-                            setState(() {});
-                          });
-                        },
-                        height: size.height * 0.067,
-                        borderRadius: 30,
-                        sliderButtonIcon: Container(
-                          height: size.height * 0.056,
-                          width: size.width * 0.11,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF211F1D), shape: BoxShape.circle),
-                          child: Center(
-                              child: Icon(
-                            Iconsax.timer_pause,
-                            color: ColorHelper.kPrimary,
-                            size: 24,
-                          )),
-                        ),
-                        outerColor: ColorHelper.kPrimary,
-                        text: 'Slide to Clock-Out',
-                        textStyle: TextStyleHelper.kPrimary18W600Inter
-                            .copyWith(color: ColorHelper.fontColor),
-                        sliderButtonIconPadding: 0,
-                        innerColor: Colors.transparent,
-                        sliderButtonYOffset: -5,
-                        submittedIcon: Icon(
-                          Icons.check_circle_outline,
-                          size: 35,
-                          color: ColorHelper.fontColor,
-                        ),
+                      Text(
+                        "Location Not Available",
+                        style: TextStyleHelper.kWhite14W600Inter
+                            .copyWith(color: const Color(0xFF868685)),
                       ),
                     ],
                   ),
-                ),
-                borderRadius: BorderRadius.circular(30),
-                blurColor: ColorHelper.kBGBlur,
-                child: Container(),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  SlideAction(
+                    key: _key,
+                    onSubmit: () {
+                      Future.delayed(const Duration(seconds: 1), () {
+                        _key.currentState?.reset();
+                        controller.Container4 = false;
+                        controller.Container5 = true;
+                        controller.clockOut1 = '${DateTime.now()}';
+                        controller.updateMethod();
+                        setState(() {});
+                      });
+                    },
+                    height: size.height * 0.067,
+                    borderRadius: 30,
+                    sliderButtonIcon: Container(
+                      height: size.height * 0.056,
+                      width: size.width * 0.11,
+                      decoration: const BoxDecoration(
+                          color: Color(0xFF211F1D), shape: BoxShape.circle),
+                      child: Center(
+                          child: Icon(
+                        Iconsax.timer_pause,
+                        color: ColorHelper.kPrimary,
+                        size: 24,
+                      )),
+                    ),
+                    outerColor: ColorHelper.kPrimary,
+                    text: 'Slide to Clock-Out',
+                    textStyle: TextStyleHelper.kPrimary18W600Inter
+                        .copyWith(color: ColorHelper.fontColor),
+                    sliderButtonIconPadding: 0,
+                    innerColor: Colors.transparent,
+                    sliderButtonYOffset: -5,
+                    submittedIcon: Icon(
+                      Icons.check_circle_outline,
+                      size: 35,
+                      color: ColorHelper.fontColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -1179,119 +1111,105 @@ class _Container5State extends State<Container5> {
     final size = MediaQuery.of(context).size;
     return GetBuilder<HomeScreenController>(
       builder: (controller) {
-        return Center(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Container(
-              height: size.height * 0.29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                // border: Border.all(color: ColorHelper.fontColor),
-              ),
-              child: Blur(
-                blur: 10,
-                colorOpacity: 0.25,
-                overlay: Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: size.height * 0.011,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Out of Radius from",
+                      style: TextStyleHelper.kPrimary12W500Inter,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.005,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.timeFormat
+                            .format(DateTime.parse(controller.clockOut1)),
+                        style: const TextStyle(
+                          fontSize: 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Inter-Medium',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.010,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                        controller.dateFormat
+                            .format(DateTime.parse(controller.clockOut1)),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Inter',
+                        )),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.020,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Divider(
+                      height: 0,
+                      thickness: 1,
+                      color: ColorHelper.kPrimary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: size.height * 0.011,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Out of Radius from",
-                          style: TextStyleHelper.kPrimary12W500Inter,
-                        ),
+                      const Icon(
+                        Iconsax.location_cross,
+                        color: Colors.white,
+                        size: 20,
                       ),
                       SizedBox(
-                        height: size.height * 0.005,
+                        width: size.width * 0.028,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.timeFormat
-                                .format(DateTime.parse(controller.clockOut1)),
-                            style: const TextStyle(
-                              fontSize: 32,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Inter-Medium',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.010,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            controller.dateFormat
-                                .format(DateTime.parse(controller.clockOut1)),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Inter',
-                            )),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Divider(
-                          height: 0,
-                          thickness: 1,
-                          color: ColorHelper.kPrimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Iconsax.location_cross,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.028,
-                          ),
-                          Text(
-                            "Location Not Available",
-                            style: TextStyleHelper.kWhite14W600Inter
-                                .copyWith(color: const Color(0xFF868685)),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.015,
-                      ),
-                      Container(
-                        height: size.height * 0.067,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                            color: ColorHelper.kPrimary,
-                            borderRadius: BorderRadius.circular(30)),
-                        child: Center(
-                          child: Text(
-                            'Start Work Break',
-                            style: TextStyleHelper.kPrimary18W600Inter
-                                .copyWith(color: ColorHelper.fontColor),
-                          ),
-                        ),
+                      Text(
+                        "Location Not Available",
+                        style: TextStyleHelper.kWhite14W600Inter
+                            .copyWith(color: const Color(0xFF868685)),
                       ),
                     ],
                   ),
-                ),
-                borderRadius: BorderRadius.circular(30),
-                blurColor: ColorHelper.kBGBlur,
-                child: Container(),
+                  SizedBox(
+                    height: size.height * 0.015,
+                  ),
+                  Container(
+                    height: size.height * 0.067,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                        color: ColorHelper.kPrimary,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: Center(
+                      child: Text(
+                        'Start Work Break',
+                        style: TextStyleHelper.kPrimary18W600Inter
+                            .copyWith(color: ColorHelper.fontColor),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
