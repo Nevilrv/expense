@@ -394,7 +394,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 outsideDaysVisible: true,
                 todayDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.0),
-                  borderRadius: BorderRadius.circular(4),
+                  // borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD).withOpacity(0.5),
                   ),
@@ -407,21 +407,21 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 selectedTextStyle: const TextStyle(color: Colors.white),
                 selectedDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  // borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
                 ),
                 rangeStartDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  // borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
                 ),
                 rangeEndDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  //borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
@@ -429,7 +429,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 withinRangeTextStyle: const TextStyle(color: Colors.white),
                 withinRangeDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  borderRadius: BorderRadius.circular(4),
+                  // borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),

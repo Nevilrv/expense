@@ -1,6 +1,9 @@
 import 'dart:ui';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:expense/Controller/drawer_controller.dart';
+import 'package:expense/View/leaves/leave_screen.dart';
+import 'package:expense/View/letters_screen/letter_requests_screen.dart';
+import 'package:expense/View/notification/notification_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
+import '../View/leaves/request_time_off_screen.dart';
 import 'bottom_bar_screen.dart';
 
 class Global {
@@ -160,15 +164,32 @@ class Global {
             height: size.height * 0.02,
           ),
           rowData(
-              onTap: () {
-                Get.to(() => BottomBarScreen());
-              },
-              title: "Home",
-              icon: Iconsax.home),
+            title: "Home",
+            icon: Iconsax.home,
+            onTap: () {
+              Navigator.pushReplacement(
+                Get.overlayContext!,
+                MaterialPageRoute(
+                  builder: (context) => const BottomBarScreen(),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(title: "Announcements", icon: Iconsax.message_text),
+          rowData(
+            title: "Announcements",
+            icon: Iconsax.message_text,
+            onTap: () {
+              Navigator.push(
+                Get.overlayContext!,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationScreen(),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -222,7 +243,18 @@ class Global {
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(title: "Leaves", icon: Iconsax.setting_24),
+          rowData(
+            title: "Leaves",
+            icon: Iconsax.setting_24,
+            onTap: () {
+              Navigator.push(
+                Get.overlayContext!,
+                MaterialPageRoute(
+                  builder: (context) => const LeaveScreen(),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -234,7 +266,18 @@ class Global {
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(title: "Letter Requests", icon: Iconsax.folder_open),
+          rowData(
+            title: "Letter Requests",
+            icon: Iconsax.folder_open,
+            onTap: () {
+              Navigator.push(
+                Get.overlayContext!,
+                MaterialPageRoute(
+                  builder: (context) => const LetterRequestsScreen(),
+                ),
+              );
+            },
+          ),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -268,7 +311,18 @@ class Global {
         SizedBox(
           height: size.height * 0.02,
         ),
-        rowData(title: "Leave Requests", icon: Iconsax.receipt_square),
+        rowData(
+          title: "Leave Requests",
+          icon: Iconsax.receipt_square,
+          onTap: () {
+            Navigator.push(
+              Get.overlayContext!,
+              MaterialPageRoute(
+                builder: (context) => const RequestTimeOffScreen(),
+              ),
+            );
+          },
+        ),
         SizedBox(
           height: size.height * 0.03,
         ),
