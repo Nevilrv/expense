@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:expense/Common/bottom_bar_screen.dart';
+import 'package:expense/Controller/bottom_bar_controller.dart';
 import 'package:expense/Controller/drawer_controller.dart';
-import 'package:expense/View/leaves/leave_screen.dart';
-import 'package:expense/View/letters_screen/letter_requests_screen.dart';
-import 'package:expense/View/notification/notification_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,11 +10,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
-import '../View/leaves/request_time_off_screen.dart';
-import 'bottom_bar_screen.dart';
 
 class Global {
   DrawerGetController drawerGetController = Get.find();
+  BottomBarController bottomBarController = Get.find();
 
   commonDrawer(
       {required BuildContext context,
@@ -114,7 +112,7 @@ class Global {
             child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: drawerGetController.controller,
-                children: [commonPersonal(size), commonManager(size)]),
+                children: [commonPersonal(size, context), commonManager(size)]),
           ),
         ],
       ),
@@ -124,38 +122,42 @@ class Global {
   Widget rowData({
     IconData? icon,
     String? title,
-    void Function()? onTap,
+    Function()? onTap,
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(icon, color: Colors.white, size: 23),
-          SizedBox(
-            width: 15.w,
-          ),
-          Container(
-            width: Get.width * 0.49,
-            alignment: Alignment.centerLeft,
-            child: ExpandableText(
-              '$title',
-              expandText: 'more',
-              collapseText: 'less',
-              maxLines: 2,
-              style: TextStyleHelper.kWhite16W600Inter,
+      child: Container(
+        height: 20,
+        width: Get.width,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(icon, color: Colors.white, size: 23),
+            SizedBox(
+              width: 15.w,
             ),
-          ),
-          const Spacer(),
-          const Icon(Iconsax.arrow_circle_right,
-              color: Color(0xff868685), size: 18),
-        ],
+            Container(
+              width: Get.width * 0.49,
+              alignment: Alignment.centerLeft,
+              child: ExpandableText(
+                '$title',
+                expandText: 'more',
+                collapseText: 'less',
+                maxLines: 2,
+                style: TextStyleHelper.kWhite16W600Inter,
+              ),
+            ),
+            const Spacer(),
+            const Icon(Iconsax.arrow_circle_right,
+                color: Color(0xff868685), size: 18),
+          ],
+        ),
       ),
     );
   }
 
-  commonPersonal(Size size) {
+  commonPersonal(Size size, BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -164,32 +166,21 @@ class Global {
             height: size.height * 0.02,
           ),
           rowData(
-            title: "Home",
-            icon: Iconsax.home,
-            onTap: () {
-              Navigator.pushReplacement(
-                Get.overlayContext!,
-                MaterialPageRoute(
-                  builder: (context) => const BottomBarScreen(),
-                ),
-              );
-            },
-          ),
+              onTap: () {
+                drawerGetController.setDrawer(false);
+                bottomBarController.setBottomIndex(0);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BottomBarScreen(),
+                    ));
+              },
+              title: "Home",
+              icon: Iconsax.home),
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(
-            title: "Announcements",
-            icon: Iconsax.message_text,
-            onTap: () {
-              Navigator.push(
-                Get.overlayContext!,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationScreen(),
-                ),
-              );
-            },
-          ),
+          rowData(title: "Announcements", icon: Iconsax.message_text),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -244,17 +235,17 @@ class Global {
             height: size.height * 0.03,
           ),
           rowData(
-            title: "Leaves",
-            icon: Iconsax.setting_24,
-            onTap: () {
-              Navigator.push(
-                Get.overlayContext!,
-                MaterialPageRoute(
-                  builder: (context) => const LeaveScreen(),
-                ),
-              );
-            },
-          ),
+              onTap: () {
+                drawerGetController.setDrawer(false);
+                bottomBarController.setBottomIndex(1);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BottomBarScreen(),
+                    ));
+              },
+              title: "Leaves",
+              icon: Iconsax.setting_24),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -266,18 +257,7 @@ class Global {
           SizedBox(
             height: size.height * 0.03,
           ),
-          rowData(
-            title: "Letter Requests",
-            icon: Iconsax.folder_open,
-            onTap: () {
-              Navigator.push(
-                Get.overlayContext!,
-                MaterialPageRoute(
-                  builder: (context) => const LetterRequestsScreen(),
-                ),
-              );
-            },
-          ),
+          rowData(title: "Letter Requests", icon: Iconsax.folder_open),
           SizedBox(
             height: size.height * 0.02,
           ),
@@ -311,18 +291,7 @@ class Global {
         SizedBox(
           height: size.height * 0.02,
         ),
-        rowData(
-          title: "Leave Requests",
-          icon: Iconsax.receipt_square,
-          onTap: () {
-            Navigator.push(
-              Get.overlayContext!,
-              MaterialPageRoute(
-                builder: (context) => const RequestTimeOffScreen(),
-              ),
-            );
-          },
-        ),
+        rowData(title: "Leave Requests", icon: Iconsax.receipt_square),
         SizedBox(
           height: size.height * 0.03,
         ),
