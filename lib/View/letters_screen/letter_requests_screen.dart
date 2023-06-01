@@ -27,7 +27,7 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
     'Passport Letter',
     'Salary Transfer Letter'
   ];
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   @override
   Widget build(BuildContext context) {

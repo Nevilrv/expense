@@ -79,7 +79,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               return Positioned(
                 bottom: 0,
                 child: Visibility(
-                  visible: drawerGetController.isDrawer == false ? true : false,
+                  visible: controller.isDrawer == false ? true : false,
                   child: Container(
                     height: size.height * 0.1997,
                     width: size.width,
@@ -104,7 +104,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               return Positioned(
                 bottom: size.height * 0.015,
                 child: Visibility(
-                  visible: drawerGetController.isDrawer == false ? true : false,
+                  visible: controller.isDrawer == false ? true : false,
                   child: SizedBox(
                     height: size.height * 0.08,
                     width: size.width,
@@ -130,7 +130,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                                   height: size.height * 0.06,
                                   width: bottomIndex == index
                                       ? size.width * 0.381
-                                      : size.width * 0.165,
+                                      : size.width * 0.16,
                                   alignment: Alignment.center,
                                   decoration: bottomIndex == index
                                       ? BoxDecoration(
