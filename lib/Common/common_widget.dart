@@ -119,7 +119,7 @@ class Global {
   Widget rowData({
     IconData? icon,
     String? title,
-    void Function()? onTap,
+    Function()? onTap,
   }) {
     return GestureDetector(
       onTap: onTap,

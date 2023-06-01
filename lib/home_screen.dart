@@ -86,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: ColorHelper.kBG,
         onDrawerChanged: (val) {
-          log("val----$val");
           drawerGetController.setDrawer(val);
           log("isDrawer---${drawerGetController.isDrawer}");
         },
