@@ -30,11 +30,13 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   DateTime today = DateTime.now();
   PlatformFile? file1;
   String fileName = '';
+  String diff = '';
+  String title = '';
 
   List<Map<String, dynamic>> leaveList = [
     {"title": "Vacation", "days": "23 days remaining", "status": "panding"},
     {"title": "Casual", "days": "32 days remaining", "status": "panding"},
-    {"title": "Sick Leave", "days": "14 days remaining", "status": "panding"},
+    {"title": "Sick", "days": "14 days remaining", "status": "panding"},
     {
       "title": "Sick Leave No Pay",
       "days": "2 days remaining",
@@ -275,6 +277,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                     onTap: () {
                       setState(() {
                         _controller.jumpToPage(1);
+                        title = leaveList[index]['title'];
                       });
                     },
                     child: Container(
@@ -469,6 +472,9 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               endDate = rangeEnd!.day.toString();
               startMonth = format.format(rangeStart!);
               endMonth = format.format(rangeEnd!);
+
+              diff = rangeEnd!.difference(rangeStart!).inDays.toString();
+
               setState(() {
                 _controller.jumpToPage(2);
               });
@@ -536,7 +542,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${startDate}\n${startMonth}',
+                  '$startDate\n$startMonth',
                   textAlign: TextAlign.center,
                   style: TextStyleHelper.kWhite22W600Inter,
                 ),
@@ -550,7 +556,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                       style: TextStyleHelper.kPrimary20W600Inter,
                     ),
                     Text(
-                      '2 days of sick\n leave'.toUpperCase(),
+                      '$diff days of $title\n leaves'.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: TextStyleHelper.kWhite10W500Inter,
                     ),
@@ -560,7 +566,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                   width: size.width * 0.020,
                 ),
                 Text(
-                  '${endDate}\n${endMonth}',
+                  '$endDate\n$endMonth',
                   textAlign: TextAlign.center,
                   style: TextStyleHelper.kWhite22W600Inter,
                 ),
@@ -815,7 +821,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
         height: 55.h,
         width: Get.width,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(231, 157, 157, 0.24),
+          color: const Color.fromRGBO(231, 157, 157, 0.24),
           borderRadius: BorderRadius.circular(15.r),
           // border: Border.all(color: ColorPicker.blue),
         ),
@@ -826,7 +832,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
             children: [
               Icon(
                 Iconsax.close_circle,
-                color: Color(0xffFFBFBD),
+                color: const Color(0xffFFBFBD),
                 size: 35.h,
               ),
               SizedBox(
@@ -841,7 +847,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                     style: TextStyle(
                         fontFamily: 'Inter-Bold',
                         fontSize: 16.sp,
-                        color: Color(0xffFFBFBD),
+                        color: const Color(0xffFFBFBD),
                         fontWeight: FontWeight.w600),
                   ),
                   Text(

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:expense/View/Assets/view_more_assets.dart';
 import 'package:expense/View/Expense/view_more_expense.dart';
@@ -40,15 +41,15 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                 children: [
                   Positioned(
                     top: size.height * 0.3,
-                    left: size.width * 0.75,
+                    left: size.width * 0.8,
                     child: Image.asset(
                       'assets/icons/Sales.png',
-                      height: 330,
+                      height: 250,
                     ),
                   ),
                   Positioned(
                     top: size.height * 0.75,
-                    right: size.width * 0.86,
+                    right: size.width * 0.8,
                     child: Image.asset(
                       'assets/icons/Finance.png',
                       height: size.height * 0.3,
@@ -1449,25 +1450,37 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               height: 16,
             ),
             Container(
-              height: 35,
               decoration: BoxDecoration(
-                  color: ColorHelper.kBGBlur,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorHelper.kPrimary.withOpacity(0.3),
-                      blurRadius: 2,
-                    )
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('View Remarks',
-                        style: TextStyleHelper.kWhite10W700Inter),
-                    SvgPicture.asset('assets/icons/arrow-circle-down.svg')
-                  ],
+                color: ColorHelper.kBGBlur,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorHelper.kPrimary.withOpacity(0.3),
+                    blurRadius: 2,
+                  )
+                ],
+              ),
+              child: ConfigurableExpansionTile(
+                header: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 9.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("VIEW REMARKS",
+                          style: TextStyleHelper.kWhite10W700Inter),
+                      SizedBox(
+                        width: size.width * 0.45,
+                      ),
+                      SvgPicture.asset('assets/icons/arrow-circle-down.svg')
+                    ],
+                  ),
+                ),
+                childrenBody: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.049),
+                  child: Text(
+                      textAlign: TextAlign.justify,
+                      "Lorem Ipsum is simply dummy text of the printing and type setting industry.\nLorem Ipsum is simply dummy text of the printing and type setting industry.\n",
+                      style: TextStyleHelper.kWhite10W400Inter),
                 ),
               ),
             )

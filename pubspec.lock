@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  configurable_expansion_tile_null_safety:
+    dependency: "direct main"
+    description:
+      name: configurable_expansion_tile_null_safety
+      sha256: "8a9bacfeac62b0312018c48430a8ababc0aa501150bb40de842412ce6a87deee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   cross_file:
     dependency: transitive
     description:

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:expense/Controller/view_more_assets_controller.dart';
 import 'package:expense/constant/color_helper.dart';
 import 'package:flutter/material.dart';
@@ -51,161 +52,156 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
         return SafeArea(
           child: Scaffold(
             backgroundColor: ColorHelper.kBG,
-            body: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: -size.height * 0.12,
-                    left: -size.width * 0.26,
-                    child: Image.asset(
-                      'assets/icons/People.png',
-                      height: 250,
-                    ),
+            body: Stack(
+              children: [
+                Positioned(
+                  top: -size.height * 0.12,
+                  left: -size.width * 0.26,
+                  child: Image.asset(
+                    'assets/icons/People.png',
+                    height: 250,
                   ),
-                  Positioned(
-                    top: size.height * 0.3,
-                    left: size.width * 0.8,
-                    child: Image.asset(
-                      'assets/icons/Sales.png',
-                      height: 250,
-                    ),
+                ),
+                Positioned(
+                  top: size.height * 0.3,
+                  left: size.width * 0.8,
+                  child: Image.asset(
+                    'assets/icons/Sales.png',
+                    height: 250,
                   ),
-                  Positioned(
-                    top: size.height * 0.75,
-                    right: size.width * 0.85,
-                    child: Image.asset(
-                      'assets/icons/Finance.png',
-                      height: size.height * 0.3,
-                    ),
+                ),
+                Positioned(
+                  top: size.height * 0.75,
+                  right: size.width * 0.85,
+                  child: Image.asset(
+                    'assets/icons/Finance.png',
+                    height: size.height * 0.3,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: size.height * 0.05, horizontal: 12.w),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30.r),
-                      child: Stack(clipBehavior: Clip.none, children: [
-                        Positioned.fill(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: ColorHelper.kBGBlur.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(24.r)),
-                            ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: size.height * 0.05, horizontal: 12.w),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30.r),
+                    child: Stack(clipBehavior: Clip.none, children: [
+                      Positioned.fill(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: ColorHelper.kBGBlur.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(24.r)),
                           ),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: SvgPicture.asset(
-                                      'assets/icons/arrow-left-rounded.svg',
-                                      height: 35,
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/arrow-left-rounded.svg',
+                                    height: 35,
+                                  ),
+                                ),
+                                Text(
+                                  'Assets',
+                                  style: TextStyleHelper.kPrimary20W600Inter,
+                                ),
+                                const SizedBox(width: 35),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            height: 0,
+                            thickness: 2,
+                            color: ColorHelper.kPrimary,
+                          ),
+                          const SizedBox(
+                            height: 28,
+                          ),
+                          Container(
+                            height: size.height * 0.040,
+                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            decoration: BoxDecoration(
+                                color: const Color(0xff2F2D29).withOpacity(0.4),
+                                border:
+                                    Border.all(color: ColorHelper.kDarkGrey),
+                                borderRadius: BorderRadius.circular(8.r)),
+                            child: TabBar(
+                              controller: _tabController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              onTap: (value) {
+                                controller.updateValue(value);
+                              },
+                              // give the indicator a decoration (color and border radius)
+                              indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  color: const Color(0xffFFC091),
+                                  border: Border.all(color: Colors.white)),
+                              labelColor: Colors.white,
+                              unselectedLabelColor: Colors.black,
+                              tabs: [
+                                Center(
+                                  child: Text(
+                                    'Pending',
+                                    style: TextStyleHelper.kPrimary20W600Inter
+                                        .copyWith(
+                                      fontSize: 14.sp,
+                                      color: controller.index == 0
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
                                     ),
                                   ),
-                                  Text(
-                                    'Assets',
-                                    style: TextStyleHelper.kPrimary20W600Inter,
+                                ),
+                                Center(
+                                  child: Text(
+                                    'Approved',
+                                    style: TextStyleHelper.kPrimary20W600Inter
+                                        .copyWith(
+                                      fontSize: 14.sp,
+                                      color: controller.index == 1
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
+                                    ),
                                   ),
-                                  const SizedBox(width: 35),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Divider(
-                              height: 0,
-                              thickness: 2,
-                              color: ColorHelper.kPrimary,
-                            ),
-                            const SizedBox(
-                              height: 28,
-                            ),
-                            Container(
-                              height: size.height * 0.040,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xff2F2D29).withOpacity(0.4),
-                                  border:
-                                      Border.all(color: ColorHelper.kDarkGrey),
-                                  borderRadius: BorderRadius.circular(8.r)),
-                              child: TabBar(
-                                controller: _tabController,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          SizedBox(
+                            height: size.height * 0.68,
+                            // color: Colors.red,
+                            child: TabBarView(
                                 physics: const NeverScrollableScrollPhysics(),
-                                onTap: (value) {
-                                  controller.updateValue(value);
-                                },
-                                // give the indicator a decoration (color and border radius)
-                                indicator: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    color: const Color(0xffFFC091),
-                                    border: Border.all(color: Colors.white)),
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Center(
-                                    child: Text(
-                                      'Pending',
-                                      style: TextStyleHelper.kPrimary20W600Inter
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        color: controller.index == 0
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Approved',
-                                      style: TextStyleHelper.kPrimary20W600Inter
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        color: controller.index == 1
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            SizedBox(
-                              height: size.height * 0.68,
-                              // color: Colors.red,
-                              child: TabBarView(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  controller: _tabController,
-                                  children: [
-                                    pendingAssetsMethod(size),
-                                    approvedAssetsMethod(size),
-                                  ]),
-                            ),
-                          ],
-                        ),
-                      ]),
-                    ),
+                                controller: _tabController,
+                                children: [
+                                  pendingAssetsMethod(size),
+                                  approvedAssetsMethod(size),
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ]),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
@@ -214,153 +210,170 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
   }
 
   pendingAssetsMethod(Size size) {
-    return Column(
-      children: List.generate(
-        2,
-        (index) => Container(
-          width: size.width,
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.14),
-            border: Border.all(color: ColorHelper.kDarkGrey),
-            borderRadius: BorderRadius.circular(
-              16.r,
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: List.generate(
+          2,
+          (index) => Container(
+            width: size.width,
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.14),
+              border: Border.all(color: ColorHelper.kDarkGrey),
+              borderRadius: BorderRadius.circular(
+                16.r,
+              ),
             ),
-          ),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'HP Dell - Mac 10',
-                      style: TextStyleHelper.kWhite144WBOLDInter,
-                    ),
-                    const Spacer(),
-                    PopupMenuButton<String>(
-                      padding: const EdgeInsets.symmetric(vertical: 1),
-                      color: ColorHelper.kBGBlur,
-                      shadowColor: ColorHelper.kPrimary,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(16.0.r),
-                        ),
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'HP Dell - Mac 10',
+                        style: TextStyleHelper.kWhite144WBOLDInter,
                       ),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          height: 10,
-                          child: Center(
-                            child: Row(
-                              children: [
-                                SvgPicture.asset('assets/icons/edit1.svg'),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text('Edit',
-                                    style:
-                                        TextStyleHelper.kWhite12w500BOLDInter),
-                              ],
-                            ),
+                      const Spacer(),
+                      PopupMenuButton<String>(
+                        padding: const EdgeInsets.symmetric(vertical: 1),
+                        color: ColorHelper.kBGBlur,
+                        shadowColor: ColorHelper.kPrimary,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(16.0.r),
                           ),
                         ),
-                        const PopupMenuDivider(
-                          height: 2,
-                        ),
-                        PopupMenuItem(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          height: 10,
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/close-circle1.svg',
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text('Delete',
-                                        style: TextStyleHelper
-                                            .kWhite12w500BOLDInter),
-                                  ],
-                                ),
-                              ],
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            height: 10,
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset('assets/icons/edit1.svg'),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text('Edit',
+                                      style: TextStyleHelper
+                                          .kWhite12w500BOLDInter),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                      child: SvgPicture.asset(
-                          'assets/icons/Kebab Menu Horizontal.svg',
-                          height: 20),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset('assets/icons/monitor-mobbile.svg'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      '${assets[index]}',
-                      style: TextStyleHelper.kLightGrey16W600Inter,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 17.5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Request Date:',
-                      style: TextStyleHelper.kWhite10W500Inter,
-                    ),
-                    Text(
-                      '02/04/27',
-                      style: TextStyleHelper.kWhite10W700Inter,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 35,
-                  decoration: BoxDecoration(
+                          const PopupMenuDivider(
+                            height: 2,
+                          ),
+                          PopupMenuItem(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            height: 10,
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/close-circle1.svg',
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text('Delete',
+                                          style: TextStyleHelper
+                                              .kWhite12w500BOLDInter),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                        child: SvgPicture.asset(
+                            'assets/icons/Kebab Menu Horizontal.svg',
+                            height: 20),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset('assets/icons/monitor-mobbile.svg'),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        '${assets[index]}',
+                        style: TextStyleHelper.kLightGrey16W600Inter,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 17.5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Request Date:',
+                        style: TextStyleHelper.kWhite10W500Inter,
+                      ),
+                      Text(
+                        '02/04/27',
+                        style: TextStyleHelper.kWhite10W700Inter,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
                       color: ColorHelper.kBGBlur,
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
                           color: ColorHelper.kPrimary.withOpacity(0.3),
                           blurRadius: 2,
                         )
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('VIEW REASON',
-                            style: TextStyleHelper.kWhite10W700Inter),
-                        SvgPicture.asset('assets/icons/arrow-circle-down.svg')
                       ],
                     ),
-                  ),
-                )
-              ],
+                    child: ConfigurableExpansionTile(
+                      header: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("VIEW REMARKS",
+                                style: TextStyleHelper.kWhite10W700Inter),
+                            SizedBox(
+                              width: size.width * 0.45,
+                            ),
+                            SvgPicture.asset(
+                                'assets/icons/arrow-circle-down.svg')
+                          ],
+                        ),
+                      ),
+                      childrenBody: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.049),
+                        child: Text(
+                            textAlign: TextAlign.justify,
+                            "Lorem Ipsum is simply dummy text of the printing and type setting industry.\nLorem Ipsum is simply dummy text of the printing and type setting industry.\n",
+                            style: TextStyleHelper.kWhite10W400Inter),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -369,87 +382,103 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
   }
 
   approvedAssetsMethod(Size size) {
-    return Column(
-      children: List.generate(
-        3,
-        (index) => Container(
-          width: size.width,
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.14),
-            border: Border.all(color: ColorHelper.kDarkGrey),
-            borderRadius: BorderRadius.circular(
-              16.r,
+    return SingleChildScrollView(
+      child: Column(
+        children: List.generate(
+          3,
+          (index) => Container(
+            width: size.width,
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.14),
+              border: Border.all(color: ColorHelper.kDarkGrey),
+              borderRadius: BorderRadius.circular(
+                16.r,
+              ),
             ),
-          ),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'HP Dell - Mac 10',
-                  style: TextStyleHelper.kWhite144WBOLDInter,
-                ),
-                const SizedBox(
-                  height: 9.5,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset('assets/icons/monitor-mobbile.svg'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      '${assets[index + 2]}',
-                      style: TextStyleHelper.kLightGrey16W600Inter,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Assignment Date:',
-                      style: TextStyleHelper.kWhite10W500Inter,
-                    ),
-                    Text(
-                      '02/04/27',
-                      style: TextStyleHelper.kWhite10W700Inter,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 35,
-                  decoration: BoxDecoration(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'HP Dell - Mac 10',
+                    style: TextStyleHelper.kWhite144WBOLDInter,
+                  ),
+                  const SizedBox(
+                    height: 9.5,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset('assets/icons/monitor-mobbile.svg'),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        '${assets[index + 2]}',
+                        style: TextStyleHelper.kLightGrey16W600Inter,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Assignment Date:',
+                        style: TextStyleHelper.kWhite10W500Inter,
+                      ),
+                      Text(
+                        '02/04/27',
+                        style: TextStyleHelper.kWhite10W700Inter,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
                       color: ColorHelper.kBGBlur,
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
                           color: ColorHelper.kPrimary.withOpacity(0.3),
                           blurRadius: 2,
                         )
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('VIEW REMARKS ',
-                            style: TextStyleHelper.kWhite10W700Inter),
-                        SvgPicture.asset('assets/icons/arrow-circle-down.svg')
                       ],
                     ),
-                  ),
-                )
-              ],
+                    child: ConfigurableExpansionTile(
+                      header: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("VIEW REMARKS",
+                                style: TextStyleHelper.kWhite10W700Inter),
+                            SizedBox(
+                              width: size.width * 0.45,
+                            ),
+                            SvgPicture.asset(
+                                'assets/icons/arrow-circle-down.svg')
+                          ],
+                        ),
+                      ),
+                      childrenBody: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.049),
+                        child: Text(
+                            textAlign: TextAlign.justify,
+                            "Lorem Ipsum is simply dummy text of the printing and type setting industry.\nLorem Ipsum is simply dummy text of the printing and type setting industry.\n",
+                            style: TextStyleHelper.kWhite10W400Inter),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
