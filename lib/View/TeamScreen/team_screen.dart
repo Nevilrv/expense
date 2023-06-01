@@ -65,7 +65,7 @@ class _TeamScreenState extends State<TeamScreen> {
       'image': 'assets/icons/Frame 2452.svg'
     },
   ];
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override

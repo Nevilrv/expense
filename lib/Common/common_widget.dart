@@ -1,25 +1,12 @@
-import 'dart:developer';
 import 'dart:ui';
-
-import 'package:blur/blur.dart';
 import 'package:expense/Controller/drawer_controller.dart';
-import 'package:expense/View/TeamScreen/team_screen.dart';
-import 'package:expense/View/payslip/payroll_components_screen.dart';
-import 'package:expense/bottom_bar_screen.dart';
 import 'package:expense/constant/text_style_helper.dart';
-import 'package:expense/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import '../View/ErrorScreen/error_state_1.dart';
-import '../View/Expense/expense_screen.dart';
-
-import '../View/letters_screen/letter_requests_screen.dart';
-import '../View/notification/notification_screen.dart';
-
-import 'color_helper.dart';
+import '../Constant/color_helper.dart';
 
 class Global {
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
@@ -41,7 +28,7 @@ class Global {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               Iconsax.close_circle,
               color: Colors.white,
             ),
@@ -57,9 +44,9 @@ class Global {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40.r),
                       color: Colors.white,
-                      border:
-                          Border.all(color: Color(0xffFFC091), width: 0.5.w),
-                      image: DecorationImage(
+                      border: Border.all(
+                          color: const Color(0xffFFC091), width: 0.5.w),
+                      image: const DecorationImage(
                           image: AssetImage("assets/images/profile.png"),
                           fit: BoxFit.cover))),
               SizedBox(
@@ -83,7 +70,7 @@ class Global {
             height: size.height * 0.065,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13.r),
-              color: Color.fromRGBO(255, 255, 255, 0.14),
+              color: const Color.fromRGBO(255, 255, 255, 0.14),
             ),
             child: TabBar(
               controller: drawerGetController.controller,
@@ -95,8 +82,8 @@ class Global {
               },
               indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
-                  color: Color.fromRGBO(255, 192, 145, 0.24),
-                  border: Border.all(color: Color(0xffFFC091))),
+                  color: const Color.fromRGBO(255, 192, 145, 0.24),
+                  border: Border.all(color: const Color(0xffFFC091))),
               indicatorPadding: EdgeInsets.all(size.height * 0.008),
               tabs: [
                 Text(
@@ -115,7 +102,7 @@ class Global {
           ),
           Divider(
             thickness: size.height * 0.001,
-            color: Color(0xff868685),
+            color: const Color(0xff868685),
           ),
           Expanded(
             child: TabBarView(
@@ -128,7 +115,7 @@ class Global {
     );
   }
 
-  Widget RowData({
+  Widget rowData({
     IconData? icon,
     String? title,
     void Function()? onTap,
@@ -150,8 +137,9 @@ class Global {
               style: TextStyleHelper.kWhite16W600Inter,
             ),
           ),
-          Spacer(),
-          Icon(Iconsax.arrow_circle_right, color: Color(0xff868685), size: 18),
+          const Spacer(),
+          const Icon(Iconsax.arrow_circle_right,
+              color: Color(0xff868685), size: 18),
         ],
       ),
     );
@@ -159,13 +147,13 @@ class Global {
 
   commonPersonal(Size size) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
           SizedBox(
             height: size.height * 0.02,
           ),
-          RowData(
+          rowData(
               onTap: () {
                 // Get.to(() => BottomBarScreen());
               },
@@ -174,17 +162,17 @@ class Global {
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Announcements", icon: Iconsax.message_text),
+          rowData(title: "Announcements", icon: Iconsax.message_text),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Surveys", icon: Iconsax.emoji_happy),
+          rowData(title: "Surveys", icon: Iconsax.emoji_happy),
           SizedBox(
             height: size.height * 0.02,
           ),
           Divider(
             thickness: size.height * 0.001,
-            color: Color.fromRGBO(255, 255, 255, 0.14),
+            color: const Color.fromRGBO(255, 255, 255, 0.14),
           ),
           SizedBox(
             height: size.height * 0.01,
@@ -197,17 +185,17 @@ class Global {
           SizedBox(
             height: size.height * 0.02,
           ),
-          RowData(title: "Health Services", icon: Iconsax.health),
+          rowData(title: "Health Services", icon: Iconsax.health),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Perks", icon: Iconsax.gift),
+          rowData(title: "Perks", icon: Iconsax.gift),
           SizedBox(
             height: size.height * 0.02,
           ),
           Divider(
             thickness: size.height * 0.001,
-            color: Color.fromRGBO(255, 255, 255, 0.14),
+            color: const Color.fromRGBO(255, 255, 255, 0.14),
           ),
           SizedBox(
             height: size.height * 0.01,
@@ -220,46 +208,46 @@ class Global {
           SizedBox(
             height: size.height * 0.02,
           ),
-          RowData(title: "Attendence", icon: Iconsax.calendar_tick),
+          rowData(title: "Attendence", icon: Iconsax.calendar_tick),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "My pay", icon: Iconsax.wallet_money),
+          rowData(title: "My pay", icon: Iconsax.wallet_money),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Leaves", icon: Iconsax.setting_24),
+          rowData(title: "Leaves", icon: Iconsax.setting_24),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Work expenses", icon: Iconsax.receipt_text),
+          rowData(title: "Work expenses", icon: Iconsax.receipt_text),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Loan requests", icon: Iconsax.folder_open),
+          rowData(title: "Loan requests", icon: Iconsax.folder_open),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Letter Requests", icon: Iconsax.folder_open),
+          rowData(title: "Letter Requests", icon: Iconsax.folder_open),
           SizedBox(
             height: size.height * 0.02,
           ),
           Divider(
             thickness: size.height * 0.001,
-            color: Color.fromRGBO(255, 255, 255, 0.14),
+            color: const Color.fromRGBO(255, 255, 255, 0.14),
           ),
           SizedBox(
             height: size.height * 0.02,
           ),
-          RowData(title: "Settings", icon: Iconsax.setting_24),
+          rowData(title: "Settings", icon: Iconsax.setting_24),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Suggest a feature", icon: Iconsax.information),
+          rowData(title: "Suggest a feature", icon: Iconsax.information),
           SizedBox(
             height: size.height * 0.03,
           ),
-          RowData(title: "Logout", icon: Iconsax.logout),
+          rowData(title: "Logout", icon: Iconsax.logout),
           SizedBox(
             height: size.height * 0.03,
           ),
@@ -274,36 +262,36 @@ class Global {
         SizedBox(
           height: size.height * 0.02,
         ),
-        RowData(title: "Leave Requests", icon: Iconsax.receipt_square),
+        rowData(title: "Leave Requests", icon: Iconsax.receipt_square),
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Attendence Daily Report", icon: Iconsax.calendar_tick),
+        rowData(title: "Attendence Daily Report", icon: Iconsax.calendar_tick),
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Kiosk mode", icon: Iconsax.scan_barcode),
+        rowData(title: "Kiosk mode", icon: Iconsax.scan_barcode),
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Work expenses", icon: Iconsax.receipt_text),
-        Spacer(),
+        rowData(title: "Work expenses", icon: Iconsax.receipt_text),
+        const Spacer(),
         Divider(
           thickness: size.height * 0.001,
-          color: Color.fromRGBO(255, 255, 255, 0.14),
+          color: const Color.fromRGBO(255, 255, 255, 0.14),
         ),
         SizedBox(
           height: size.height * 0.02,
         ),
-        RowData(title: "Settings", icon: Iconsax.setting_24),
+        rowData(title: "Settings", icon: Iconsax.setting_24),
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Suggest a feature", icon: Iconsax.information),
+        rowData(title: "Suggest a feature", icon: Iconsax.information),
         SizedBox(
           height: size.height * 0.03,
         ),
-        RowData(title: "Logout", icon: Iconsax.logout),
+        rowData(title: "Logout", icon: Iconsax.logout),
         SizedBox(
           height: size.height * 0.03,
         ),

@@ -1,9 +1,7 @@
-import 'package:expense/Controller/drawer_controller.dart';
+import 'package:expense/Common/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'bottom_bar_screen.dart';
 
 void main() {
   runApp(const MyApp());

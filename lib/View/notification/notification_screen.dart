@@ -1,15 +1,14 @@
 import 'dart:developer';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Common/common_widget.dart';
+import 'package:expense/Constant/color_helper.dart';
+import 'package:expense/Constant/text_style_helper.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import '../../constant/color_helper.dart';
-import '../../constant/common_widget.dart';
-import '../../constant/text_style_helper.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -51,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen>
       "time": "6:33 pm"
     },
   ];
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
 
   @override

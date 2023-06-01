@@ -12,7 +12,7 @@ class ClipBoardScreen extends StatefulWidget {
 }
 
 class _ClipBoardScreenState extends State<ClipBoardScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,8 @@
 library flutterslidetoact;
 
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iconsax/iconsax.dart';
 
 /// Slider call to action component
 class SlideAction extends StatefulWidget {

@@ -12,7 +12,7 @@ class ErrorRequestScreen2 extends StatefulWidget {
 }
 
 class _ErrorRequestScreen2State extends State<ErrorRequestScreen2> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

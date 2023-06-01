@@ -1,9 +1,8 @@
 import 'dart:developer';
 import 'dart:ui';
-
+import 'package:expense/Common/common_widget.dart';
+import 'package:expense/Constant/color_helper.dart';
 import 'package:expense/Controller/drawer_controller.dart';
-import 'package:expense/constant/color_helper.dart';
-import 'package:expense/constant/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +19,7 @@ class PaySlipScreen extends StatefulWidget {
 }
 
 class _PaySlipScreenState extends State<PaySlipScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
   List<Map<String, dynamic>> paySlipList = [
     {

@@ -2,13 +2,14 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:blur/blur.dart';
+import 'package:expense/Common/common_widget.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/Controller/home_screen_controller.dart';
 import 'package:expense/View/Expense/expense_screen.dart';
 import 'package:expense/View/letters_screen/letter_requests_screen.dart';
 import 'package:expense/View/notification/notification_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
-import 'package:expense/constant/common_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -291,17 +292,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   controller.Container1 == true
-                                      ? Container1()
+                                      ? const Container1()
                                       : controller.Container2 == true
-                                          ? Container2()
+                                          ? const Container2()
                                           : controller.Container3 == true
-                                              ? Container3()
+                                              ? const Container3()
                                               : controller.Container4 == true
-                                                  ? Container4()
+                                                  ? const Container4()
                                                   : controller.Container5 ==
                                                           true
-                                                      ? Container5()
-                                                      : SizedBox()
+                                                      ? const Container5()
+                                                      : const SizedBox()
                                 ],
                               ),
                             ),
@@ -731,7 +732,7 @@ class _Container2State extends State<Container2> {
                         child: Text(
                             controller.timeFormat
                                 .format(DateTime.parse(controller.clockIn)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 32,
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -746,7 +747,7 @@ class _Container2State extends State<Container2> {
                         child: Text(
                             controller.dateFormat
                                 .format(DateTime.parse(controller.clockIn)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -757,7 +758,7 @@ class _Container2State extends State<Container2> {
                         height: size.height * 0.020,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Divider(
                           height: 0,
                           thickness: 1,
@@ -893,7 +894,7 @@ class _Container3State extends State<Container3> {
                         child: Text(
                             controller.timeFormat
                                 .format(DateTime.parse(controller.clockOut)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 32,
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -908,7 +909,7 @@ class _Container3State extends State<Container3> {
                         child: Text(
                             controller.dateFormat
                                 .format(DateTime.parse(controller.clockOut)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -919,7 +920,7 @@ class _Container3State extends State<Container3> {
                         height: size.height * 0.020,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Divider(
                           height: 0,
                           thickness: 1,
@@ -1055,7 +1056,7 @@ class _Container4State extends State<Container4> {
                         child: Text(
                             controller.timeFormat
                                 .format(DateTime.parse(controller.clockIn1)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 32,
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -1070,7 +1071,7 @@ class _Container4State extends State<Container4> {
                         child: Text(
                             controller.dateFormat
                                 .format(DateTime.parse(controller.clockIn1)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -1081,7 +1082,7 @@ class _Container4State extends State<Container4> {
                         height: size.height * 0.020,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Divider(
                           height: 0,
                           thickness: 1,
@@ -1094,7 +1095,7 @@ class _Container4State extends State<Container4> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Iconsax.location_cross,
                             color: Colors.white,
                             size: 20,
@@ -1105,7 +1106,7 @@ class _Container4State extends State<Container4> {
                           Text(
                             "Location Not Available",
                             style: TextStyleHelper.kWhite14W600Inter
-                                .copyWith(color: Color(0xFF868685)),
+                                .copyWith(color: const Color(0xFF868685)),
                           ),
                         ],
                       ),
@@ -1232,7 +1233,7 @@ class _Container5State extends State<Container5> {
                         child: Text(
                             controller.dateFormat
                                 .format(DateTime.parse(controller.clockOut1)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -1243,7 +1244,7 @@ class _Container5State extends State<Container5> {
                         height: size.height * 0.020,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Divider(
                           height: 0,
                           thickness: 1,
@@ -1256,7 +1257,7 @@ class _Container5State extends State<Container5> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Iconsax.location_cross,
                             color: Colors.white,
                             size: 20,
@@ -1267,7 +1268,7 @@ class _Container5State extends State<Container5> {
                           Text(
                             "Location Not Available",
                             style: TextStyleHelper.kWhite14W600Inter
-                                .copyWith(color: Color(0xFF868685)),
+                                .copyWith(color: const Color(0xFF868685)),
                           ),
                         ],
                       ),

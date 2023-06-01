@@ -18,7 +18,7 @@ class TextStyleHelper {
   );
   static TextStyle kPrimary14W600Inter = TextStyle(
     fontSize: 14.sp,
-    color: Color(0xffF7F6F5),
+    color: const Color(0xffF7F6F5),
     fontWeight: FontWeight.w600,
     fontFamily: 'Inter-Bold',
   );
@@ -107,7 +107,7 @@ class TextStyleHelper {
     fontWeight: FontWeight.w700,
     fontFamily: 'Inter-Medium',
   );
-  static TextStyle kgrey12W500Inter = TextStyle(
+  static TextStyle kgrey12W500Inter = const TextStyle(
     fontSize: 12,
     color: Color(0xff868685),
     fontWeight: FontWeight.w500,
