@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
+import 'bottom_bar_screen.dart';
 
 class Global {
   DrawerGetController drawerGetController = Get.find();
@@ -131,13 +132,6 @@ class Global {
           SizedBox(
             width: 15.w,
           ),
-          // Align(
-          //   alignment: Alignment.center,
-          //   child: Text(
-          //     "$title",
-          //     style: TextStyleHelper.kWhite16W600Inter,
-          //   ),
-          // ),
           Container(
             width: Get.width * 0.49,
             alignment: Alignment.centerLeft,
@@ -167,7 +161,7 @@ class Global {
           ),
           rowData(
               onTap: () {
-                // Get.to(() => BottomBarScreen());
+                Get.to(() => BottomBarScreen());
               },
               title: "Home",
               icon: Iconsax.home),

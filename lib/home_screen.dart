@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:ui';
-import 'package:blur/blur.dart';
 import 'package:expense/Common/common_widget.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/Controller/home_screen_controller.dart';
@@ -866,7 +865,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "${title}",
+                  "$title",
                   style: TextStyleHelper.kPrimary12W500Inter,
                 ),
               ),
