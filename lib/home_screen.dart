@@ -545,7 +545,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-              )
+              ),
+              // BottomBar().commonBottomBar(context: context, size: size)
             ],
           ),
         ),

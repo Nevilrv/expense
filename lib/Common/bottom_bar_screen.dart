@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:expense/Common/common_widget.dart';
+import 'package:expense/Controller/bottom_bar_controller.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/View/leaves/leave_screen.dart';
 import 'package:expense/View/payslip/payslip_screen.dart';
@@ -15,15 +16,17 @@ import '../View/letters_screen/letter_requests_screen.dart';
 import '../home_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
-  const BottomBarScreen({Key? key}) : super(key: key);
+  const BottomBarScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<BottomBarScreen> createState() => _BottomBarScreenState();
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  int bottomIndex = 0;
   DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  BottomBarController bottomBarController = Get.put(BottomBarController());
 
   List<Map<String, dynamic>> bottomBarList = [
     {
@@ -63,17 +66,13 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               .commonDrawer(context: context, size: size, key: _scaffoldKey),
         ),
         body: Stack(children: [
-          Stack(
-            children: [
-              bottomIndex == 0
-                  ? const HomeScreen()
-                  : bottomIndex == 1
-                      ? const LeaveScreen()
-                      : bottomIndex == 2
-                          ? const PaySlipScreen()
-                          : const LetterRequestsScreen(),
-            ],
-          ),
+          bottomBarController.bottomIndex == 0
+              ? const HomeScreen()
+              : bottomBarController.bottomIndex == 1
+                  ? const LeaveScreen()
+                  : bottomBarController.bottomIndex == 2
+                      ? const PaySlipScreen()
+                      : const LetterRequestsScreen(),
           GetBuilder<DrawerGetController>(
             builder: (controller) {
               return Positioned(
@@ -121,31 +120,34 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    bottomIndex = index;
+                                    bottomBarController.setBottomIndex(index);
                                   });
 
-                                  log('bottomIndex---------->>>>>> $bottomIndex');
+                                  log('bottomIndex---------->>>>>> ${bottomBarController.bottomIndex}');
                                 },
                                 child: Container(
                                   height: size.height * 0.06,
-                                  width: bottomIndex == index
-                                      ? size.width * 0.381
-                                      : size.width * 0.16,
+                                  width:
+                                      bottomBarController.bottomIndex == index
+                                          ? size.width * 0.381
+                                          : size.width * 0.16,
                                   alignment: Alignment.center,
-                                  decoration: bottomIndex == index
-                                      ? BoxDecoration(
-                                          color: ColorHelper.kPrimary
-                                              .withOpacity(0.5),
-                                          borderRadius:
-                                              BorderRadius.circular(30.r),
-                                          border: Border.all(
-                                              color: ColorHelper.kPrimary,
-                                              width: 1.5))
-                                      : const BoxDecoration(
-                                          color: Color(0xff6C6B6A),
-                                          shape: BoxShape.circle,
-                                        ),
-                                  child: bottomIndex == index
+                                  decoration:
+                                      bottomBarController.bottomIndex == index
+                                          ? BoxDecoration(
+                                              color: ColorHelper.kPrimary
+                                                  .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(30.r),
+                                              border: Border.all(
+                                                  color: ColorHelper.kPrimary,
+                                                  width: 1.5))
+                                          : const BoxDecoration(
+                                              color: Color(0xff6C6B6A),
+                                              shape: BoxShape.circle,
+                                            ),
+                                  child: bottomBarController.bottomIndex ==
+                                          index
                                       ? Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: size.width * 0.040),

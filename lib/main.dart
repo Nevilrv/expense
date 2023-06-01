@@ -1,4 +1,5 @@
 import 'package:expense/Common/bottom_bar_screen.dart';
+import 'package:expense/Controller/bottom_bar_controller.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/Controller/expense_controller.dart';
 import 'package:expense/Controller/home_screen_controller.dart';
@@ -40,5 +41,6 @@ class BaseBindings extends Bindings {
     Get.lazyPut(() => DrawerGetController(), fenix: true);
     Get.lazyPut(() => ExpenseScreenController(), fenix: true);
     Get.lazyPut(() => HomeScreenController(), fenix: true);
+    Get.lazyPut(() => BottomBarController(), fenix: true);
   }
 }
