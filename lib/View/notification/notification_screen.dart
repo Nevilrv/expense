@@ -55,7 +55,11 @@ class _NotificationScreenState extends State<NotificationScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
+
     super.initState();
   }
 
