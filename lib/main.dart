@@ -10,6 +10,7 @@ import 'Controller/bottom_bar_controller.dart';
 
 void main() {
   runApp(const MyApp());
+  ///
 }
 
 class MyApp extends StatelessWidget {
