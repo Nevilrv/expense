@@ -64,7 +64,7 @@ class _TeamScreenState extends State<TeamScreen> {
     },
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   @override
   Widget build(BuildContext context) {

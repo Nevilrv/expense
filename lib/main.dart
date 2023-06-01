@@ -1,4 +1,7 @@
 import 'package:expense/Common/bottom_bar_screen.dart';
+import 'package:expense/Controller/drawer_controller.dart';
+import 'package:expense/Controller/expense_controller.dart';
+import 'package:expense/Controller/home_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,9 +25,20 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        initialBinding: BaseBindings(),
         home: const BottomBarScreen(),
         // home: LeaveScreen(),
       ),
     );
+  }
+}
+
+class BaseBindings extends Bindings {
+  @override
+  void dependencies() {
+    // TODO: implement dependencies
+    Get.lazyPut(() => DrawerGetController(), fenix: true);
+    Get.lazyPut(() => ExpenseScreenController(), fenix: true);
+    Get.lazyPut(() => HomeScreenController(), fenix: true);
   }
 }

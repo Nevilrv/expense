@@ -44,7 +44,7 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   bool isAvilable = false;
   DateTime? selectDate1;
   bool open = false;
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   @override
   Widget build(BuildContext context) {

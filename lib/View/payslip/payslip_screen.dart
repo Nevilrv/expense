@@ -20,7 +20,7 @@ class PaySlipScreen extends StatefulWidget {
 
 class _PaySlipScreenState extends State<PaySlipScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
   List<Map<String, dynamic>> paySlipList = [
     {
       "day": "4 Jun - 4 Jul",

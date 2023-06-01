@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:expandable_text/expandable_text.dart';
 import 'package:expense/Controller/drawer_controller.dart';
 import 'package:expense/constant/text_style_helper.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
 
 class Global {
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   commonDrawer(
       {required BuildContext context,
@@ -130,10 +131,21 @@ class Global {
           SizedBox(
             width: 15.w,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "$title",
+          // Align(
+          //   alignment: Alignment.center,
+          //   child: Text(
+          //     "$title",
+          //     style: TextStyleHelper.kWhite16W600Inter,
+          //   ),
+          // ),
+          Container(
+            width: Get.width * 0.49,
+            alignment: Alignment.centerLeft,
+            child: ExpandableText(
+              '$title',
+              expandText: 'more',
+              collapseText: 'less',
+              maxLines: 2,
               style: TextStyleHelper.kWhite16W600Inter,
             ),
           ),
@@ -274,7 +286,7 @@ class Global {
         SizedBox(
           height: size.height * 0.03,
         ),
-        rowData(title: "Work expenses", icon: Iconsax.receipt_text),
+        rowData(title: "Work expenses Requests", icon: Iconsax.receipt_text),
         const Spacer(),
         Divider(
           thickness: size.height * 0.001,

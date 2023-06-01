@@ -51,7 +51,7 @@ class _NotificationScreenState extends State<NotificationScreen>
     },
   ];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   @override
   void initState() {

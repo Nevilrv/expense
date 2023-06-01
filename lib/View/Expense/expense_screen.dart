@@ -24,8 +24,7 @@ class ExpenseScreen extends StatefulWidget {
 class _ExpenseScreenState extends State<ExpenseScreen> {
   ScrollController scrollController = ScrollController();
 
-  ExpenseScreenController expenseScreenController =
-      Get.put(ExpenseScreenController());
+  ExpenseScreenController expenseScreenController = Get.find();
 
   @override
   Widget build(BuildContext context) {

@@ -81,8 +81,7 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
     },
   ];
 
-  ExpenseScreenController expenseScreenController =
-      Get.put(ExpenseScreenController());
+  ExpenseScreenController expenseScreenController = Get.find();
 
   @override
   Widget build(BuildContext context) {

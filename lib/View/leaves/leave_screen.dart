@@ -86,7 +86,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
   ];
 
   int bottomIndex = 0;
-  DrawerGetController drawerGetController = Get.put(DrawerGetController());
+  DrawerGetController drawerGetController = Get.find();
 
   ScrollController scrollController = ScrollController();
 
