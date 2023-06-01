@@ -31,8 +31,19 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
   int selectPage = 0;
   List scroll = [0];
   DateTime? selectDate1;
+  DateTime? rangeStart;
+  DateTime? rangeEnd;
   DateTime today = DateTime.now();
   bool open = false;
+
+  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
+    setState(() {
+      selectDate1 = null;
+      today = focusedDay;
+      rangeStart = start;
+      rangeEnd = end;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -287,14 +298,18 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
           child: TableCalendar(
             focusedDay: today,
             firstDay: DateTime(2000),
-            lastDay: DateTime.now(),
+            lastDay: DateTime(2050),
             calendarFormat: CalendarFormat.month,
             currentDay: DateTime.now(),
             daysOfWeekVisible: true,
             weekNumbersVisible: false,
             shouldFillViewport: true,
+            rangeStartDay: rangeStart,
+            rangeEndDay: rangeEnd,
+            rangeSelectionMode: RangeSelectionMode.toggledOn,
             onDaySelected: _onDaySelected,
             selectedDayPredicate: (day) => isSameDay(day, today),
+            onRangeSelected: _onRangeSelected,
             headerStyle: HeaderStyle(
               formatButtonShowsNext: false,
               formatButtonVisible: false,
@@ -330,23 +345,53 @@ class _RequestLetterScreensState extends State<RequestLetterScreens> {
               headerPadding: const EdgeInsets.only(bottom: 5, top: 5),
             ),
             calendarStyle: CalendarStyle(
-              cellMargin:
-                  const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
-              isTodayHighlighted: false,
-              outsideDaysVisible: true,
-              weekendTextStyle: const TextStyle(color: Colors.white),
-              defaultTextStyle: const TextStyle(color: Colors.white),
-              disabledTextStyle: const TextStyle(color: Colors.grey),
-              canMarkersOverflow: false,
-              selectedTextStyle: const TextStyle(color: Colors.white),
-              selectedDecoration: BoxDecoration(
-                color: const Color(0xffB2FF81).withOpacity(0.26),
-                //  borderRadius: BorderRadius.circular(4),
-                border: Border.all(
-                  color: const Color(0xffFFBFBD),
+                cellMargin:
+                    const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
+                isTodayHighlighted: true,
+                outsideDaysVisible: true,
+                todayDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.0),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD).withOpacity(0.5),
+                  ),
                 ),
-              ),
-            ),
+                todayTextStyle: TextStyle(color: ColorHelper.kPrimary),
+                weekendTextStyle: const TextStyle(color: Colors.white),
+                defaultTextStyle: const TextStyle(color: Colors.white),
+                disabledTextStyle: const TextStyle(color: Colors.grey),
+                canMarkersOverflow: false,
+                selectedTextStyle: const TextStyle(color: Colors.white),
+                selectedDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                rangeStartDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                rangeEndDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                withinRangeTextStyle: const TextStyle(color: Colors.white),
+                withinRangeDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                rangeHighlightColor: Colors.transparent),
             daysOfWeekStyle: const DaysOfWeekStyle(
               weekdayStyle: TextStyle(
                 color: Colors.white,

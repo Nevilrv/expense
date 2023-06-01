@@ -50,8 +50,8 @@ class _AddAssetsState extends State<AddAssets> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: size.height * 0.05136),
+                    padding: EdgeInsets.symmetric(
+                        vertical: size.height * 0.05136, horizontal: 12),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
@@ -59,8 +59,6 @@ class _AddAssetsState extends State<AddAssets> {
                           child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
                             child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(24.r)),
@@ -68,7 +66,7 @@ class _AddAssetsState extends State<AddAssets> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.all(size.width * 0.025),
+                          margin: EdgeInsets.only(top: size.width * 0.025),
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

@@ -82,7 +82,8 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 45.0),
+                    padding: EdgeInsets.symmetric(
+                        vertical: size.height * 0.05, horizontal: 12.w),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.r),
                       child: Stack(clipBehavior: Clip.none, children: [
@@ -90,126 +91,115 @@ class _AssetsViewMoreScreenState extends State<AssetsViewMoreScreen>
                           child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
                             child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 12),
                               decoration: BoxDecoration(
                                   color: ColorHelper.kBGBlur.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(24.r)),
                             ),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.025,
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: SvgPicture.asset(
-                                        'assets/icons/arrow-left-rounded.svg',
-                                        height: 35,
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: SvgPicture.asset(
+                                      'assets/icons/arrow-left-rounded.svg',
+                                      height: 35,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Assets',
+                                    style: TextStyleHelper.kPrimary20W600Inter,
+                                  ),
+                                  const SizedBox(width: 35),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              height: 0,
+                              thickness: 2,
+                              color: ColorHelper.kPrimary,
+                            ),
+                            const SizedBox(
+                              height: 28,
+                            ),
+                            Container(
+                              height: size.height * 0.040,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xff2F2D29).withOpacity(0.4),
+                                  border:
+                                      Border.all(color: ColorHelper.kDarkGrey),
+                                  borderRadius: BorderRadius.circular(8.r)),
+                              child: TabBar(
+                                controller: _tabController,
+                                physics: const NeverScrollableScrollPhysics(),
+                                onTap: (value) {
+                                  controller.updateValue(value);
+                                },
+                                // give the indicator a decoration (color and border radius)
+                                indicator: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    color: const Color(0xffFFC091),
+                                    border: Border.all(color: Colors.white)),
+                                labelColor: Colors.white,
+                                unselectedLabelColor: Colors.black,
+                                tabs: [
+                                  Center(
+                                    child: Text(
+                                      'Pending',
+                                      style: TextStyleHelper.kPrimary20W600Inter
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        color: controller.index == 0
+                                            ? ColorHelper.fontColor
+                                            : const Color(
+                                                0xffF7F6F5,
+                                              ),
                                       ),
                                     ),
-                                    Text(
-                                      'Assets',
-                                      style:
-                                          TextStyleHelper.kPrimary20W600Inter,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      'Approved',
+                                      style: TextStyleHelper.kPrimary20W600Inter
+                                          .copyWith(
+                                        fontSize: 14.sp,
+                                        color: controller.index == 1
+                                            ? ColorHelper.fontColor
+                                            : const Color(
+                                                0xffF7F6F5,
+                                              ),
+                                      ),
                                     ),
-                                    const SizedBox(width: 35),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Divider(
-                                height: 0,
-                                thickness: 2,
-                                color: ColorHelper.kPrimary,
-                              ),
-                              const SizedBox(
-                                height: 28,
-                              ),
-                              Container(
-                                height: size.height * 0.040,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                decoration: BoxDecoration(
-                                    color: const Color(0xff2F2D29)
-                                        .withOpacity(0.4),
-                                    border: Border.all(
-                                        color: ColorHelper.kDarkGrey),
-                                    borderRadius: BorderRadius.circular(8.r)),
-                                child: TabBar(
-                                  controller: _tabController,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            SizedBox(
+                              height: size.height * 0.68,
+                              // color: Colors.red,
+                              child: TabBarView(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  onTap: (value) {
-                                    controller.updateValue(value);
-                                  },
-                                  // give the indicator a decoration (color and border radius)
-                                  indicator: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.r),
-                                      color: const Color(0xffFFC091),
-                                      border: Border.all(color: Colors.white)),
-                                  labelColor: Colors.white,
-                                  unselectedLabelColor: Colors.black,
-                                  tabs: [
-                                    Center(
-                                      child: Text(
-                                        'Pending',
-                                        style: TextStyleHelper
-                                            .kPrimary20W600Inter
-                                            .copyWith(
-                                          fontSize: 14.sp,
-                                          color: controller.index == 0
-                                              ? ColorHelper.fontColor
-                                              : const Color(
-                                                  0xffF7F6F5,
-                                                ),
-                                        ),
-                                      ),
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        'Approved',
-                                        style: TextStyleHelper
-                                            .kPrimary20W600Inter
-                                            .copyWith(
-                                          fontSize: 14.sp,
-                                          color: controller.index == 1
-                                              ? ColorHelper.fontColor
-                                              : const Color(
-                                                  0xffF7F6F5,
-                                                ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              SizedBox(
-                                height: size.height * 0.68,
-                                // color: Colors.red,
-                                child: TabBarView(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    controller: _tabController,
-                                    children: [
-                                      pendingAssetsMethod(size),
-                                      approvedAssetsMethod(size),
-                                    ]),
-                              ),
-                            ],
-                          ),
+                                  controller: _tabController,
+                                  children: [
+                                    pendingAssetsMethod(size),
+                                    approvedAssetsMethod(size),
+                                  ]),
+                            ),
+                          ],
                         ),
                       ]),
                     ),

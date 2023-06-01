@@ -205,7 +205,8 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    Expanded(
+                                    SizedBox(
+                                      width: size.width * 0.825,
                                       child: SingleChildScrollView(
                                         controller: scrollController,
                                         scrollDirection: Axis.horizontal,
@@ -272,9 +273,12 @@ class _LeaveScreenState extends State<LeaveScreen> {
                                         ),
                                       ),
                                     ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: size.width * 0.012),
+                                          right: size.width * 0.015),
                                       child: GestureDetector(
                                         onTap: () {
                                           scrollController.animateTo(

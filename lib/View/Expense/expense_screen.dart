@@ -1159,7 +1159,11 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                                                 ],
                                               ),
                                             )
-                                          : const SizedBox()
+                                          : const SizedBox(),
+
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
                                 ],
                               ),
                             ),
@@ -1251,7 +1255,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
               ],
             ),
           )
@@ -1325,7 +1332,10 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
               ],
             ),
           ),

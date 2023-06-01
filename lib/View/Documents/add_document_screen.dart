@@ -120,7 +120,8 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 45.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 45.0, horizontal: 12),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30.r),
                   child: Stack(clipBehavior: Clip.none, children: [
@@ -128,259 +129,248 @@ class _AddDocumentScreenState extends State<AddDocumentScreen>
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
                         child: Container(
-                          padding: const EdgeInsets.all(12),
-                          margin: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
                               color: ColorHelper.kBGBlur.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(24.r)),
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        left: size.width * 0.025,
-                        right: size.width * 0.025,
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: size.width * 0.036,
-                              vertical: size.height * 0.011,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: SvgPicture.asset(
-                                    'assets/icons/arrow-left-rounded.svg',
-                                    height: 35,
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.036,
+                            vertical: size.height * 0.015,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/icons/arrow-left-rounded.svg',
+                                  height: 35,
+                                ),
+                              ),
+                              Text(
+                                'Add document',
+                                style: TextStyleHelper.kPrimary20W600Inter,
+                              ),
+                              const SizedBox(width: 35),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          height: 0,
+                          thickness: 2,
+                          color: ColorHelper.kPrimary,
+                        ),
+                        SizedBox(
+                          height: size.height * 0.028,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                              'Select which document you would like to add',
+                              textAlign: TextAlign.justify,
+                              style: TextStyleHelper.kWhite15W600Inter),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.017,
+                        ),
+                        Container(
+                          height: size.height * 0.040,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: size.height * 0.017),
+                          decoration: BoxDecoration(
+                            color: const Color(0xff2F2D29).withOpacity(0.4),
+                            border: Border.all(color: ColorHelper.kDarkGrey),
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: TabBar(
+                            controller: _tabController,
+                            physics: const NeverScrollableScrollPhysics(),
+                            onTap: (value) {
+                              setState(() {
+                                index = value;
+                              });
+                            },
+                            indicator: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                color: const Color(0xffFFC091),
+                                border: Border.all(color: Colors.white)),
+                            labelColor: Colors.white,
+                            unselectedLabelColor: Colors.black,
+                            tabs: [
+                              Center(
+                                child: Text(
+                                  'Mandatory',
+                                  style: TextStyleHelper.kPrimary20W600Inter
+                                      .copyWith(
+                                    fontSize: 14.sp,
+                                    color: index == 0
+                                        ? ColorHelper.fontColor
+                                        : const Color(
+                                            0xffF7F6F5,
+                                          ),
                                   ),
                                 ),
-                                Text(
-                                  'Add document',
-                                  style: TextStyleHelper.kPrimary20W600Inter,
+                              ),
+                              Center(
+                                child: Text(
+                                  'Non-Mandatory',
+                                  style: TextStyleHelper.kPrimary20W600Inter
+                                      .copyWith(
+                                    fontSize: 14.sp,
+                                    color: index == 1
+                                        ? ColorHelper.fontColor
+                                        : const Color(
+                                            0xffF7F6F5,
+                                          ),
+                                  ),
                                 ),
-                                const SizedBox(width: 35),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Divider(
-                            height: 0,
-                            thickness: 2,
-                            color: ColorHelper.kPrimary,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.028,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Text(
-                                'Select which document you would like to add',
-                                textAlign: TextAlign.justify,
-                                style: TextStyleHelper.kWhite15W600Inter),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.017,
-                          ),
-                          Container(
-                            height: size.height * 0.040,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: size.height * 0.017),
-                            decoration: BoxDecoration(
-                              color: const Color(0xff2F2D29).withOpacity(0.4),
-                              border: Border.all(color: ColorHelper.kDarkGrey),
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
-                            child: TabBar(
-                              controller: _tabController,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: size.height * 0.68,
+                          child: TabBarView(
                               physics: const NeverScrollableScrollPhysics(),
-                              onTap: (value) {
-                                setState(() {
-                                  index = value;
-                                });
-                              },
-                              indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  color: const Color(0xffFFC091),
-                                  border: Border.all(color: Colors.white)),
-                              labelColor: Colors.white,
-                              unselectedLabelColor: Colors.black,
-                              tabs: [
-                                Center(
-                                  child: Text(
-                                    'Mandatory',
-                                    style: TextStyleHelper.kPrimary20W600Inter
-                                        .copyWith(
-                                      fontSize: 14.sp,
-                                      color: index == 0
-                                          ? ColorHelper.fontColor
-                                          : const Color(
-                                              0xffF7F6F5,
+                              controller: _tabController,
+                              children: [
+                                Column(
+                                  children: List.generate(
+                                    mandatory.length,
+                                    (index) => GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                mandatory[index]['screen'],
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 15, right: 15, bottom: 15),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        height: size.height * 0.064,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.14),
+                                          borderRadius:
+                                              BorderRadius.circular(16.r),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              mandatory[index]['title'],
+                                              style: TextStyleHelper
+                                                  .white14W400Inter,
                                             ),
+                                            const Spacer(),
+                                            SvgPicture.asset(
+                                                'assets/icons/arrow-circle-right.svg'),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                Center(
-                                  child: Text(
-                                    'Non-Mandatory',
-                                    style: TextStyleHelper.kPrimary20W600Inter
-                                        .copyWith(
-                                      fontSize: 14.sp,
-                                      color: index == 1
-                                          ? ColorHelper.fontColor
-                                          : const Color(
-                                              0xffF7F6F5,
+                                Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AddDiplomaCertificates(),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(
+                                            left: 15, right: 15, bottom: 15),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        height: size.height * 0.064,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.14),
+                                          borderRadius:
+                                              BorderRadius.circular(16.r),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Diploma Certificate',
+                                              style: TextStyleHelper
+                                                  .white14W400Inter,
                                             ),
+                                            const Spacer(),
+                                            SvgPicture.asset(
+                                                'assets/icons/arrow-circle-right.svg'),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AddCustomDocumentScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15),
+                                        child: DottedBorder(
+                                          color: ColorHelper.kPrimary,
+                                          strokeWidth: 1,
+                                          dashPattern: const [10, 5],
+                                          borderType: BorderType.RRect,
+                                          radius: const Radius.circular(16),
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            height: size.height * 0.064,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white
+                                                  .withOpacity(0.14),
+                                              borderRadius:
+                                                  BorderRadius.circular(16.r),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  'Add Custom Document',
+                                                  style: TextStyleHelper
+                                                      .white14W400Inter,
+                                                ),
+                                                const Spacer(),
+                                                SvgPicture.asset(
+                                                    'assets/icons/arrow-circle-right.svg'),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.68,
-                            child: TabBarView(
-                                physics: const NeverScrollableScrollPhysics(),
-                                controller: _tabController,
-                                children: [
-                                  Column(
-                                    children: List.generate(
-                                      mandatory.length,
-                                      (index) => GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  mandatory[index]['screen'],
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 15, right: 15, bottom: 15),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
-                                          height: size.height * 0.064,
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.14),
-                                            borderRadius:
-                                                BorderRadius.circular(16.r),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                mandatory[index]['title'],
-                                                style: TextStyleHelper
-                                                    .white14W400Inter,
-                                              ),
-                                              const Spacer(),
-                                              SvgPicture.asset(
-                                                  'assets/icons/arrow-circle-right.svg'),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const AddDiplomaCertificates(),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              left: 15, right: 15, bottom: 15),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
-                                          height: size.height * 0.064,
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.14),
-                                            borderRadius:
-                                                BorderRadius.circular(16.r),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Diploma Certificate',
-                                                style: TextStyleHelper
-                                                    .white14W400Inter,
-                                              ),
-                                              const Spacer(),
-                                              SvgPicture.asset(
-                                                  'assets/icons/arrow-circle-right.svg'),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const AddCustomDocumentScreen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 15),
-                                          child: DottedBorder(
-                                            color: ColorHelper.kPrimary,
-                                            strokeWidth: 1,
-                                            dashPattern: const [10, 5],
-                                            borderType: BorderType.RRect,
-                                            radius: const Radius.circular(16),
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16),
-                                              height: size.height * 0.064,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white
-                                                    .withOpacity(0.14),
-                                                borderRadius:
-                                                    BorderRadius.circular(16.r),
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    'Add Custom Document',
-                                                    style: TextStyleHelper
-                                                        .white14W400Inter,
-                                                  ),
-                                                  const Spacer(),
-                                                  SvgPicture.asset(
-                                                      'assets/icons/arrow-circle-right.svg'),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ]),
-                          ),
-                        ],
-                      ),
+                              ]),
+                        ),
+                      ],
                     ),
                   ]),
                 ),

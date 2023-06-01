@@ -94,7 +94,8 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 45.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 45.0, horizontal: 12),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.r),
                     child: Stack(clipBehavior: Clip.none, children: [
@@ -102,212 +103,198 @@ class _PayrollComponentScreenState extends State<PayrollComponentScreen>
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 4, sigmaY: 5),
                           child: Container(
-                            padding: const EdgeInsets.all(12),
-                            margin: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: BoxDecoration(
                                 color: ColorHelper.kBGBlur.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(24.r)),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          left: size.width * 0.025,
-                          right: size.width * 0.025,
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 14,
-                                vertical: size.height * 0.011,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    child: SvgPicture.asset(
-                                      'assets/icons/arrow-left-rounded.svg',
-                                      height: 35,
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.0360,
+                              vertical: size.height * 0.0156,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: SvgPicture.asset(
+                                    'assets/icons/arrow-left-rounded.svg',
+                                    height: size.height * 0.0399,
+                                  ),
+                                ),
+                                Text(
+                                  'Payroll Components',
+                                  style: TextStyleHelper.kPrimary22W600Inter
+                                      .copyWith(fontSize: 20.sp),
+                                ),
+                                SizedBox(width: size.width * 0.0606),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 1.0),
+                            child: Divider(
+                              height: 0,
+                              thickness: 2,
+                              color: ColorHelper.kPrimary,
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.051,
+                          ),
+                          Container(
+                            height: size.height * 0.040,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: size.height * 0.017),
+                            decoration: BoxDecoration(
+                              color: const Color(0xff2F2D29).withOpacity(0.4),
+                              border: Border.all(color: ColorHelper.kDarkGrey),
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: TabBar(
+                              isScrollable: false,
+                              controller: _tabController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              onTap: (value) {
+                                controller.updateValue(value);
+                              },
+                              indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  color: const Color(0xffFFC091),
+                                  border: Border.all(color: Colors.white)),
+                              labelColor: Colors.white,
+                              unselectedLabelColor: Colors.black,
+                              tabs: [
+                                Center(
+                                  child: Text(
+                                    'Additions',
+                                    style: TextStyleHelper.kPrimary20W600Inter
+                                        .copyWith(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: controller.index == 0
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
                                     ),
                                   ),
-                                  Text(
-                                    'Payroll Components',
-                                    style: TextStyleHelper.kPrimary22W600Inter
-                                        .copyWith(fontSize: 20.sp),
+                                ),
+                                Center(
+                                  child: Text(
+                                    'Deductions',
+                                    style: TextStyleHelper.kWhite14W400Inter
+                                        .copyWith(
+                                      fontSize: 14.sp,
+                                      color: controller.index == 1
+                                          ? ColorHelper.fontColor
+                                          : const Color(
+                                              0xffF7F6F5,
+                                            ),
+                                    ),
                                   ),
-                                  const SizedBox(width: 25),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 1.0),
-                              child: Divider(
-                                height: 0,
-                                thickness: 2,
-                                color: ColorHelper.kPrimary,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 49,
-                            ),
-                            Container(
-                              height: size.height * 0.040,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: size.height * 0.017),
-                              decoration: BoxDecoration(
-                                color: const Color(0xff2F2D29).withOpacity(0.4),
-                                border:
-                                    Border.all(color: ColorHelper.kDarkGrey),
-                                borderRadius: BorderRadius.circular(8.r),
-                              ),
-                              child: TabBar(
-                                isScrollable: false,
-                                controller: _tabController,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            child: TabBarView(
                                 physics: const NeverScrollableScrollPhysics(),
-                                onTap: (value) {
-                                  controller.updateValue(value);
-                                },
-                                indicator: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    color: const Color(0xffFFC091),
-                                    border: Border.all(color: Colors.white)),
-                                labelColor: Colors.white,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Center(
-                                    child: Text(
-                                      'Additions',
-                                      style: TextStyleHelper.kPrimary20W600Inter
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: controller.index == 0
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Deductions',
-                                      style: TextStyleHelper.kWhite14W400Inter
-                                          .copyWith(
-                                        fontSize: 14.sp,
-                                        color: controller.index == 1
-                                            ? ColorHelper.fontColor
-                                            : const Color(
-                                                0xffF7F6F5,
-                                              ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Expanded(
-                              child: TabBarView(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  controller: _tabController,
-                                  children: [
-                                    Column(
-                                      children: List.generate(
-                                        2,
-                                        (index) => Container(
-                                          padding: const EdgeInsets.all(16),
-                                          margin: const EdgeInsets.only(
-                                              bottom: 16, right: 16, left: 16),
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.14),
-                                            borderRadius:
-                                                BorderRadius.circular(16.r),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                additions[index]['title'],
-                                                style: TextStyleHelper
-                                                    .white14W600Inter,
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                'Fixed',
-                                                style: TextStyleHelper
-                                                    .white14W400Inter,
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              Text(
-                                                additions[index]['price'],
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color:
-                                                        ColorHelper.kPrimary),
-                                              )
-                                            ],
-                                          ),
+                                controller: _tabController,
+                                children: [
+                                  Column(
+                                    children: List.generate(
+                                      2,
+                                      (index) => Container(
+                                        padding: const EdgeInsets.all(16),
+                                        margin: const EdgeInsets.only(
+                                            bottom: 16, right: 16, left: 16),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.14),
+                                          borderRadius:
+                                              BorderRadius.circular(16.r),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              additions[index]['title'],
+                                              style: TextStyleHelper
+                                                  .white14W600Inter,
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              'Fixed',
+                                              style: TextStyleHelper
+                                                  .white14W400Inter,
+                                            ),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                            Text(
+                                              additions[index]['price'],
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: ColorHelper.kPrimary),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
-                                    Column(
-                                      children: List.generate(
-                                        2,
-                                        (index) => Container(
-                                          padding: const EdgeInsets.all(16),
-                                          margin: const EdgeInsets.only(
-                                              bottom: 16, right: 16, left: 16),
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.14),
-                                            borderRadius:
-                                                BorderRadius.circular(16.r),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                deductions[index]['title'],
-                                                style: TextStyleHelper
-                                                    .white14W600Inter,
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                deductions[index]['value'],
-                                                style: TextStyleHelper
-                                                    .white14W400Inter,
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              Text(
-                                                deductions[index]['price'],
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color:
-                                                        ColorHelper.kPrimary),
-                                              )
-                                            ],
-                                          ),
+                                  ),
+                                  Column(
+                                    children: List.generate(
+                                      2,
+                                      (index) => Container(
+                                        padding: const EdgeInsets.all(16),
+                                        margin: const EdgeInsets.only(
+                                            bottom: 16, right: 16, left: 16),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.14),
+                                          borderRadius:
+                                              BorderRadius.circular(16.r),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              deductions[index]['title'],
+                                              style: TextStyleHelper
+                                                  .white14W600Inter,
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              deductions[index]['value'],
+                                              style: TextStyleHelper
+                                                  .white14W400Inter,
+                                            ),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                            Text(
+                                              deductions[index]['price'],
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: ColorHelper.kPrimary),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ]),
-                            ),
-                          ],
-                        ),
+                                  ),
+                                ]),
+                          ),
+                        ],
                       ),
                     ]),
                   ),
