@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import '../Constant/color_helper.dart';
 import '../Constant/text_style_helper.dart';
 import '../View/letters_screen/letter_requests_screen.dart';
@@ -30,7 +31,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
   List<Map<String, dynamic>> bottomBarList = [
     {
-      "icon": "assets/icons/home.svg",
+      "icon": Iconsax.home1,
+      "icons": Iconsax.home,
       "name": "Home",
     },
     {
@@ -38,11 +40,11 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       "name": "Leaves",
     },
     {
-      "icon": "assets/icons/wallet-money.svg",
+      "icon": Iconsax.wallet_money,
       "name": "Payslips",
     },
     {
-      "icon": "assets/icons/clipboard-text.svg",
+      "icon": Iconsax.clipboard_text,
       "name": "Letters",
     }
   ];
@@ -80,16 +82,22 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 child: Visibility(
                   visible: controller.isDrawer == false ? true : false,
                   child: Container(
-                    height: size.height * 0.1997,
+                    height: size.height * 0.15,
                     width: size.width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           colors: [
+                            Colors.black,
+                            Colors.black.withOpacity(0.9),
+                            Colors.black.withOpacity(0.8),
+                            Colors.black.withOpacity(0.7),
                             Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.4),
+                            Colors.black.withOpacity(0.5),
+                            Colors.black.withOpacity(0.3),
                             Colors.black.withOpacity(0.2),
+                            Colors.black.withOpacity(0.1),
                             Colors.black.withOpacity(0),
                           ]),
                     ),
@@ -101,7 +109,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           GetBuilder<DrawerGetController>(
             builder: (controller) {
               return Positioned(
-                bottom: size.height * 0.015,
+                bottom: size.height * 0.01,
                 child: Visibility(
                   visible: controller.isDrawer == false ? true : false,
                   child: SizedBox(
@@ -125,63 +133,93 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
                                   log('bottomIndex---------->>>>>> ${bottomBarController.bottomIndex}');
                                 },
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  width:
-                                      bottomBarController.bottomIndex == index
-                                          ? size.width * 0.381
-                                          : size.width * 0.16,
-                                  alignment: Alignment.center,
-                                  decoration:
-                                      bottomBarController.bottomIndex == index
-                                          ? BoxDecoration(
-                                              color: ColorHelper.kPrimary
-                                                  .withOpacity(0.5),
-                                              borderRadius:
-                                                  BorderRadius.circular(30.r),
-                                              border: Border.all(
-                                                  color: ColorHelper.kPrimary,
-                                                  width: 1.5))
-                                          : const BoxDecoration(
-                                              color: Color(0xff6C6B6A),
-                                              shape: BoxShape.circle,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.01),
+                                  child: Container(
+                                    height: size.height * 0.058,
+                                    width:
+                                        bottomBarController.bottomIndex == index
+                                            ? size.width * 0.35
+                                            : size.height * 0.058,
+                                    alignment: Alignment.center,
+                                    decoration:
+                                        bottomBarController.bottomIndex == index
+                                            ? BoxDecoration(
+                                                color: ColorHelper.kPrimary
+                                                    .withOpacity(0.5),
+                                                borderRadius:
+                                                    BorderRadius.circular(30.r),
+                                                border: Border.all(
+                                                    color: ColorHelper.kPrimary,
+                                                    width: 1.5))
+                                            : const BoxDecoration(
+                                                color: Color(0xff6C6B6A),
+                                                shape: BoxShape.circle,
+                                              ),
+                                    child: bottomBarController.bottomIndex ==
+                                            index
+                                        ? Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: size.width * 0.040),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                index == 1
+                                                    ? SvgPicture.asset(
+                                                        bottomBarList[index]
+                                                            ['icon'],
+                                                        height: 23.h,
+                                                        color: ColorHelper
+                                                            .kPrimary,
+                                                      )
+                                                    : Icon(
+                                                        bottomBarList[index]
+                                                            ['icon'],
+                                                        size: 23.h,
+                                                        color: ColorHelper
+                                                            .kPrimary,
+                                                      ),
+                                                Text(
+                                                  bottomBarList[index]['name'],
+                                                  style: TextStyleHelper
+                                                      .kPrimary12W500Inter
+                                                      .copyWith(
+                                                          fontSize: 17.sp),
+                                                ),
+                                              ],
                                             ),
-                                  child: bottomBarController.bottomIndex ==
-                                          index
-                                      ? Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.040),
-                                          child: Row(
+                                          )
+                                        : Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             children: [
-                                              SvgPicture.asset(
-                                                bottomBarList[index]['icon'],
-                                                height: 32,
-                                                color: ColorHelper.kPrimary,
-                                              ),
-                                              Text(
-                                                bottomBarList[index]['name'],
-                                                style: TextStyleHelper
-                                                    .kPrimary12W500Inter
-                                                    .copyWith(fontSize: 17.sp),
-                                              ),
+                                              index == 0
+                                                  ? Icon(
+                                                      bottomBarList[index]
+                                                          ['icons'],
+                                                      size: 23.h,
+                                                      color: Colors.white,
+                                                    )
+                                                  : index == 1
+                                                      ? SvgPicture.asset(
+                                                          bottomBarList[index]
+                                                              ['icon'],
+                                                          height: 23.h,
+                                                          color: Colors.white,
+                                                        )
+                                                      : Icon(
+                                                          bottomBarList[index]
+                                                              ['icon'],
+                                                          size: 23.h,
+                                                          color: Colors.white,
+                                                        ),
                                             ],
                                           ),
-                                        )
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            SvgPicture.asset(
-                                              bottomBarList[index]['icon'],
-                                              height: 32,
-                                              color: Colors.white,
-                                            ),
-                                          ],
-                                        ),
+                                  ),
                                 ),
                               ),
                             ],

@@ -40,15 +40,15 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                 children: [
                   Positioned(
                     top: size.height * 0.3,
-                    left: size.width * 0.8,
+                    left: size.width * 0.75,
                     child: Image.asset(
                       'assets/icons/Sales.png',
-                      height: 250,
+                      height: 330,
                     ),
                   ),
                   Positioned(
                     top: size.height * 0.75,
-                    right: size.width * 0.8,
+                    right: size.width * 0.86,
                     child: Image.asset(
                       'assets/icons/Finance.png',
                       height: size.height * 0.3,
