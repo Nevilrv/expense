@@ -49,6 +49,7 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
           child: Scaffold(
             backgroundColor: ColorHelper.kBG,
             body: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
               child: Stack(
                 children: [
                   Positioned(
@@ -75,11 +76,11 @@ class _ExpenseViewMoreScreenState extends State<ExpenseViewMoreScreen>
                       height: size.height * 0.3,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: size.height * 0.0228,
                   ),
                   Container(
-                    height: size.height * 1.12,
+                    height: size.height * 0.9,
                     margin: EdgeInsets.symmetric(
                         horizontal: size.width * 0.025,
                         vertical: size.width * 0.08),

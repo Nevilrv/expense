@@ -73,6 +73,7 @@ class _NotificationScreenState extends State<NotificationScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
@@ -151,7 +152,7 @@ class _NotificationScreenState extends State<NotificationScreen>
               padding: EdgeInsets.only(top: size.height * 0.070),
               child: Container(
                 height: size.height * 1.10,
-                margin: EdgeInsets.all(size.width * 0.025),
+                margin: EdgeInsets.all(size.width * 0.0291),
                 child: Blur(
                   blur: 10,
                   colorOpacity: 0.25,
@@ -232,8 +233,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                                                   0xffF7F6F5,
                                                 ),
                                         ),
-                                        const SizedBox(
-                                          width: 2,
+                                        SizedBox(
+                                          width: 7.w,
                                         ),
                                         Text(
                                           'Notifications',
@@ -375,6 +376,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SvgPicture.asset(
                                     recentList[index]['icon'],
@@ -392,7 +395,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       style: TextStyleHelper.kWhite14W600Inter
                                           .copyWith(
                                               color: Colors.white,
-                                              fontSize: 15.sp),
+                                              fontSize: 13.sp),
                                     ),
                                   ),
                                   const SizedBox(
@@ -530,6 +533,8 @@ class _NotificationScreenState extends State<NotificationScreen>
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SvgPicture.asset(
                                     previousList[index]['icon'],
@@ -547,7 +552,7 @@ class _NotificationScreenState extends State<NotificationScreen>
                                       style: TextStyleHelper.kWhite14W600Inter
                                           .copyWith(
                                               color: Colors.white,
-                                              fontSize: 15.sp),
+                                              fontSize: 13.sp),
                                     ),
                                   ),
                                   const SizedBox(
@@ -671,9 +676,9 @@ class _NotificationScreenState extends State<NotificationScreen>
                     SizedBox(
                       width: size.width * 0.80,
                       child: Text(
-                          'Dear Team,\n\nI am excited to share that we have successfully aunched\n our new product line and it is now available for customer use.\n Our team s hard work and dedication has made  possible\n and I couldn t be more proud of each and every one of you. ',
+                          'Dear Team,\n\nI am excited to share that we have successfully aunched our new product line and it is now available for customer use.Our team s hard work and dedication has made  possible and I couldn t be more proud of each and every one of you. ',
                           overflow: TextOverflow.clip,
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.justify,
                           style: TextStyleHelper.kWhite12w500BOLDInter),
                     ),
                     SizedBox(
@@ -684,16 +689,12 @@ class _NotificationScreenState extends State<NotificationScreen>
                         Text(
                           '12-02-2023',
                           overflow: TextOverflow.clip,
-                          style: TextStyleHelper.kWhite12w500BOLDInter
-                              .copyWith(fontSize: 15.sp, color: Colors.white),
+                          style: TextStyleHelper.kWhite12w500BOLDInter,
                         ),
                         const Spacer(),
-                        Text(
-                          '8:56 pm',
-                          overflow: TextOverflow.clip,
-                          style: TextStyleHelper.kWhite12w500BOLDInter
-                              .copyWith(fontSize: 15.sp, color: Colors.white),
-                        ),
+                        Text('8:56 pm',
+                            overflow: TextOverflow.clip,
+                            style: TextStyleHelper.kWhite12w500BOLDInter),
                       ],
                     ),
                   ],

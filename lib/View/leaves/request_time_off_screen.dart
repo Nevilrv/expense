@@ -41,6 +41,8 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   TextEditingController messageController = TextEditingController();
   int selectPage = 0;
   List scroll = [0];
+  DateTime? rangeStart;
+  DateTime? rangeEnd;
   bool isAvilable = false;
   DateTime? selectDate1;
   bool open = false;
@@ -330,63 +332,74 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
           height: 20,
         ),
         Container(
-            height: size.height * 0.4,
-            width: size.width * 0.9,
-            decoration: BoxDecoration(
-              // color: Colors.white.withOpacity(0.15),
-              color: Colors.white.withOpacity(0.14),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: TableCalendar(
-              focusedDay: today,
-              firstDay: DateTime(2000),
-              lastDay: DateTime.now(),
-              calendarFormat: CalendarFormat.month,
-              currentDay: DateTime.now(),
-              daysOfWeekVisible: true,
-              weekNumbersVisible: false,
-              shouldFillViewport: true,
-              onDaySelected: _onDaySelected,
-              selectedDayPredicate: (day) => isSameDay(day, today),
-              headerStyle: HeaderStyle(
-                formatButtonShowsNext: false,
-                formatButtonVisible: false,
-                titleCentered: true,
+          height: size.height * 0.4,
+          width: size.width * 0.9,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(16.r),
+          ),
+          child: TableCalendar(
+            focusedDay: today,
+            firstDay: DateTime(2000),
+            lastDay: DateTime(2050),
+            calendarFormat: CalendarFormat.month,
+            currentDay: DateTime.now(),
+            daysOfWeekVisible: true,
+            weekNumbersVisible: false,
+            shouldFillViewport: true,
+            rangeStartDay: rangeStart,
+            rangeEndDay: rangeEnd,
+            rangeSelectionMode: RangeSelectionMode.toggledOn,
+            onDaySelected: _onDaySelected,
+            selectedDayPredicate: (day) => isSameDay(day, today),
+            onRangeSelected: _onRangeSelected,
+            headerStyle: HeaderStyle(
+              formatButtonShowsNext: false,
+              formatButtonVisible: false,
+              titleCentered: true,
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.white.withOpacity(0.5), width: 0.4))),
+              titleTextStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white),
+              leftChevronIcon: Container(
+                height: 17,
+                width: 17,
                 decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Colors.white.withOpacity(0.5), width: 0.4))),
-                titleTextStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white),
-                leftChevronIcon: Container(
-                  height: 17,
-                  width: 17,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 0.7),
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: const Icon(Icons.arrow_back_ios_new_rounded,
-                      size: 10, color: Colors.white),
+                  border: Border.all(color: Colors.white, width: 0.7),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
-                rightChevronIcon: Container(
-                  height: 17,
-                  width: 17,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 0.7),
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: const Icon(Icons.arrow_forward_ios_outlined,
-                      size: 10, color: Colors.white),
-                ),
-                headerPadding: const EdgeInsets.only(bottom: 5, top: 5),
+                child: const Icon(Icons.arrow_back_ios_new_rounded,
+                    size: 10, color: Colors.white),
               ),
-              calendarStyle: CalendarStyle(
+              rightChevronIcon: Container(
+                height: 17,
+                width: 17,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 0.7),
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: const Icon(Icons.arrow_forward_ios_outlined,
+                    size: 10, color: Colors.white),
+              ),
+              headerPadding: const EdgeInsets.only(bottom: 5, top: 5),
+            ),
+            calendarStyle: CalendarStyle(
                 cellMargin:
                     const EdgeInsets.only(top: 7, bottom: 7, left: 5, right: 5),
-                isTodayHighlighted: false,
+                isTodayHighlighted: true,
                 outsideDaysVisible: true,
+                todayDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.0),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD).withOpacity(0.5),
+                  ),
+                ),
+                todayTextStyle: TextStyle(color: ColorHelper.kPrimary),
                 weekendTextStyle: const TextStyle(color: Colors.white),
                 defaultTextStyle: const TextStyle(color: Colors.white),
                 disabledTextStyle: const TextStyle(color: Colors.grey),
@@ -394,20 +407,43 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
                 selectedTextStyle: const TextStyle(color: Colors.white),
                 selectedDecoration: BoxDecoration(
                   color: const Color(0xffB2FF81).withOpacity(0.26),
-                  //  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(4),
                   border: Border.all(
                     color: const Color(0xffFFBFBD),
                   ),
                 ),
-              ),
-              daysOfWeekStyle: const DaysOfWeekStyle(
-                weekdayStyle: TextStyle(
-                  color: Colors.white,
+                rangeStartDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
                 ),
-                weekendStyle: TextStyle(color: Colors.white),
+                rangeEndDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                withinRangeTextStyle: const TextStyle(color: Colors.white),
+                withinRangeDecoration: BoxDecoration(
+                  color: const Color(0xffB2FF81).withOpacity(0.26),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffFFBFBD),
+                  ),
+                ),
+                rangeHighlightColor: Colors.transparent),
+            daysOfWeekStyle: const DaysOfWeekStyle(
+              weekdayStyle: TextStyle(
+                color: Colors.white,
               ),
-              daysOfWeekHeight: 35,
-            )),
+              weekendStyle: TextStyle(color: Colors.white),
+            ),
+            daysOfWeekHeight: 35,
+          ),
+        ),
         const Spacer(),
         InkWell(
           onTap: () {
@@ -453,6 +489,15 @@ class _RequestTimeOffScreenState extends State<RequestTimeOffScreen> {
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       today = day;
+    });
+  }
+
+  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
+    setState(() {
+      selectDate1 = null;
+      today = focusedDay;
+      rangeStart = start;
+      rangeEnd = end;
     });
   }
 

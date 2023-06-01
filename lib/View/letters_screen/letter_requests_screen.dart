@@ -88,59 +88,62 @@ class _LetterRequestsScreenState extends State<LetterRequestsScreen> {
               ),
               Column(
                 children: [
-                  SizedBox(
-                    height: size.height * 0.077,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          _scaffoldKey.currentState!.openDrawer();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: size.width * 0.08,
-                          ),
-                          child: const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Icon(
-                              Icons.menu,
-                              color: Color(0xff260A2F),
-                              size: 24,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: size.height * 0.01,
+                      top: size.height * 0.077,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            _scaffoldKey.currentState!.openDrawer();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              left: size.width * 0.08,
+                            ),
+                            child: const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Icon(
+                                Icons.menu,
+                                color: Color(0xff260A2F),
+                                size: 24,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const Text(
-                        'Letter Request',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 22),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(right: size.width * 0.08),
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.to(() => const RequestLetterScreens());
-                            },
-                            child: Container(
-                              height: 32,
-                              width: 32,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                      'assets/images/People.png',
-                                    ),
-                                    fit: BoxFit.cover),
+                        const Text(
+                          'Letter Request',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 22),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(() => const RequestLetterScreens());
+                              },
+                              child: Container(
+                                height: 32,
+                                width: 32,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        'assets/images/People.png',
+                                      ),
+                                      fit: BoxFit.cover),
+                                ),
+                                child: const Icon(
+                                    Icons.add_circle_outline_outlined,
+                                    size: 17),
                               ),
-                              child: const Icon(
-                                  Icons.add_circle_outline_outlined,
-                                  size: 17),
-                            ),
-                          )),
-                    ],
+                            )),
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
