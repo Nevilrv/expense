@@ -238,7 +238,7 @@ class Global {
               onTap: () {
                 drawerGetController.setDrawer(false);
                 bottomBarController.setBottomIndex(1);
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const BottomBarScreen(),
